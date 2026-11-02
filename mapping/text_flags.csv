@@ -1,0 +1,4 @@
+pattern,fields,sector,confidence,notes,review_status
+\bVAPES?\b|\bVAPING\b|\bE-?CIG,description_text;firm_name;number_or_name,possible_vape_shop,low,"No VOA code identifies vape shops. Coverage is very small. The 2027 definition of a vape shop is not yet published.",awaiting_review
+ADULT GAMING|GAMING CENTRE|GAMING ARCADE|GAMING LOUNGE|AMUSEMENT ARCADE|\bAGC\b,description_text,possible_adult_gaming_centre,medium,"Description text names an arcade or gaming centre. The 2027 definition of an adult gaming centre is not yet published.",awaiting_review
+\bDANCE (SCHOOL|STUDIOS?|CENTRE|ACADEMY)\b,description_text,leisure,medium,"Recreational dance lessons, SI 2025/1093 Sch 2 para 11. Dance schools are often coded EP (school) under unrelated SCAT codes.",awaiting_review

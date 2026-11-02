@@ -1,0 +1,343 @@
+ba_code,ba_name,country,is_london
+0114,BATH AND NORTH EAST SOMERSET,England,false
+0116,BRISTOL CITY,England,false
+0119,SOUTH GLOUCESTERSHIRE,England,false
+0121,NORTH SOMERSET,England,false
+0230,LUTON,England,false
+0235,BEDFORD,England,false
+0240,CENTRAL BEDFORDSHIRE COUNCIL,England,false
+0335,BRACKNELL FOREST,England,false
+0340,WEST BERKSHIRE,England,false
+0345,READING,England,false
+0350,SLOUGH,England,false
+0355,WINDSOR AND MAIDENHEAD,England,false
+0360,WOKINGHAM,England,false
+0435,MILTON KEYNES,England,false
+0440,BUCKINGHAMSHIRE,England,false
+0505,CAMBRIDGE,England,false
+0510,EAST CAMBRIDGESHIRE,England,false
+0515,FENLAND,England,false
+0520,HUNTINGDON,England,false
+0530,SOUTH CAMBRIDGESHIRE,England,false
+0540,PETERBOROUGH,England,false
+0650,HALTON,England,false
+0655,WARRINGTON,England,false
+0660,CHESHIRE EAST,England,false
+0665,CHESHIRE WEST AND CHESTER,England,false
+0724,HARTLEPOOL,England,false
+0728,REDCAR AND CLEVELAND,England,false
+0734,MIDDLESBROUGH,England,false
+0738,STOCKTON-ON-TEES,England,false
+0835,ISLES OF SCILLY,England,false
+0840,CORNWALL,England,false
+0905,ALLERDALE,England,false
+0910,BARROW-IN-FURNESS,England,false
+0915,CARLISLE,England,false
+0920,COPELAND,England,false
+0925,EDEN,England,false
+0930,SOUTH LAKELAND,England,false
+1005,AMBER VALLEY,England,false
+1010,BOLSOVER,England,false
+1015,CHESTERFIELD,England,false
+1025,EREWASH,England,false
+1030,HIGH PEAK,England,false
+1035,NORTH EAST DERBYSHIRE,England,false
+1040,SOUTH DERBYSHIRE,England,false
+1045,DERBYSHIRE DALES,England,false
+1055,DERBY,England,false
+1105,EAST DEVON,England,false
+1110,EXETER,England,false
+1115,NORTH DEVON,England,false
+1125,SOUTH HAMS,England,false
+1130,TEIGNBRIDGE,England,false
+1135,MID DEVON,England,false
+1145,TORRIDGE,England,false
+1150,WEST DEVON,England,false
+1160,PLYMOUTH,England,false
+1165,TORBAY,England,false
+1210,CHRISTCHURCH,England,false
+1250,BOURNEMOUTH,England,false
+1255,BOROUGH OF POOLE,England,false
+1265,DORSET COUNCIL,England,false
+1350,DARLINGTON,England,false
+1355,DURHAM COUNTY,England,false
+1410,EASTBOURNE,England,false
+1415,HASTINGS,England,false
+1425,LEWES,England,false
+1430,ROTHER,England,false
+1435,WEALDEN,England,false
+1445,BRIGHTON & HOVE,England,false
+1505,BASILDON,England,false
+1510,BRAINTREE,England,false
+1515,BRENTWOOD,England,false
+1520,CASTLE POINT,England,false
+1525,CHELMSFORD,England,false
+1530,COLCHESTER,England,false
+1535,EPPING FOREST,England,false
+1540,HARLOW,England,false
+1545,MALDON,England,false
+1550,ROCHFORD,England,false
+1560,TENDRING,England,false
+1570,UTTLESFORD,England,false
+1590,SOUTHEND-ON-SEA,England,false
+1595,THURROCK,England,false
+1605,CHELTENHAM,England,false
+1610,COTSWOLD,England,false
+1615,FOREST OF DEAN,England,false
+1620,GLOUCESTER,England,false
+1625,STROUD,England,false
+1630,TEWKESBURY,England,false
+1705,BASINGSTOKE AND DEANE,England,false
+1710,EAST HAMPSHIRE,England,false
+1715,EASTLEIGH,England,false
+1720,FAREHAM,England,false
+1725,GOSPORT,England,false
+1730,HART,England,false
+1735,HAVANT,England,false
+1740,NEW FOREST,England,false
+1750,RUSHMOOR,England,false
+1760,TEST VALLEY,England,false
+1765,WINCHESTER,England,false
+1775,PORTSMOUTH CITY,England,false
+1780,SOUTHAMPTON CITY,England,false
+1805,BROMSGROVE,England,false
+1825,REDDITCH,England,false
+1835,WORCESTER,England,false
+1840,WYCHAVON,England,false
+1845,WYRE FOREST,England,false
+1850,HEREFORDSHIRE,England,false
+1860,MALVERN HILLS,England,false
+1905,BROXBOURNE,England,false
+1910,DACORUM,England,false
+1915,EAST HERTFORDSHIRE,England,false
+1920,HERTSMERE,England,false
+1925,NORTH HERTFORDSHIRE,England,false
+1930,ST ALBANS,England,false
+1935,STEVENAGE,England,false
+1940,THREE RIVERS,England,false
+1945,WATFORD,England,false
+1950,WELWYN HATFIELD,England,false
+2001,EAST RIDING OF YORKSHIRE,England,false
+2002,NORTH EAST LINCOLNSHIRE,England,false
+2003,NORTH LINCOLNSHIRE,England,false
+2004,CITY AND COUNTY OF KINGSTON-UPON-,England,false
+2100,ISLE OF WIGHT,England,false
+2205,ASHFORD,England,false
+2210,CANTERBURY,England,false
+2215,DARTFORD,England,false
+2220,DOVER,England,false
+2230,GRAVESHAM,England,false
+2235,MAIDSTONE,England,false
+2245,SEVENOAKS,England,false
+2250,SHEPWAY,England,false
+2255,SWALE,England,false
+2260,THANET,England,false
+2265,TONBRIDGE & MALLING,England,false
+2270,TUNBRIDGE WELLS,England,false
+2280,MEDWAY,England,false
+2315,BURNLEY,England,false
+2320,CHORLEY,England,false
+2325,FYLDE,England,false
+2330,HYNDBURN,England,false
+2335,LANCASTER,England,false
+2340,PENDLE,England,false
+2345,PRESTON,England,false
+2350,RIBBLE VALLEY,England,false
+2355,ROSSENDALE,England,false
+2360,SOUTH RIBBLE,England,false
+2365,WEST LANCASHIRE,England,false
+2370,WYRE,England,false
+2372,BLACKBURN WITH DARWEN,England,false
+2373,BLACKPOOL,England,false
+2405,BLABY,England,false
+2410,CHARNWOOD,England,false
+2415,HARBOROUGH,England,false
+2420,HINCKLEY & BOSWORTH,England,false
+2430,MELTON,England,false
+2435,NORTH WEST LEICESTERSHIRE,England,false
+2440,OADBY & WIGSTON,England,false
+2465,CITY OF LEICESTER,England,false
+2470,RUTLAND,England,false
+2505,BOSTON,England,false
+2510,EAST LINDSEY,England,false
+2515,LINCOLN,England,false
+2520,NORTH KESTEVEN,England,false
+2525,SOUTH HOLLAND,England,false
+2530,SOUTH KESTEVEN,England,false
+2535,WEST LINDSEY,England,false
+2605,BRECKLAND,England,false
+2610,BROADLAND,England,false
+2615,GREAT YARMOUTH,England,false
+2620,NORTH NORFOLK,England,false
+2625,NORWICH,England,false
+2630,SOUTH NORFOLK,England,false
+2635,KINGS LYNN & WEST NORFOLK,England,false
+2705,CRAVEN,England,false
+2710,HAMBLETON,England,false
+2715,HARROGATE,England,false
+2720,RICHMONDSHIRE,England,false
+2725,RYEDALE,England,false
+2730,SCARBOROUGH,England,false
+2735,SELBY,England,false
+2741,CITY OF YORK,England,false
+2805,CORBY,England,false
+2810,DAVENTRY,England,false
+2815,EAST NORTHAMPTONSHIRE,England,false
+2820,KETTERING,England,false
+2825,NORTHAMPTON,England,false
+2830,SOUTH NORTHAMPTONSHIRE,England,false
+2835,WELLINGBOROUGH,England,false
+2935,NORTHUMBERLAND,England,false
+3005,ASHFIELD,England,false
+3010,BASSETLAW,England,false
+3015,BROXTOWE,England,false
+3020,GEDLING,England,false
+3025,MANSFIELD,England,false
+3030,NEWARK & SHERWOOD,England,false
+3040,RUSHCLIFFE,England,false
+3060,NOTTINGHAM,England,false
+3105,CHERWELL,England,false
+3110,OXFORD,England,false
+3115,SOUTH OXFORDSHIRE,England,false
+3120,VALE OF WHITE HORSE,England,false
+3125,WEST OXFORDSHIRE,England,false
+3240,TELFORD AND WREKIN,England,false
+3245,SHROPSHIRE,England,false
+3305,MENDIP,England,false
+3310,SEDGEMOOR,England,false
+3325,SOUTH SOMERSET,England,false
+3330,SOMERSET WEST AND TAUNTON COUNCIL,England,false
+3405,CANNOCK CHASE,England,false
+3410,EAST STAFFORDSHIRE,England,false
+3415,LICHFIELD,England,false
+3420,NEWCASTLE UNDER LYME,England,false
+3425,STAFFORD,England,false
+3430,SOUTH STAFFORDSHIRE,England,false
+3435,STAFFORDSHIRE MOORLANDS,England,false
+3445,TAMWORTH,England,false
+3455,STOKE ON TRENT,England,false
+3505,BABERGH,England,false
+3515,IPSWICH,England,false
+3520,MID SUFFOLK,England,false
+3540,EAST SUFFOLK,England,false
+3545,WEST SUFFOLK,England,false
+3605,ELMBRIDGE,England,false
+3610,EPSOM & EWELL,England,false
+3615,GUILDFORD,England,false
+3620,MOLE VALLEY,England,false
+3625,REIGATE & BANSTEAD,England,false
+3630,RUNNYMEDE,England,false
+3635,SPELTHORNE,England,false
+3640,SURREY HEATH,England,false
+3645,TANDRIDGE,England,false
+3650,WAVERLEY,England,false
+3655,WOKING,England,false
+3705,NORTH WARWICKSHIRE,England,false
+3710,NUNEATON & BEDWORTH,England,false
+3715,RUGBY,England,false
+3720,STRATFORD ON AVON,England,false
+3725,WARWICK,England,false
+3805,ADUR,England,false
+3810,ARUN,England,false
+3815,CHICHESTER,England,false
+3820,CRAWLEY,England,false
+3825,HORSHAM,England,false
+3830,MID SUSSEX,England,false
+3835,WORTHING,England,false
+3935,SWINDON,England,false
+3940,WILTSHIRE,England,false
+4205,BOLTON,England,false
+4210,BURY,England,false
+4215,MANCHESTER,England,false
+4220,OLDHAM,England,false
+4225,ROCHDALE,England,false
+4230,SALFORD,England,false
+4235,STOCKPORT,England,false
+4240,TAMESIDE,England,false
+4245,TRAFFORD,England,false
+4250,WIGAN,England,false
+4305,KNOWSLEY,England,false
+4310,LIVERPOOL,England,false
+4315,ST HELENS,England,false
+4320,SEFTON,England,false
+4325,WIRRAL,England,false
+4405,BARNSLEY,England,false
+4410,DONCASTER,England,false
+4415,ROTHERHAM,England,false
+4420,SHEFFIELD,England,false
+4505,GATESHEAD,England,false
+4510,NEWCASTLE UPON TYNE,England,false
+4515,NORTH TYNESIDE,England,false
+4520,SOUTH TYNESIDE,England,false
+4525,SUNDERLAND,England,false
+4605,BIRMINGHAM,England,false
+4610,COVENTRY,England,false
+4615,DUDLEY,England,false
+4620,SANDWELL,England,false
+4625,SOLIHULL,England,false
+4630,WALSALL,England,false
+4635,WOLVERHAMPTON,England,false
+4705,BRADFORD,England,false
+4710,CALDERDALE,England,false
+4715,KIRKLEES,England,false
+4720,LEEDS,England,false
+4725,WAKEFIELD,England,false
+5030,CITY OF LONDON,England,true
+5060,BARKING & DAGENHAM,England,true
+5090,BARNET,England,true
+5120,BEXLEY,England,true
+5150,BRENT,England,true
+5180,BROMLEY,England,true
+5210,CAMDEN,England,true
+5240,CROYDON,England,true
+5270,EALING,England,true
+5300,ENFIELD,England,true
+5330,GREENWICH,England,true
+5360,HACKNEY,England,true
+5390,HAMMERSMITH & FULHAM,England,true
+5420,HARINGEY,England,true
+5450,HARROW,England,true
+5480,HAVERING,England,true
+5510,HILLINGDON,England,true
+5540,HOUNSLOW,England,true
+5570,ISLINGTON,England,true
+5600,KENSINGTON & CHELSEA,England,true
+5630,KINGSTON UPON THAMES,England,true
+5660,LAMBETH,England,true
+5690,LEWISHAM,England,true
+5720,MERTON,England,true
+5750,NEWHAM,England,true
+5780,REDBRIDGE,England,true
+5810,RICHMOND UPON THAMES,England,true
+5840,SOUTHWARK,England,true
+5870,SUTTON,England,true
+5900,TOWER HAMLETS,England,true
+5930,WALTHAM FOREST,England,true
+5960,WANDSWORTH,England,true
+5990,WESTMINSTER CITY,England,true
+6805,ISLE OF ANGLESEY,Wales,false
+6810,GWYNEDD,Wales,false
+6815,CARDIFF,Wales,false
+6820,CEREDIGION,Wales,false
+6825,CARMARTHENSHIRE (1),Wales,false
+6828,CARMARTHENSHIRE (2),Wales,false
+6829,CARMARTHENSHIRE (3),Wales,false
+6830,DENBIGHSHIRE,Wales,false
+6835,FLINTSHIRE,Wales,false
+6840,MONMOUTHSHIRE,Wales,false
+6845,PEMBROKESHIRE,Wales,false
+6850,POWYS 1 (MONTGOMERYSHIRE),Wales,false
+6853,POWYS 2 (RADNORSHIRE),Wales,false
+6854,POWYS 3 (BRECONSHIRE),Wales,false
+6855,SWANSEA,Wales,false
+6905,CONWY,Wales,false
+6910,BLAENAU GWENT,Wales,false
+6915,BRIDGEND,Wales,false
+6920,CAERPHILLY,Wales,false
+6925,MERTHYR TYDFIL,Wales,false
+6930,NEATH AND PORT TALBOT,Wales,false
+6935,NEWPORT,Wales,false
+6940,RHONDDA CYNON TAFF,Wales,false
+6945,TORFAEN,Wales,false
+6950,VALE OF GLAMORGAN,Wales,false
+6955,WREXHAM,Wales,false

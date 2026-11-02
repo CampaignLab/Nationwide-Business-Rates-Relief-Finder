@@ -1,0 +1,191 @@
+primary_description_code,scat_code,spec_scat_description,sector,confidence,notes,review_status
+*,021,Banks/Insurance/Building Society Offices & Other A2 Uses,other,high,"Banks, insurance and building societies: financial services excluded, SI 2025/1093 Sch 1 para 1.",awaiting_review
+*,018,ATMs,other,high,"ATMs excluded, SI 2025/1093 Sch 1 para 1(c).",awaiting_review
+*,011,Amusement Arcades,possible_adult_gaming_centre,medium,Amusement arcades. Includes family entertainment centres. Definition not yet published.,awaiting_review
+*,024,Betting Offices,other,high,"Betting offices excluded, SI 2025/1093 Sch 1 para 4(g).",awaiting_review
+*,250,Showhouses (National Scheme),other,high,"Show homes excluded, SI 2025/1093 Sch 1 para 4(e).",awaiting_review
+*,292,Veterinary Clinics / Animal Clinics,other,high,"Veterinary services excluded, SI 2025/1093 Sch 1 para 3(f).",awaiting_review
+*,232,Recording Studios,other,high,"Recording studios excluded, SI 2025/1093 Sch 1 para 4(b).",awaiting_review
+*,100,Film and TV Studios,other,high,"Film and TV studios excluded, SI 2025/1093 Sch 1 para 4(b).",awaiting_review
+*,074,Conference & Exhibition Centres,other,high,"Conference centres excluded, SI 2025/1093 Sch 1 para 4(f).",awaiting_review
+*,217,Post Office Sorting Centres,other,high,"Postal sorting offices excluded, SI 2025/1093 Sch 1 para 4(h).",awaiting_review
+*,049,Casinos and Gambling Clubs,leisure,high,"Casinos and gambling clubs, SI 2025/1093 Sch 2 para 14.",awaiting_review
+*,442,Takeaway Food Outlet (Predominantly Off Premises),hospitality,high,"Takeaway food, SI 2025/1093 reg 3(1)(b).",awaiting_review
+CO,723,Serviced Offices,other,high,Serviced offices.,awaiting_review
+ML,723,Serviced Offices,other,high,Serviced offices.,awaiting_review
+IF4,723,Serviced Offices,other,high,Serviced offices.,awaiting_review
+CL2,061,"Licensed Sports, Social & Private Members Clubs",leisure,high,"Sports, social and members' clubs, SI 2025/1093 Sch 2 para 12 and reg 3(3)(c).",awaiting_review
+CL2,199,Night Clubs & Discotheques,leisure,high,"Nightclubs, SI 2025/1093 Sch 2 para 3.",awaiting_review
+CL2,253,Snooker Halls/Clubs,leisure,high,"Snooker halls, SI 2025/1093 Sch 2 para 12.",awaiting_review
+CX,427,"Pitches for Stalls, Sales or Promotions",retail,medium,Market stalls and sales pitches.,awaiting_review
+CX,143,Kennels and Catteries,other,low,Kennels and catteries. A service to visiting public may qualify; not named in the SI.,awaiting_review
+CX,046,Car/Caravan Sales/Display/Hiring Sites,retail,medium,Car and caravan sales sites.,awaiting_review
+CX,045,Car Washes (Stand Alone),retail,medium,Hand car washes: service to visiting public.,awaiting_review
+CX,114,Garden Centres,retail,high,Garden centres.,awaiting_review
+CX,111,Funeral Parlours/Chapels Of Rest,retail,medium,Funeral parlours: service to visiting public.,awaiting_review
+CX,270,Studios,other,low,"Studios. Photography, art or dance studios open to the public may qualify (Sch 2 para 11).",awaiting_review
+CX,075,Wedding & Function Venues,leisure,medium,"Wedding and function venues: venues for hire, SI 2025/1093 Sch 2 para 9.",awaiting_review
+CX,225,Venue Hire and Function Suite,leisure,medium,Venue hire: SI 2025/1093 Sch 2 para 9. Conference use is excluded.,awaiting_review
+CX,266,Station Let Outs,retail,medium,"Station let outs, mostly kiosks and shops.",awaiting_review
+CX,722,Serviced Apartments,hospitality,medium,"Serviced apartments: self-catering accommodation, SI 2025/1093 reg 3(1)(d).",awaiting_review
+CX,269,Stud Farms,other,high,Stud farms.,awaiting_review
+CX,424,Pet Grooming Parlours,retail,medium,Pet grooming: service to visiting public.,awaiting_review
+CX,992,Commercial Miscellaneous,other,low,Commercial miscellaneous.,awaiting_review
+CX,146,Land Used For Advertising,other,high,Land used for advertising.,awaiting_review
+CX,432,Sales Offices,other,medium,Sales offices.,awaiting_review
+CX,419,Land Used for Display,other,low,Land used for display.,awaiting_review
+CX,413,Cold Stores (Rental Valuation),other,high,Cold stores.,awaiting_review
+CX,161,Lorry Parks,other,high,Lorry parks.,awaiting_review
+CX,718,Electric Charge Stations,other,medium,Electric vehicle charging.,awaiting_review
+CX,193,Motorway Service Area Let Outs,retail,medium,Motorway service area let outs.,awaiting_review
+CX,194,Motorway and Major Road Service Areas,hospitality,medium,Motorway service areas.,awaiting_review
+CX,710,Residual Mall,other,low,Residual mall assessments.,awaiting_review
+CX,019,Auction Rooms,retail,low,Auction rooms.,awaiting_review
+CX,760,Food Court Kiosks,hospitality,high,Food court kiosks.,awaiting_review
+CX,044,Car Supermarkets,retail,medium,Car supermarkets.,awaiting_review
+CX,038,Car Auction Buildings/Sites,other,low,Car auctions; often trade only.,awaiting_review
+CX,294,Vineyards/Wineries,other,low,Vineyards and wineries; a cellar door shop may qualify.,awaiting_review
+LX,264,Stables and Loose Boxes,other,medium,"Stables and loose boxes, mostly private.",awaiting_review
+LX,236,Riding Schools & Livery Stables (National Scheme),leisure,low,Riding schools qualify as sport; livery stables (horse keeping) probably do not.,awaiting_review
+LX,229,Racing Stables (National Scheme),other,medium,Racing stables.,awaiting_review
+LX,416,Gymnasia/Fitness Suites,leisure,high,"Gyms, SI 2025/1093 Sch 2 para 12.",awaiting_review
+LX,030,Bowling Greens (Outdoor),leisure,high,"Bowling greens, SI 2025/1093 Sch 2 para 12.",awaiting_review
+LX,993,Leisure Miscellaneous,leisure,low,Leisure miscellaneous.,awaiting_review
+LX,278,Tennis Courts/Clubs,leisure,high,"Tennis, SI 2025/1093 Sch 2 para 12.",awaiting_review
+LX,265,Stately Homes & Historic Houses (National Scheme),leisure,high,"Stately homes, SI 2025/1093 Sch 2 para 7.",awaiting_review
+LX,284,Tourist Attractions/Dark Rides,leisure,high,"Tourist attractions, SI 2025/1093 Sch 2 para 7.",awaiting_review
+LX,208,Pavilions,leisure,medium,Sports pavilions.,awaiting_review
+LX,237,Rifle and Weapons Ranges,leisure,medium,Rifle and weapons ranges.,awaiting_review
+LX,364,Dog Walking and Agility Centres,leisure,low,Dog walking and agility fields.,awaiting_review
+LX,296,War Games Courses/Misc. Ag. Use,leisure,medium,"War games and paintballing, SI 2025/1093 Sch 2 para 15.",awaiting_review
+LX,410,Changing Rooms,leisure,medium,Sports changing rooms.,awaiting_review
+LX,145,Lakes With Water Sport Facilities,leisure,high,Water sports lakes.,awaiting_review
+LX,028,Bowling Alleys,leisure,high,"Bowling alleys, SI 2025/1093 Sch 2 para 15.",awaiting_review
+LX,029,Bowling Centres (Indoor),leisure,high,"Indoor bowling, SI 2025/1093 Sch 2 para 12.",awaiting_review
+LX,418,Information/Visitor Centres,leisure,high,"Visitor and information centres, SI 2025/1093 Sch 2 para 8.",awaiting_review
+LX,259,Sports & Leisure Centres (Private) (Dry Only),leisure,high,"Sports and leisure centres, SI 2025/1093 Sch 2 para 12.",awaiting_review
+LX,263,Squash Courts,leisure,high,Squash courts.,awaiting_review
+LX,426,Pitch and Putt/Putting Greens,leisure,high,"Pitch and putt, SI 2025/1093 Sch 2 para 15.",awaiting_review
+LX,116,Go Kart Rinks,leisure,high,Go-kart tracks.,awaiting_review
+LX,128,Heritage Railways,leisure,high,Heritage railways.,awaiting_review
+LX,191,Motor Racetracks,leisure,medium,Motor racetracks.,awaiting_review
+LX,739,Soccer Centres,leisure,high,Soccer centres.,awaiting_review
+LX,108,Football Pitches,leisure,high,Football pitches.,awaiting_review
+LX,304,Zoos & Safari Parks,leisure,high,Zoos and safari parks.,awaiting_review
+LX,062,Coaching Inns,pub,medium,Coaching inns.,awaiting_review
+LX,070,Concert Halls (National Scheme),leisure,high,"Concert halls, SI 2025/1093 Sch 2 para 2.",awaiting_review
+LX,132,Horse Racecourses,leisure,high,Racecourses: sports grounds.,awaiting_review
+LX,421,Miniature Railways,leisure,high,Miniature railways.,awaiting_review
+LX,216,Polo Grounds,leisure,high,Polo grounds.,awaiting_review
+LX,302,Windmills,leisure,low,Windmills; qualifying only if open to visitors.,awaiting_review
+LX,214,Point to Point and Eventing Courses,leisure,medium,Point to point and eventing courses.,awaiting_review
+MX,224,Public Conveniences (National Scheme),other,high,Public conveniences.,awaiting_review
+MX,999,Miscellaneous,other,low,Miscellaneous.,awaiting_review
+MX,144,Laboratories,other,high,Laboratories.,awaiting_review
+MX,758,Children’s Centre,other,medium,Children's centres.,awaiting_review
+MX,405,Boathouses,leisure,low,Boathouses; may be club or private.,awaiting_review
+MX,133,Hospital Let Outs,retail,low,"Hospital let outs, often shops or cafes.",awaiting_review
+MX,013,Animal Boarding,other,low,Animal boarding and rescue.,awaiting_review
+MX,008,Airport Let Outs,retail,low,Airport let outs; airport premises themselves are excluded.,awaiting_review
+MX,006,Air Strips (National Scheme),leisure,low,"Air strips, often gliding clubs.",awaiting_review
+MX,401,Abattoirs & Slaughter Houses (Rental Valuation),other,high,Abattoirs.,awaiting_review
+MX,420,Lifeboat Stations,other,high,Lifeboat stations.,awaiting_review
+MX,026,Bird Sanctuaries,leisure,low,Bird sanctuaries and nature reserves.,awaiting_review
+MX,057,Civic and Public Buildings (Local Authority Occupations),other,high,Civic buildings.,awaiting_review
+EX,099,"Field Study, Activity and Adventure Centres",leisure,medium,"Activity and adventure centres, SI 2025/1093 Sch 2 para 15.",awaiting_review
+EX,285,Training Centre (Non Residential),other,medium,Training centres.,awaiting_review
+IX,738,Builders Merchant,retail,low,Builders merchants: trade counters may also serve the public.,awaiting_review
+IX,031,Breweries (National Scheme),other,medium,Breweries.,awaiting_review
+MR,136,Hostels,other,low,Hostels: youth hostels may qualify as boarding houses.,awaiting_review
+*,084,Dance Schools & Centres,leisure,medium,"Recreational dance lessons, SI 2025/1093 Sch 2 para 11. Most are coded EP (school), which maps to other.",awaiting_review
+*,293,"Village Halls, Scout Huts, Cadet Huts Etc",leisure,high,"Public halls and youth group premises, SI 2025/1093 Sch 2 paras 9 and 10. Catches rows coded EP, TX or TD2.",awaiting_review
+*,210,Pharmacies,retail,low,Retail sale to visiting public. Unclear whether NHS dispensing counts as a health service excluded by SI 2025/1093 Sch 1 para 2.,awaiting_review
+*,425,Pharmacies Within/Adjacent to Surgery/Health Centre,retail,low,As 210. More likely to be mainly NHS dispensing.,awaiting_review
+*,409,Cafes,hospitality,high,"SI 2025/1093 reg 3(1)(b). Catches cafes coded CS.",awaiting_review
+*,234,Restaurants,hospitality,high,"SI 2025/1093 reg 3(1)(b). Catches restaurants coded CS.",awaiting_review
+*,507,Salons/Clinics Within/Part of Specialist Property,retail,medium,Salons qualify; clinics may be medical services excluded by SI 2025/1093 Sch 1 para 2.,awaiting_review
+CG1,095,Exhaust and Tyre Centres,retail,medium,Tyre and exhaust fitting: service to visiting public.,awaiting_review
+*,158,Livestock Markets (National Scheme),other,low,Livestock markets serve traders rather than visiting members of the public.,awaiting_review
+LX,140,Ice Rinks,leisure,high,"Recreational facilities, SI 2025/1093 Sch 2 paras 12 and 15.",awaiting_review
+LX,239,Roller Skating Rinks,leisure,high,"Recreational facilities, SI 2025/1093 Sch 2 paras 12 and 15.",awaiting_review
+*,213,Pleasure Piers,other,medium,"Piers excluded, SI 2025/1093 Sch 1 para 4(k). Arcades and cafes on piers are usually separate entries.",awaiting_review
+MX,404,Archives,leisure,medium,"Archives, SI 2025/1093 Sch 2 para 6(a).",awaiting_review
+*,759,TV Studios,other,high,"Film and TV production excluded, SI 2025/1093 Sch 1 para 4(b).",awaiting_review
+*,758,Children’s Centre,other,medium,Children's centres. Catches rows coded LC or LC1.,awaiting_review
+CG1,289,Vehicle Repair Workshops & Garages,retail,medium,"Repairs and servicing for visiting customers, SI 2025/1093 reg 3(1)(a)(ii). Trade-only workshops would not qualify and cannot be told apart.",awaiting_review
+CG2,113,Garages (Transport and Commercial),other,medium,Transport and commercial garages and lock-ups; not open to visiting public.,awaiting_review
+*,406,Bus Garages (Contractors Valuation),other,high,"Bus depots; public transport premises excluded, SI 2025/1093 Sch 1 para 4(m).",awaiting_review
+*,407,Bus Garages (Rental Valuation),other,high,"Bus depots; public transport premises excluded, SI 2025/1093 Sch 1 para 4(m).",awaiting_review
+CG2,502,Garages Within/Part of Specialist Property,other,medium,Garages within larger premises.,awaiting_review
+LC,067,Community Day Centres,leisure,medium,"Community facilities, SI 2025/1093 Sch 2 para 9. Day centres providing care would not qualify.",awaiting_review
+LC1,067,Community Day Centres,leisure,medium,As LC 067.,awaiting_review
+LC3,067,Community Day Centres,leisure,medium,As LC 067.,awaiting_review
+LX,067,Community Day Centres,leisure,medium,As LC 067. Often boxing or martial arts clubs.,awaiting_review
+CL2,067,Community Day Centres,leisure,medium,As LC 067.,awaiting_review
+*,085,Day Nurseries/Play Schools,other,high,Childcare is not a qualifying purpose. Catches rows coded LC or LC1.,awaiting_review
+MX,004,Agricultural Showgrounds (National Scheme),leisure,low,Event venues may qualify under SI 2025/1093 Sch 2 para 9.,awaiting_review
+*,005,Air Ports (Minor) (National Scheme),other,high,"Airports excluded, SI 2025/1093 Sch 1 para 4(m)(v).",awaiting_review
+*,059,Civil Airports,other,high,"Airports excluded, SI 2025/1093 Sch 1 para 4(m)(v).",awaiting_review
+*,007,Aircraft Works With Airfields,other,high,Aircraft works.,awaiting_review
+LX,014,Arenas,leisure,high,"Event and sports venues, SI 2025/1093 Sch 2 paras 9 and 12.",awaiting_review
+*,034,Bullion/Money Stores (National Scheme),other,high,Secure stores.,awaiting_review
+LX,061,"Licensed Sports, Social & Private Members Clubs",leisure,high,"Sports clubs, SI 2025/1093 Sch 2 para 12.",awaiting_review
+*,065,Colleges of Further Education (National Scheme),other,high,Education is not a qualifying purpose.,awaiting_review
+MX,066,Communication Stations (National Scheme),other,high,Telecommunications sites.,awaiting_review
+*,076,Contractors Huts & Compounds,other,high,Contractors' compounds.,awaiting_review
+*,079,Creameries,other,high,Food processing.,awaiting_review
+*,088,District Heating Undertakings & Networks,other,high,Utility networks.,awaiting_review
+*,090,Domestic Fuel Installations,other,high,Fuel installations.,awaiting_review
+*,091,Drive-In Restaurants,hospitality,high,"SI 2025/1093 reg 3(1)(b). Catches rows coded CS or CS10.",awaiting_review
+*,092,Drive-Thru Restaurants,hospitality,high,SI 2025/1093 reg 3(1)(b).,awaiting_review
+LX,096,"Factories, Workshops and Warehouses (Incl Bakeries & Dairies)",leisure,medium,Mostly gyms in industrial units.,awaiting_review
+IX,096,"Factories, Workshops and Warehouses (Incl Bakeries & Dairies)",other,high,Industrial premises.,awaiting_review
+CX,096,"Factories, Workshops and Warehouses (Incl Bakeries & Dairies)",other,medium,Hangars and industrial premises.,awaiting_review
+MX,096,"Factories, Workshops and Warehouses (Incl Bakeries & Dairies)",other,medium,Hangars and industrial premises.,awaiting_review
+CX,097,Factory Shops,retail,medium,Factory shop kiosks.,awaiting_review
+*,102,Fish Farms,other,high,Agricultural and aquaculture use.,awaiting_review
+*,112,Game Farms,other,high,Agricultural use.,awaiting_review
+*,124,Hatcheries/Poultry Farms,other,high,Agricultural use.,awaiting_review
+MX,125,Health Farms,leisure,medium,"Health spas, SI 2025/1093 Sch 2 para 13.",awaiting_review
+*,126,Heliports,other,high,"Transport premises, SI 2025/1093 Sch 1 para 4(m).",awaiting_review
+*,148,Land Used For Storage,other,high,Storage land.,awaiting_review
+*,153,"Large Industrials (Over 20,000m²)",other,high,Large industrial premises.,awaiting_review
+*,115,Gas Processing Plants,other,high,Industrial premises.,awaiting_review
+*,157,Liquid Bulk Storage (Incl Petrol & Oil) (National Scheme),other,high,Bulk storage.,awaiting_review
+*,162,Maltings - Non Trad,other,high,Industrial premises.,awaiting_review
+*,205,Oil Refineries,other,high,Industrial premises.,awaiting_review
+*,212,Pipelines,other,high,Pipelines.,awaiting_review
+*,274,Tanneries,other,high,Industrial premises.,awaiting_review
+*,244,Scrap Metal/Breakers Yard,other,high,Scrap yards.,awaiting_review
+*,248,Ship Repair Yards,other,high,Industrial premises.,awaiting_review
+LX,121,Greyhound Racetracks,leisure,high,"Sports grounds and gambling, SI 2025/1093 Sch 2 paras 12 and 14.",awaiting_review
+LX,188,Model Villages,leisure,high,"Visitor attractions, SI 2025/1093 Sch 2 para 7.",awaiting_review
+LX,203,Offices (Inc Computer Centres),leisure,medium,Mostly visitor centres and dance studios.,awaiting_review
+LX,225,Venue Hire and Function Suite,leisure,medium,"Venues for hire, SI 2025/1093 Sch 2 para 9.",awaiting_review
+LX,252,Ski Centres,leisure,high,"Sport and leisure facilities, SI 2025/1093 Sch 2 para 12.",awaiting_review
+LX,254,Speedway Racetracks,leisure,high,"Sports grounds, SI 2025/1093 Sch 2 para 12.",awaiting_review
+LX,260,Sports & Leisure Centres (Private) (Wet & Dry),leisure,high,"SI 2025/1093 Sch 2 para 12.",awaiting_review
+LX,261,Sports Grounds,leisure,high,"SI 2025/1093 Sch 2 para 12.",awaiting_review
+*,269,Stud Farms,other,high,Stud farms.,awaiting_review
+LX,277,Tennis and Padel Centres,leisure,high,"SI 2025/1093 Sch 2 para 12.",awaiting_review
+LX,280,Theme Parks,leisure,high,"SI 2025/1093 Sch 2 para 15.",awaiting_review
+MX,190,Mortuaries,other,high,Mortuaries.,awaiting_review
+MX,202,Observatories,other,medium,Mostly research use; observatories open to visitors may qualify as visitor attractions.,awaiting_review
+*,231,Railways & Tramways (Non Leisure),other,high,"Public transport excluded, SI 2025/1093 Sch 1 para 4(m).",awaiting_review
+*,290,Vehicle Testing Centres (With Test Tracks),other,high,Vehicle and driving test centres.,awaiting_review
+*,291,Vehicle Testing Centres (Without Test Tracks),other,high,Vehicle and driving test centres.,awaiting_review
+*,364,Dog Walking and Agility Centres,leisure,low,Dog walking fields and training centres; open to public by booking.,awaiting_review
+*,402,Agricultural Research Centres,other,high,Research use.,awaiting_review
+MX,403,Aquaria,leisure,high,"Visitor attractions, SI 2025/1093 Sch 2 para 7.",awaiting_review
+*,411,Coastguard Stations,other,high,Emergency services.,awaiting_review
+MX,437,"Surgeries, Clinics, Health Centres (Rental Valuation)",other,high,"Health services excluded, SI 2025/1093 Sch 1 para 2.",awaiting_review
+MX,438,Telescope Sites,other,high,Telescope sites.,awaiting_review
+*,422,Pack Houses,other,high,Agricultural packing.,awaiting_review
+*,712,Rail Freight Depots,other,high,Freight depots.,awaiting_review
+*,714,Rail Maintenance Depots,other,high,Rail depots.,awaiting_review
+*,741,Independent Gas Transport (IGT),other,high,Utility networks.,awaiting_review
+CX,243,Sales Kiosks,retail,medium,Sales pitch concessions.,awaiting_review
+CX,504,"Kiosks and Pods Within/Part of Specialist Property, Retail Parks & Other Major Retail/Sporting Destinations.",retail,medium,Kiosks in retail parks and venues.,awaiting_review
+CG1,504,"Kiosks and Pods Within/Part of Specialist Property, Retail Parks & Other Major Retail/Sporting Destinations.",retail,medium,Vehicle service pods in retail parks.,awaiting_review
+*,288,Universities (Excluding Oxbridge) (National Scheme),other,high,Education is not a qualifying purpose.,awaiting_review
+*,439,University - Ancillary Land or Buildings,other,high,Education is not a qualifying purpose.,awaiting_review

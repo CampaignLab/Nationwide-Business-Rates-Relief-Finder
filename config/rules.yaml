@@ -1,0 +1,30 @@
+snapshot_note: "Rules as announced 28 October 2026. 2027 values not yet in regulations."
+
+sbrr_general: # applies to all sectors, now and after April 2027
+  full_relief_max_rv: 12000
+  taper_end_rv: 15000
+  other_property_max_rv: 2899 # each additional property must be below £2,900
+  # Aggregate rateable value limit across all of a business's properties.
+  # Councils describe this as the total across all properties. The MHCLG letter
+  # words it as applying to second and further properties. Treat as total
+  # across all properties and flag this ambiguity in the README.
+  aggregate_max_rv_before:
+    effective_until: "2027-03-31"
+    england_outside_london: 19999
+    london: 27999
+  aggregate_max_rv_after:
+    effective_from: "2027-04-01"
+    england_wide: 29999 # until 2029-03-31; announced, not yet in regulations
+
+sbrr_rhl_from_april_2027: # announced, not yet in regulations
+  effective_from: "2027-04-01"
+  effective_until: "2029-03-31"
+  full_relief_max_rv: 18000
+  taper_end_rv: 21000
+
+exclusions_from_april_2027: # announced, not yet in regulations
+  vape_shop: "no SBRR"
+  adult_gaming_centre: "keeps SBRR on the general £12,000 / £15,000 thresholds"
+  status: "Definitions of both terms not yet published. Treat as unresolved flags."
+
+taper_rule: "linear: relief = 1 - (rv - full_relief_max_rv) / (taper_end_rv - full_relief_max_rv)"

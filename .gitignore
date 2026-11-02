@@ -1,0 +1,10 @@
+# VOA data is under a restricted licence and must not be committed.
+data/raw/
+data/work/
+out/
+
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store

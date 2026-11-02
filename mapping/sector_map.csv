@@ -1,0 +1,120 @@
+primary_description_code,spec_description,spec_scat_codes,sector,confidence,notes,review_status
+CA,ADVERTISING RIGHT AND PREMISES,003;706;707;708;711,other,high,Advertising rights are not premises visited by the public.,awaiting_review
+CA1,ADVERTISING STATION AND PREMISES,003;146,other,high,As CA.,awaiting_review
+CC,CAMPING SITE AND PREMISES,048;054,hospitality,high,Campsite: SI 2025/1093 reg 3(1)(d).,awaiting_review
+CC1,CARAVAN PARK AND PREMISES,047;048,hospitality,high,Caravan park: SI 2025/1093 reg 3(1)(d). Residential park homes would not qualify.,awaiting_review
+CC2,HOLIDAY CENTRE AND PREMISES,130,hospitality,high,SI 2025/1093 reg 3(1)(d).,awaiting_review
+CC3,CARAVAN & PITCH AND PREMISES,047;048;054,hospitality,medium,Usually a holiday caravan; SI 2025/1093 reg 3(1)(d). Could be private use.,awaiting_review
+CC4,CARAVAN PITCH AND PREMISES,048;054,hospitality,medium,As CC3.,awaiting_review
+CC5,CHALET PARK AND PREMISES,047;048,hospitality,high,SI 2025/1093 reg 3(1)(d).,awaiting_review
+CC6,CARAVAN AND CHALET PARK AND PREMISES,047;048,hospitality,high,SI 2025/1093 reg 3(1)(d).,awaiting_review
+CC7,TIME SHARE COMPLEX AND PREMISES,281,hospitality,medium,Self-catering accommodation; timeshare use by the public is not certain.,awaiting_review
+CG,PETROL FILLING STATION AND PREMISES,209,retail,medium,"Retail sale of goods to visiting public, SI 2025/1093 reg 3(1)(a).",awaiting_review
+CG1,VEHICLE REPAIR WORKSHOP AND PREMISES,095;289,retail,low,Service to visiting public may meet SI 2025/1093 reg 3(1)(a)(ii); many are trade workshops.,awaiting_review
+CG2,GARAGE AND PREMISES,113;406;407;502,other,low,Often lock-up or commercial garages. SCAT 113 is transport and commercial garages.,awaiting_review
+CG3,CAR SHOWROOM AND PREMISES,042,retail,medium,"Retail sale to visiting public, SI 2025/1093 reg 3(1)(a).",awaiting_review
+CG4,ROAD HAULAGE DEPOT AND PREMISES,161,other,high,Transport depot.,awaiting_review
+CH,HOTEL AND PREMISES,077;137;138,hospitality,high,SI 2025/1093 reg 3(1)(c).,awaiting_review
+CH1,SELF CATERING HOLIDAY UNIT AND PREMISES,131;736,hospitality,high,SI 2025/1093 reg 3(1)(d). Large group; many are holiday lets.,awaiting_review
+CH2,GUEST HOUSE AND PREMISES,122,hospitality,high,SI 2025/1093 reg 3(1)(c).,awaiting_review
+CH3,MOTEL AND PREMISES,160,hospitality,high,SI 2025/1093 reg 3(1)(c).,awaiting_review
+CL,PUBLIC HOUSE AND PREMISES,226;227,pub,high,"Sale of food or drink, SI 2025/1093 reg 3(1)(b).",awaiting_review
+CL1,WINE BAR AND PREMISES,303,hospitality,high,SI 2025/1093 reg 3(1)(b).,awaiting_review
+CL2,CLUB AND PREMISES,061;199;253,leisure,medium,"Sports, social and members' clubs; SI 2025/1093 reg 3(3)(c) and Sch 2 para 12. See SCAT overrides.",awaiting_review
+CM,MARKET AND PREMISES,147;158;165,retail,medium,"Markets selling to the public, SI 2025/1093 reg 3(1)(a).",awaiting_review
+CM1,MARKET AND PREMISES,158;165,retail,medium,As CM.,awaiting_review
+CO,OFFICES AND PREMISES,021;203;204;210;425;506;723,other,medium,Offices are mostly not visited by the public; professional and financial services are excluded by SI 2025/1093 Sch 1. Some offices (for example travel agents) may qualify.,awaiting_review
+CO1,COMPUTER CENTRE AND PREMISES,068;069,other,high,,awaiting_review
+CP,CAR PARK AND PREMISES,039;040;041;501;725,other,high,"Car parks excluded, SI 2025/1093 Sch 1 para 4(l).",awaiting_review
+CP1,CAR PARKING SPACE AND PREMISES,043;501,other,high,As CP.,awaiting_review
+CR,RESTAURANT AND PREMISES,091;092;234;238;500;701,hospitality,high,SI 2025/1093 reg 3(1)(b).,awaiting_review
+CR1,CAFE AND PREMISES,409;500,hospitality,high,SI 2025/1093 reg 3(1)(b).,awaiting_review
+CR2,FOOD COURT AND PREMISES,104,hospitality,high,SI 2025/1093 reg 3(1)(b).,awaiting_review
+CS,SHOP AND PREMISES,021;086;097;098;106;152;154;155;210;249;425;442;508;710,retail,high,"SI 2025/1093 reg 3(1)(a). Some shops are used for excluded purposes (estate agents, financial or medical services); the list does not show this.",awaiting_review
+CS1,BANK AND PREMISES,021,other,high,"Financial services excluded, SI 2025/1093 Sch 1 para 1.",awaiting_review
+CS10,RETAIL WAREHOUSE AND PREMISES,235,retail,high,SI 2025/1093 reg 3(1)(a).,awaiting_review
+CS2,BETTING SHOP AND PREMISES,024,other,high,"Betting shops excluded, SI 2025/1093 Sch 1 para 4(g).",awaiting_review
+CS3,HAIRDRESSING SALON AND PREMISES,417;507,retail,high,"Service to visiting public, SI 2025/1093 reg 3(1)(a)(ii).",awaiting_review
+CS4,KIOSK AND PREMISES,243;504,retail,high,SI 2025/1093 reg 3(1)(a).,awaiting_review
+CS5,LAUNDERETTE AND PREMISES,249,retail,high,"Service to visiting public, SI 2025/1093 reg 3(1)(a)(ii).",awaiting_review
+CS6,POST OFFICE AND PREMISES,429,retail,medium,Retail and counter services. Postal sorting offices are excluded but are not coded CS6.,awaiting_review
+CS7,SHOWROOM AND PREMISES,251,retail,medium,Sale to visiting public if the showroom is open to the public.,awaiting_review
+CS8,HYPERMARKET AND PREMISES,139;235,retail,high,SI 2025/1093 reg 3(1)(a).,awaiting_review
+CS9,SUPERSTORE AND PREMISES,139;235,retail,high,SI 2025/1093 reg 3(1)(a).,awaiting_review
+CW,WAREHOUSE AND PREMISES,096;129;151;301;511;721,other,high,"Storage; online-sale storage excluded, SI 2025/1093 Sch 1 para 4(a).",awaiting_review
+CW1,LAND USED FOR STORAGE AND PREMISES,148,other,high,,awaiting_review
+CW2,STORAGE DEPOT AND PREMISES,267,other,high,,awaiting_review
+CW3,STORE AND PREMISES,119;120;268;510;721,other,high,,awaiting_review
+CX,MISC - MAY BE OVERTYPED AS SHOWN / NECESSARY,018;019;034;038;044;045;046;074;075;100;111;114;126;143;146;161;193;194;211;225;232;250;266;269;270;287;292;294;412;413;419;422;424;427;432;712;714;718;722;741;757;759;760;761;992,other,low,Miscellaneous commercial. Mixed uses; see SCAT overrides.,awaiting_review
+EL,SCHOOL AND PREMISES,159,other,high,Education is not a qualifying purpose.,awaiting_review
+EL1,COLLEGE AND PREMISES,065,other,high,,awaiting_review
+EM,LIBRARY AND PREMISES,156,leisure,high,SI 2025/1093 Sch 2 para 6.,awaiting_review
+EM1,MUSEUM AND PREMISES,195;196,leisure,high,SI 2025/1093 Sch 2 para 6.,awaiting_review
+EN1,DAY NURSERY AND PREMISES,085;505,other,high,Childcare is not a qualifying purpose.,awaiting_review
+EP,SCHOOL AND PREMISES,084;223,other,high,,awaiting_review
+EP1,COLLEGE AND PREMISES,428,other,high,,awaiting_review
+EU,UNIVERSITY AND PREMISES,206;288,other,high,,awaiting_review
+EX,MISC - MAY BE OVERTYPED AS SHOWN / NECESSARY,099;286;431;439,other,medium,Miscellaneous education. Recreational lessons qualify under SI 2025/1093 Sch 2 para 11; see SCAT overrides.,awaiting_review
+FD,DOCK HEREDITAMENT AND PREMISES,433;996,other,high,,awaiting_review
+FE,ELECTRICITY HEREDITAMENT AND PREMISES,219;730;731;733;743;744;745;746;747;748;996,other,high,,awaiting_review
+IF,FACTORY AND PREMISES,023;096;105;153,other,high,,awaiting_review
+IF1,MILL AND PREMISES,103;207;222,other,high,,awaiting_review
+IF2,WORKS AND PREMISES,009;016;052;055;110;142;192;198,other,high,,awaiting_review
+IF3,WORKSHOP AND PREMISES,096;153;512,other,high,,awaiting_review
+IF4,BUSINESS UNIT AND PREMISES,153;408,other,high,,awaiting_review
+IM,QUARRY AND PREMISES,167;169;170;171;173;175;180;181;182;183,other,high,,awaiting_review
+IM1,MINE AND PREMISES,172;221;430,other,high,,awaiting_review
+IM2,BRICKWORKS AND PREMISES,032,other,high,,awaiting_review
+IM3,CONCRETE BATCHING PLANT AND PREMISES,071,other,high,,awaiting_review
+IM4,TIPPING SITE AND PREMISES,176,other,high,,awaiting_review
+IM5,SPOIL HEAP WORKINGS AND PREMISES,255,other,high,,awaiting_review
+IM6,PEAT FIELDS AND PREMISES,423,other,high,,awaiting_review
+IMX,MISC - MAY BE OVERTYPED AS SHOWN / NECESSARY,017;020;033;051;058;072;073;093;127;149;150;166;168;174;177;178;184;185;186;221;233;245;297;298;299;727;728;997,other,high,Miscellaneous minerals and waste.,awaiting_review
+IX,MISC - MAY BE OVERTYPED AS SHOWN / NECESSARY,027;031;063;076;079;087;115;157;162;163;200;205;212;217;218;244;247;248;274;295;302;738;994,other,medium,Miscellaneous industrial; see SCAT overrides.,awaiting_review
+LC,COMMUNITY CENTRE AND PREMISES,067,leisure,high,SI 2025/1093 Sch 2 para 9.,awaiting_review
+LC1,CLUB HOUSE AND PREMISES,060,leisure,high,"Sports clubs, SI 2025/1093 Sch 2 para 12.",awaiting_review
+LC2,LEISURE CENTRE AND PREMISES,257;258;259;260;509,leisure,high,SI 2025/1093 Sch 2 para 12.,awaiting_review
+LC3,HALL AND PREMISES,293,leisure,high,"Public halls, SI 2025/1093 Sch 2 para 9.",awaiting_review
+LH1,BEACH HUT AND PREMISES,022,other,low,"Not named in SI 2025/1093. Most beach huts are in private use and not open to visiting members of the public. No effect on April 2027 statuses: none are above £12,000.",awaiting_review
+LI,SPORTS CENTRE AND PREMISES,081;257;258;259;260;509,leisure,high,SI 2025/1093 Sch 2 para 12.,awaiting_review
+LI1,STADIUM AND PREMISES,109;262,leisure,high,SI 2025/1093 Sch 2 para 12.,awaiting_review
+LS,SPORTS GROUND AND PREMISES,082;083;241;242;261;715,leisure,high,SI 2025/1093 Sch 2 para 12.,awaiting_review
+LS1,LAND COVERED BY WATER USED FOR FISHING,256,leisure,medium,Recreational fishing; may be private.,awaiting_review
+LS2,GOLF COURSE AND PREMISES,117;118,leisure,high,SI 2025/1093 Sch 2 para 12.,awaiting_review
+LS3,MARINA AND PREMISES,164,other,high,"Marinas excluded, SI 2025/1093 Sch 1 para 4(k).",awaiting_review
+LS4,PLAYING FIELD AND PREMISES,083;107;108,leisure,high,SI 2025/1093 Sch 2 para 12.,awaiting_review
+LS5,FOOTBALL GROUND AND PREMISES,107,leisure,high,SI 2025/1093 Sch 2 para 12.,awaiting_review
+LS6,SWIMMING POOL AND PREMISES,272;273,leisure,high,SI 2025/1093 Sch 2 para 12.,awaiting_review
+LS7,TENNIS CENTRE AND PREMISES,277,leisure,high,SI 2025/1093 Sch 2 para 12.,awaiting_review
+LT,CINEMA AND PREMISES,056,leisure,high,SI 2025/1093 Sch 2 para 4.,awaiting_review
+LT1,AMUSEMENT ARCADE AND PREMISES,011,possible_adult_gaming_centre,medium,"Adult gaming centres are a kind of amusement arcade, but this code also covers family entertainment centres. The 2027 definition is not yet published.",awaiting_review
+LT2,BINGO HALL AND PREMISES,025,leisure,high,SI 2025/1093 Sch 2 para 14.,awaiting_review
+LT3,THEATRE AND PREMISES,279,leisure,high,SI 2025/1093 Sch 2 para 5.,awaiting_review
+LT4,AMUSEMENT PARK AND PREMISES,012,leisure,high,"Theme parks, SI 2025/1093 Sch 2 para 15.",awaiting_review
+LX,MISC - MAY BE OVERTYPED AS SHOWN / NECESSARY,014;028;029;030;049;062;070;108;116;121;128;132;140;145;188;191;208;213;214;216;229;237;239;252;254;263;264;265;278;280;283;284;296;302;304;364;410;416;418;421;426;503;739;993,leisure,low,Miscellaneous leisure. Includes gyms (qualifying) and private stables (not qualifying); see SCAT overrides.,awaiting_review
+MC,CEMETERY AND PREMISES,053,other,high,,awaiting_review
+MC1,CREMATORIUM AND PREMISES,080,other,high,"Crematoria excluded, SI 2025/1093 Sch 1 para 4(c).",awaiting_review
+MH,SURGERY AND PREMISES,271;436;437,other,high,"Medical services excluded, SI 2025/1093 Sch 1 para 2.",awaiting_review
+MH1,HEALTH CENTRE AND PREMISES,436;437,other,high,SI 2025/1093 Sch 1 para 2.,awaiting_review
+MH2,HOSPITAL AND PREMISES,134;440,other,high,SI 2025/1093 Sch 1 para 2.,awaiting_review
+MH3,HOSPITAL AND PREMISES,135;440,other,high,SI 2025/1093 Sch 1 para 2.,awaiting_review
+ML,OFFICES AND PREMISES,057;203;506,other,high,"Local authority and civic offices (SCAT 057, 203, 506).",awaiting_review
+MP,POLICE STATION AND PREMISES,215,other,high,,awaiting_review
+MP1,LAW COURT AND PREMISES,414;415,other,high,,awaiting_review
+MP2,PRISON AND PREMISES,220,other,high,,awaiting_review
+MR,HOSTEL AND PREMISES,136,other,low,Youth or holiday hostels may count as boarding houses; supported housing hostels do not.,awaiting_review
+MR1,HOME AND PREMISES,201,other,high,Nursing and care homes.,awaiting_review
+MS1,FIRE STATION AND PREMISES,101,other,high,,awaiting_review
+MS2,AMBULANCE STATION AND PREMISES,010,other,high,,awaiting_review
+MT1,COMMUNICATION STATION AND PREMISES,066,other,high,,awaiting_review
+MT2,PUBLIC TELEPHONE KIOSK AND PREMISES,141;228,other,high,,awaiting_review
+MTX,MISC - MAY BE OVERTYPED AS SHOWN / NECESSARY,275;276;726,other,high,Telecommunications networks.,awaiting_review
+MX,MISC - MAY BE OVERTYPED AS SHOWN / NECESSARY,001;004;005;006;007;008;013;026;037;050;057;059;088;090;102;112;123;124;125;133;144;190;202;224;231;290;291;400;401;402;403;404;405;411;420;438;513;758;999,other,low,Miscellaneous. Mixed uses; see SCAT overrides.,awaiting_review
+NT,BUS STATION AND PREMISES,035;036,other,high,"Public transport excluded, SI 2025/1093 Sch 1 para 4(m).",awaiting_review
+NT1,MOORING AND PREMISES,189,other,medium,"Marinas, wharves and jetties excluded, SI 2025/1093 Sch 1 para 4(k).",awaiting_review
+NT3,WHARF AND PREMISES,089;434;435;737,other,high,SI 2025/1093 Sch 1 para 4(k).,awaiting_review
+NW,SEWAGE TREATMENT WORKS AND PREMISES,246,other,high,,awaiting_review
+NX,MISC - MAY BE OVERTYPED AS SHOWN / NECESSARY,089;282;300;434;435;441;742,other,high,Utility networks.,awaiting_review
+TD1,FORCES CAREERS OFFICE AND PREMISES,015;187;197;230,other,high,,awaiting_review
+TD2,AUXILIARY DEFENCE ESTABLISHMENT AND PREMISES,015;187;197;230,other,high,,awaiting_review
+TX,MISC - MAY BE OVERTYPED AS SHOWN / NECESSARY,015;187;197;230;240;998,other,high,Crown and defence.,awaiting_review
