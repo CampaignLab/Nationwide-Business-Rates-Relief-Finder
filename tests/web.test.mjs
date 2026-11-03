@@ -25,7 +25,7 @@ test('accepts existing publisher file paths and empty datasets',()=>{
 });
 test('deployment contains only allowlisted browser files',()=>{
   execFileSync(process.execPath,['scripts/build.mjs'],{cwd:new URL('../',import.meta.url)});
-  assert.deepEqual(readdirSync(new URL('../dist/',import.meta.url)).filter(name=>name!=='dataset').sort(),['app.js','csv.js','data.js','index.html','methodology.css','methodology.html','style.css']);
+  assert.deepEqual(readdirSync(new URL('../dist/',import.meta.url)).filter(name=>name!=='dataset').sort(),['app.js','campaignlab-logo.png','csv.js','data.js','index.html','methodology.css','methodology.html','style.css']);
 });
 test('screening filters combine name, outcome and RV and exported rows match',()=>{
   const rows=[{property_reference:'1',address:'A',status_now:'not_flagged',rateable_value:'12001',screening_outcome:'likely_candidate',trading_name:'Example, Shop'},
