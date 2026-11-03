@@ -118,6 +118,13 @@ With `--include-downloads`, staging copies the index, constituency CSV/Excel fil
 
 ## Release checklist
 
+Regenerate the public SCAT reasoning table after mapping changes, with
+`python scripts/classification_audit.py` from the project root and DuckDB installed.
+Keep `data/work/sectored.parquet` available to include observed code pairs. The script
+updates the methodology HTML and CSV/JSON supplements in web/dataset and out.
+Without the intermediate it covers documented mappings/reference codes only; verify
+coverage before publishing. Commit the generated page and three named supplements.
+
 1. Record the exact source ZIPs, dates, policy assumptions and changes. Review mapping changes and all 96 Earley benchmark outcomes. Do not tune results to match an old count.
 2. Run Python tests, Node tests and `node scripts/verify-published.mjs`. Reconcile likely/review/unassigned totals and inspect changed records. A passing test suite does not establish actual entitlement.
 3. Update `README.md`, `docs/METHODOLOGY.md`, `web/methodology.html` and `CHANGELOG.md` together. Preserve provider terms, uncertainty and name provenance.

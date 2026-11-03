@@ -43,6 +43,28 @@ The SCAT category uses the first three characters. Recognised secondary suffixes
 
 ## 4. Assess activity evidence
 
+### Inspect every SCAT classification and its rationale
+
+The [searchable SCAT audit](https://business-rates-relief-finder-campaign-lab.vercel.app/methodology.html#scat-classifications)
+lists all 427 codes in our reference/mapping tables or observed source snapshot,
+with 1,680 effective primary-code rules. Download the [complete rule CSV](../web/dataset/scat_classifications.csv),
+[JSON including text flags](../web/dataset/scat_classifications.json), and
+[primary-code fallback rules](../web/dataset/primary_classifications.csv).
+
+Each rule gives the code/category, primary-code condition, resulting mapped sector,
+confidence, source rule, explanation, review status and subsequent-screening caveats.
+Specific overrides take precedence over wildcard SCAT overrides and primary fallbacks.
+The * row explains the default for unlisted primary combinations; it does not erase
+more specific rules. Listed primary associations are documentation/observed pairs,
+not restrictions on all other primary-code combinations. Text flags can override
+code mapping and are documented separately in the audit.
+
+Ambiguity filters include medium/low mappings, primary-dependent mappings, generic
+shops and selected conditional categories. “Other” is not synonymous with a legal
+exclusion. These filters describe mapping evidence, not final property outcomes.
+The audit is generated from the actual mapping tables, with distinct observed pairs
+from sectored.parquet when available, by `scripts/classification_audit.py`.
+
 Qualifying mapped sectors are retail, hospitality, leisure and pub. Specific descriptions such as hairdressing salon give stronger evidence than a generic shop.
 
 SCAT **106** (convenience stores), **442** (takeaways), **417** and **507** (hair/beauty classifications) provide specific activity evidence where the mapped sector is RHL. They suppress the generic-shop warning, but do not upgrade uncertain mapping confidence or override conflicts.

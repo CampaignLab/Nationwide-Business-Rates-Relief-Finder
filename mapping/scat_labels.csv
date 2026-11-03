@@ -90,6 +90,7 @@ scat_code,scat_description
 091,Drive-In Restaurants
 092,Drive-Thru Restaurants
 093,Mine Water Treatment Plant and Premises
+094,Electricity Undertakings (Non-Statutory)
 095,Exhaust and Tyre Centres
 096,"Factories, Workshops and Warehouses (Incl Bakeries & Dairies)"
 097,Factory Shops
@@ -142,14 +143,20 @@ scat_code,scat_description
 144,Laboratories
 145,MISC
 146,Land Used For Advertising
+147,Land Used for Car Boot Sales
 148,Land Used For Storage
 149,IMX MISC
 150,IMX MISC
 151,Distribution Warehouses
+152,Large Food Stores (750–2500 m²)
 153,"Large Industrials (Over 20,000m²)"
+154,Large Shops (750–1850 m²)
+155,Large Shops (Over 1850 m²)
+156,Libraries
 157,(National Scheme)
 158,Livestock Markets (National Scheme)
 159,Scheme)
+160,Lodges (National Scheme)
 161,Lorry Parks
 162,Maltings - Non Trad
 163,Maltings - Trad
@@ -167,6 +174,8 @@ scat_code,scat_description
 175,Mineral Producing Hereditament - Hardrock
 176,Mineral Producing Hereditament - Inert
 177,Mineral Producing Hereditament - Oil
+178,Mineral Producing Hereditament — Other Mineral Category
+179,Mineral Producing Hereditament — Putrescible
 180,Mineral Producing Hereditament - Sand and Gravel
 181,Mineral Producing Hereditament - Sand
 182,Mineral Producing Hereditament - Shale Unburnt
@@ -377,6 +386,7 @@ scat_code,scat_description
 726,Telecommunications Large Broadcast Sites
 727,Waste Anaerobic Digestion Plants
 728,Bagging Plant & Premises
+729,Renewable Generators — Mixed Technologies
 730,"Biomass Biological (Crop & Slurry Based Anaerobic Digestors, Incl Gas to Grid)"
 731,"Biomass Thermal (Incl Combustion, Gasification and Pyrolysis)"
 732,Click & Collect Locker Site
@@ -411,6 +421,7 @@ scat_code,scat_description
 992,Commercial Miscellaneous
 993,MISC
 994,Industrial Miscellaneous
+995,Educational Miscellaneous
 996,Formula Assessed Miscellaneous
 997,Minerals Miscellaneous
 998,Crown Miscellaneous

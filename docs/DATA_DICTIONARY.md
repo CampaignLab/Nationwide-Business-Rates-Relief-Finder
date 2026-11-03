@@ -1,5 +1,12 @@
 # Data dictionary
 
+The companion files `scat_classifications.csv` and `scat_classifications.json`
+explain every documented/observed SCAT mapping. CSV rows are effective rules for a
+SCAT/primary-code condition, not property records. Fields include mapped sector,
+confidence, rationale, rule source, review status and screening caveats.
+`primary_classifications.csv` supplies all primary-code fallbacks. The JSON also
+documents text flags, which take priority over code mapping.
+
 Classification display fields: `primary_description_code` and `primary_description`
 identify the base VOA code and its standard label; `secondary_description_code` and
 `secondary_description` identify ancillary accommodation, blank when none is recorded;

@@ -25,7 +25,7 @@ export async function stageDataset(input,output,includeDownloads=false){
   await mkdir(destination,{recursive:true});
   for(const [source,target] of copies){await mkdir(dirname(target),{recursive:true});await copyFile(source,target);}
   await writeFile(resolve(destination,'constituency_index.json'),JSON.stringify(data,null,2));
-  for(const name of ['unassigned_review.csv','earley_comparison.csv','screening_report.json']){
+  for(const name of ['unassigned_review.csv','earley_comparison.csv','screening_report.json','scat_classifications.csv','scat_classifications.json','primary_classifications.csv']){
     if(includeDownloads&&existsSync(resolve(root,name))){
       const source=await realpath(resolve(root,name));const rel=relative(root,source);
       if(rel==='..'||rel.startsWith(`..${sep}`)||isAbsolute(rel))throw new Error('Supplement must be inside the source folder.');

@@ -25,7 +25,17 @@ test('accepts existing publisher file paths and empty datasets',()=>{
 });
 test('deployment contains only allowlisted browser files',()=>{
   execFileSync(process.execPath,['scripts/build.mjs'],{cwd:new URL('../',import.meta.url)});
-  assert.deepEqual(readdirSync(new URL('../dist/',import.meta.url)).filter(name=>name!=='dataset').sort(),['app.js','campaignlab-logo.png','csv.js','data.js','index.html','methodology.css','methodology.html','style.css']);
+  assert.deepEqual(readdirSync(new URL('../dist/',import.meta.url)).filter(name=>name!=='dataset').sort(),['app.js','campaignlab-logo.png','csv.js','data.js','index.html','methodology.css','methodology.html','scat.js','style.css']);
+});
+
+test('published SCAT explanations and downloads are included in the build',async()=>{
+  const audit=JSON.parse(await readFile(new URL('../dist/dataset/scat_classifications.json',import.meta.url),'utf8'));
+  const page=await readFile(new URL('../dist/methodology.html',import.meta.url),'utf8');
+  assert.equal((page.match(/data-scat-row /g)||[]).length,audit.codes.length);
+  assert.ok(audit.codes.length>=416);
+  assert.ok(page.includes('id="scat-249"'));
+  assert.ok(page.includes('/scat.js'));
+  assert.ok((await readFile(new URL('../dist/dataset/scat_classifications.csv',import.meta.url),'utf8')).includes('screening_guidance'));
 });
 test('screening filters combine name, outcome and RV and exported rows match',()=>{
   const rows=[{property_reference:'1',address:'A',status_now:'not_flagged',rateable_value:'12001',screening_outcome:'likely_candidate',trading_name:'Example, Shop'},

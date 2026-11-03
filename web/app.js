@@ -75,6 +75,12 @@ function renderProperties(){
     codes.append(el('p',`Secondary: ${row.secondary_description_code?`${row.secondary_description_code} — ${row.secondary_description||'Description unavailable'}`:'None recorded'}`));
     if(row.description_code&&row.description_code!==row.primary_description_code)codes.append(el('small',`Original description code: ${row.description_code}`));
     location.append(codes);
+    if(/^\d{3}$/.test(row.scat_category||'')){
+      const explanation=el('a','Why this SCAT classification?');
+      explanation.href=`/methodology.html#scat-${row.scat_category}`;
+      explanation.target='_blank';explanation.rel='noopener noreferrer';
+      codes.append(explanation);
+    }
     if(row.trading_name)location.append(el('small',`Trading name: ${row.name_verification_status?.replaceAll('_',' ')} · ${row.name_source} · recorded ${row.name_recorded_date}`));
     if(row.firm_name)location.append(el('p',`Original VOA firm name: ${row.firm_name}`));
     if(!row.trading_name&&!usableFirm)location.append(el('small','Occupier not identified'));

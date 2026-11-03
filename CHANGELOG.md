@@ -2,6 +2,10 @@
 
 This is the analytical and implementation history, not a record of confirmed business-rate awards. All figures below refer to the fixed source snapshot used on **3 November 2026**.
 
+## Publish SCAT classification reasoning — 3 November 2026
+
+Added a searchable methodology table covering all 427 SCAT codes in our reference/mapping tables or observed source snapshot, with 1,680 effective primary-code rules. Each rule exposes its sector, confidence, rationale, source, review status and screening caveats. CSV/JSON companions and all primary-code fallback rules are downloadable. Property entries link to their code explanation. The table documents code precedence and text overrides; other is not treated as synonymous with statutory exclusion. No property selection or eligibility rules changed.
+
 ## Display VOA classification codes — 3 November 2026
 
 Entries now show the SCAT category and label, primary description code and standard label, and secondary accommodation suffix and label (or None recorded). Full original SCAT and description codes remain visible. CSV and Excel exports include the same display fields. Labels are explanatory source classifications, not new eligibility evidence; screening rules, record selection and totals are unchanged. Added publisher integration checks and primary/secondary parsing checks; 155 Python tests pass.
