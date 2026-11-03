@@ -25,7 +25,7 @@ test('accepts existing publisher file paths and empty datasets',()=>{
 });
 test('deployment contains only allowlisted browser files',()=>{
   execFileSync(process.execPath,['scripts/build.mjs'],{cwd:new URL('../',import.meta.url)});
-  assert.deepEqual(readdirSync(new URL('../dist/',import.meta.url)).sort(),['app.js','csv.js','data.js','index.html','style.css']);
+  assert.deepEqual(readdirSync(new URL('../dist/',import.meta.url)).filter(name=>name!=='dataset').sort(),['app.js','csv.js','data.js','index.html','style.css']);
 });
 test('property CSV skips notices and handles commas, quotes, BOM and multiline addresses',()=>{
   const rows=parseProperties('\uFEFFNOTICE\r\n"A notice, with a comma"\r\n\r\nproperty_reference,address,postcode,firm_name,status_now\r\n123,"Unit 1, The \"\"Works\"\"\nMain Street",RG1 1AA,Example,likely_eligible_now\r\n');

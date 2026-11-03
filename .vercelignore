@@ -12,3 +12,4 @@ run_all.py
 Makefile
 .env*
 .tmp/
+dist/

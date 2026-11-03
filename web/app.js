@@ -8,7 +8,7 @@ function clearUrls(){ urls.forEach(URL.revokeObjectURL); urls=[]; }
 function el(tag,text,className){ const node=document.createElement(tag); if(text!==undefined)node.textContent=text;if(className)node.className=className;return node; }
 function setDataset(value,files=new Map(),hosted=false){
   clearUrls(); dataset=value; dataset.localFiles=files;dataset.hosted=hosted;
-  $('mode').textContent=value.demo?'DEMONSTRATION DATA':hosted?'PUBLISHED DATASET':'LOCAL DATA · NOT UPLOADED';
+  $('mode').textContent=value.demo?'DEMONSTRATION DATA':hosted?(value.sector_mapping_reviewed===true?'PUBLISHED DATASET':'DRAFT DATASET · SECTOR MAPPING AWAITS REVIEW'):'LOCAL DATA · NOT UPLOADED';
   $('notice').textContent=value.demo?value.notice:'Potential eligibility only. Check with the billing authority. VO restricted licence: use and onward disclosure are restricted. Only use these files as authorised.';
   const cohort=value.cohort;
   $('snapshot').textContent=`RHL properties: rateable value above £${number.format(cohort.lower_rv_exclusive)} and up to £${number.format(cohort.upper_rv_inclusive)} inclusive. Potential full relief from ${cohort.effective_from}. ${value.demo?'Illustrative only.':`Snapshot: ${value.snapshot_epoch ?? 'unknown'} · ${value.file_date ?? 'unknown date'}. ${value.rules_snapshot ?? ''} Sector mapping: ${value.sector_mapping_reviewed===true?'reviewed':'draft / awaiting review'}.`}`;
