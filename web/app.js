@@ -5,18 +5,19 @@ const number = new Intl.NumberFormat('en-GB');
 let dataset = {constituencies:[]}, urls = [];
 let properties=[],propertyRequest=0,filteredUrl;
 function clearUrls(){ urls.forEach(URL.revokeObjectURL); urls=[]; }
+function longDate(value){ const d=/^\d{4}-\d{2}-\d{2}$/.test(value||'')?new Date(`${value}T12:00:00Z`):null; return d?d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}):(value??'an unknown date'); }
 function el(tag,text,className){ const node=document.createElement(tag); if(text!==undefined)node.textContent=text;if(className)node.className=className;return node; }
 function setDataset(value,files=new Map(),hosted=false){
   if(value.screening_version!==1)throw new Error('This dataset predates candidate/review screening. Rebuild the pipeline before opening it.');
   clearUrls(); dataset=value; dataset.localFiles=files;dataset.hosted=hosted;
-  $('mode').textContent=hosted?(value.sector_mapping_reviewed===true?'PUBLISHED DATASET':'DRAFT DATASET · SECTOR MAPPING AWAITS REVIEW'):'LOCAL DATA · NOT UPLOADED';
-  $('notice').textContent=value.notice;
+  $('mode').textContent=hosted?(value.sector_mapping_reviewed===true?'ABOUT THIS DATA':'ABOUT THIS DATA · DRAFT'):'LOCAL DATA · NOT UPLOADED';
   const cohort=value.cohort;
-  $('snapshot').textContent=`RHL properties: rateable value above £${number.format(cohort.lower_rv_exclusive)} and up to £${number.format(cohort.upper_rv_inclusive)} inclusive. Potential full relief from ${cohort.effective_from}. Snapshot: ${value.snapshot_epoch ?? 'unknown'} · ${value.file_date ?? 'unknown date'}. ${value.rules_snapshot ?? ''} Sector mapping: ${value.sector_mapping_reviewed===true?'reviewed':'draft / awaiting review'}.`;
+  $('notice').textContent=`Properties in England with a rateable value above £${number.format(cohort.lower_rv_exclusive)} and up to £${number.format(cohort.upper_rv_inclusive)}, screened for retail, hospitality and leisure use. Relief would start on ${longDate(cohort.effective_from)}.`;
+  $('snapshot').textContent=`Source: VOA property records dated ${longDate(value.file_date)} (release ${value.snapshot_epoch ?? 'unknown'}). ${value.rules_snapshot ?? ''} The rules matching property types to the policy are ${value.sector_mapping_reviewed===true?'reviewed':'a draft still being reviewed'}. This is a fixed snapshot and does not update itself.`;
   $('total').textContent=number.format(value.constituencies.reduce((sum,r)=>sum+(r.counts.likely_candidate||0),0));
   $('flagged').textContent=number.format(value.constituencies.reduce((sum,r)=>sum+(r.counts.needs_review||0),0));
   const report=value.screening_report;
-  $('screening-summary').textContent=report?`${number.format(report.unassigned_review)} additional assessments need review because no exact English constituency match was found. They are retained in the national review download and are not assigned approximately.`:'';
+  $('screening-summary').textContent=report?`${number.format(report.unassigned_review)} more properties couldn't be matched to a constituency, usually because of a missing postcode. They're in a separate download at the bottom of the page.`:'';
   $('seats').textContent=number.format(value.constituencies.length);
   $('search').value='';$('region').replaceChildren(new Option('All regions',''));
   [...new Set(value.constituencies.map(r=>r.region))].sort().forEach(r=>$('region').add(new Option(r,r)));
@@ -40,7 +41,7 @@ function render(){
       const url=file?URL.createObjectURL(file):`/dataset/${path.split('/').map(encodeURIComponent).join('/')}`;if(file)urls.push(url);const a=el('a',`All candidates + review (${format==='csv'?'CSV':'Excel'}) ↓`);a.href=url;a.download=file?file.name:path.split('/').at(-1);downloads.append(a);available++;
     }
     if(!available)downloads.append(el('span','No matching download files selected'));
-    if(row.files?.csv&&(dataset.hosted||dataset.localFiles?.has(row.files.csv))){const browse=el('button','View properties');browse.addEventListener('click',()=>openProperties(row));downloads.prepend(browse);}
+    if(row.files?.csv&&(dataset.hosted||dataset.localFiles?.has(row.files.csv))){const browse=el('button','See the properties');browse.addEventListener('click',()=>openProperties(row));downloads.prepend(browse);}
     card.append(downloads);$('cards').append(card);
   }
 }
@@ -88,7 +89,7 @@ function renderProperties(){
     const groups={clear_recorded_use:'Clear recorded use; check other warnings',possible_exclusion:'Possible excluded activity',conditional_use:'Conditional or mixed use',generic_shop:'Generic shop: actual activity unknown',uncertain_sector:'Uncertain sector mapping',property_evidence:'Property evidence needs checking'};
     if(row.screening_outcome==='needs_review'&&row.use_review_group)status.append(el('p',`Use assessment: ${groups[row.use_review_group]||row.use_review_group}`));
     if(row.review_categories)status.append(el('small',`Checks: ${row.review_categories.split(';').map(s=>s.replaceAll('_',' ')).join(' · ')}`));
-    if(/^https?:\/\//.test(row.council_url||'')){const link=el('a',`Confirm with ${row.billing_authority}`);link.href=row.council_url;link.target='_blank';link.rel='noopener noreferrer';status.append(link,el('p','Official council homepage · find business rates'));}
+    if(/^https?:\/\//.test(row.council_url||'')){const link=el('a',`Confirm with ${row.billing_authority}`);link.href=row.council_url;link.target='_blank';link.rel='noopener noreferrer';status.append(link,el('p','Council website: look for the business rates page'));}
     tr.append(location,value,status);$('properties').append(tr);
   }
 }
