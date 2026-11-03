@@ -31,6 +31,9 @@ OUTPUT_COLUMNS = [
     ("firm_property_count", "firm_property_count"),
     ("status_now", "status_now"),
     ("status_from_apr_2027", "status_from_apr_2027"),
+    ("relief_now", "relief_now"),
+    ("relief_from_apr_2027", "relief_from_apr_2027"),
+    ("target_new_full_relief", "target_new_full_relief"),
     ("reason", "reason"),
     ("snapshot_epoch", "snapshot_epoch"),
     ("verified_with_council", "verified_with_council"),
@@ -57,6 +60,9 @@ def notice_lines(meta: dict, rules: dict, mapping_reviewed: bool, onspd_year: st
         (f"Snapshot: VOA 2026 rating list, compiled epoch {meta['epoch']} baseline ({meta['source_zip']}), "
          f"file dated {meta['file_date']}, latest record date {meta['latest_current_from_date']}."),
         f"Rules: {rules['snapshot_note']}",
+        (f"Selection: RHL properties with rateable value above £{rules['sbrr_general']['full_relief_max_rv']:,} "
+         f"and up to £{rules['sbrr_rhl_from_april_2027']['full_relief_max_rv']:,} inclusive, potentially moving "
+         "to full relief from 1 April 2027, subject to other eligibility conditions. These are property records, not unique businesses."),
         (f"Contains OS data © Crown copyright and database right {onspd_year}. Contains Royal Mail data © Royal Mail "
          f"copyright and database right {onspd_year}. Source: Office for National Statistics licensed under the Open "
          "Government Licence v.3.0."),
@@ -115,7 +121,8 @@ def main():
         FROM read_parquet('{sql_path(WORK / 'flagged.parquet')}')
     """)
     rows_in = con.execute("SELECT count(*) FROM flagged").fetchone()[0]
-    flag_cond = "(status_now <> 'not_flagged' OR status_from_apr_2027 <> 'not_flagged')"
+    # Publish only the user's target cohort, not all existing/tapered SBRR cases.
+    flag_cond = "target_new_full_relief = true"
 
     csv_dir, xlsx_dir = OUT / "constituencies" / "csv", OUT / "constituencies" / "xlsx"
     shutil.rmtree(OUT / "constituencies", ignore_errors=True)
@@ -147,14 +154,14 @@ def main():
     log.info("Wrote %d constituency files (CSV and XLSX) with %d rows", len(files), written)
 
     # National summary.
-    now_cols = ", ".join(f"count(*) FILTER (WHERE status_now = '{s}') AS now_{s}" for s in STATUSES_NOW)
-    apr_cols = ", ".join(f"count(*) FILTER (WHERE status_from_apr_2027 = '{s}') AS apr2027_{s}" for s in STATUSES_2027)
+    now_cols = ", ".join(f"count(*) FILTER (WHERE {flag_cond} AND status_now = '{s}') AS now_{s}" for s in STATUSES_NOW)
+    apr_cols = ", ".join(f"count(*) FILTER (WHERE {flag_cond} AND status_from_apr_2027 = '{s}') AS apr2027_{s}" for s in STATUSES_2027)
     summary = con.execute(f"""
         SELECT coalesce(constituency_code, '') AS constituency_code,
                coalesce(constituency_name, '(no constituency: postcode not matched or outside England)') AS constituency_name,
                coalesce(any_value(region_name), '') AS region_name,
                count(*) AS properties_in_list,
-               count(*) FILTER (WHERE {flag_cond}) AS flagged_either,
+               count(*) FILTER (WHERE {flag_cond}) AS target_new_full_relief,
                {now_cols}, {apr_cols}
         FROM flagged GROUP BY constituency_code, constituency_name
         ORDER BY constituency_code IS NULL, constituency_code
@@ -173,6 +180,12 @@ def main():
         raise SystemExit(f"Constituencies with flagged properties but no file: {missing_files}")
 
     index = {
+        "cohort": {
+            "id": "rhl_new_full_relief",
+            "lower_rv_exclusive": rules["sbrr_general"]["full_relief_max_rv"],
+            "upper_rv_inclusive": rules["sbrr_rhl_from_april_2027"]["full_relief_max_rv"],
+            "effective_from": rules["sbrr_rhl_from_april_2027"]["effective_from"],
+        },
         "snapshot_epoch": meta["epoch"],
         "source_file": meta["source_zip"],
         "file_date": meta["file_date"],
@@ -245,8 +258,9 @@ This report contains VOA data and is covered by the VO restricted licence. Do no
 
 {t(["Stage", "Rows in", "Rows out"], stage_rows)}
 
-Stage 3 keeps only properties in English billing authorities. Stage 7 "rows out" is the number of rows
-written to constituency files (properties flagged under either status and with a constituency).
+Stage 3 keeps only properties in English billing authorities. Stage 7 "rows out" is the number of target RHL properties
+written to constituency files: above the old full-relief threshold, up to and including the new full-relief
+threshold, passing the modelled 2027 checks and with a constituency. These are properties, not unique businesses.
 
 ## Rejected rows (stage 2)
 

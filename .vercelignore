@@ -1,0 +1,14 @@
+data/
+out/
+.venv/
+__pycache__/
+.pytest_cache/
+src/
+mapping/
+config/
+tests/
+requirements.txt
+run_all.py
+Makefile
+.env*
+.tmp/

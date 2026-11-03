@@ -196,6 +196,27 @@ def test_thresholds_follow_config(rules):
     assert assess(Property(23000, sector="retail"), changed).status_from_apr_2027 == ELIGIBLE_APR_2027
 
 
+@pytest.mark.parametrize("rv,expected", [(0,False),(12000,False),(12001,True),(13500,True),(14999,True),(15000,True),(17999,True),(18000,True),(18001,False),(19500,False),(21000,False)])
+@pytest.mark.parametrize("sector", ["retail","hospitality","leisure","pub"])
+def test_target_new_full_relief_boundaries(rules,rv,expected,sector):
+    assert assess(Property(rv,sector=sector),rules).target_new_full_relief is expected
+
+
+@pytest.mark.parametrize("sector", ["other","possible_vape_shop","possible_adult_gaming_centre"])
+def test_target_excludes_non_rhl_and_excluded_sectors(rules,sector):
+    assert not assess(Property(16000,sector=sector),rules).target_new_full_relief
+
+
+def test_target_respects_multi_property_and_config(rules):
+    assert not assess(named(16000,count=2,total=19000,other_max=3000,sector="retail"),rules).target_new_full_relief
+    assert assess(named(16000,count=2,total=18000,other_max=2000,sector="retail"),rules).target_new_full_relief
+    changed=copy.deepcopy(rules)
+    changed['sbrr_general']['full_relief_max_rv']=13000
+    changed['sbrr_rhl_from_april_2027']['full_relief_max_rv']=19000
+    assert not assess(Property(12500,sector='retail'),changed).target_new_full_relief
+    assert assess(Property(18500,sector='retail'),changed).target_new_full_relief
+
+
 # Wording
 
 @pytest.mark.parametrize("p", [

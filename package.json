@@ -1,0 +1,12 @@
+{
+  "name": "business-rates-relief-finder",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare-data": "node scripts/prepare-data.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/web.test.mjs",
+    "dev": "python -m http.server 3000 --directory web --bind 127.0.0.1"
+  },
+  "engines": {"node": ">=22"}
+}

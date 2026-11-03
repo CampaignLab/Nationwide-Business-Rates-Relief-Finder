@@ -30,16 +30,16 @@ def main():
     """)
     with open(results_csv, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
-        w.writerow(["uarn", "status_now", "status_from_apr_2027", "reason", "relief_now", "relief_from_apr_2027"])
+        w.writerow(["uarn", "status_now", "status_from_apr_2027", "reason", "relief_now", "relief_from_apr_2027", "target_new_full_relief"])
         while batch := cur.fetchmany(100_000):
             for uarn, *args in batch:
                 r = cached(*args)
                 w.writerow([uarn, r.status_now, r.status_from_apr_2027, r.reason,
-                            round(r.relief_now, 4), round(r.relief_from_apr_2027, 4)])
+                            round(r.relief_now, 4), round(r.relief_from_apr_2027, 4), r.target_new_full_relief])
 
     con.execute(f"""
         CREATE TABLE results AS SELECT * FROM read_csv('{sql_path(results_csv)}', header=true,
-            types={{'uarn': 'VARCHAR', 'relief_now': 'DOUBLE', 'relief_from_apr_2027': 'DOUBLE'}})
+            types={{'uarn': 'VARCHAR', 'relief_now': 'DOUBLE', 'relief_from_apr_2027': 'DOUBLE', 'target_new_full_relief': 'BOOLEAN'}})
     """)
     con.execute(f"""
         COPY (SELECT s.*, r.* EXCLUDE (uarn) FROM src s JOIN results r USING (uarn))

@@ -35,6 +35,7 @@ class Result:
     reason: str
     relief_now: float
     relief_from_apr_2027: float
+    target_new_full_relief: bool
 
 
 def money(v: int) -> str:
@@ -128,4 +129,6 @@ def assess(p: Property, rules: dict) -> Result:
                    f"1 April 2027. The definition is not yet published. If it is not a vape shop: {text_27}")
 
     reason = f"Now: {text_now} From 1 April 2027: {'No change.' if text_27 == text_now else text_27}"
-    return Result(status_now, status_27, reason, relief_now, relief_27)
+    target = (p.sector in RHL_SECTORS and full < p.rv <= rhl["full_relief_max_rv"]
+              and status_27 == ELIGIBLE_APR_2027 and relief_27 == 1.0)
+    return Result(status_now, status_27, reason, relief_now, relief_27, target)

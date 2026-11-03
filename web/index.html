@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Business Rates Relief Finder · Campaign Lab</title>
+  <meta name="description" content="Explore potential business rates relief by English parliamentary constituency.">
+  <link rel="stylesheet" href="/style.css"><script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header><a class="brand" href="/">Campaign<span>Lab</span><i aria-hidden="true">↗</i></a><span class="tag">Business rates · England</span></header>
+  <main>
+    <section class="intro"><p class="eyebrow">BUDGET 2026 · POTENTIAL NEW FULL RELIEF</p><h1>Find the potential.<br><span>Support local businesses.</span></h1><p class="lede">Find retail, hospitality and leisure properties above £12,000 and up to £18,000 rateable value that may move to full relief from April 2027, by constituency.</p></section>
+    <section class="notice" aria-label="Dataset information"><strong id="mode">DEMONSTRATION DATA</strong><p id="notice">Illustrative counts only. These are not findings about real properties.</p><p id="snapshot"></p></section>
+    <section class="stats" aria-label="Dataset summary"><div><span id="total">—</span><p>Properties in indexed constituencies</p></div><div><span id="flagged">—</span><p>RHL properties potentially moving to full relief</p></div><div><span id="seats">—</span><p>Constituencies with target properties</p></div></section>
+    <section class="explorer" aria-labelledby="explore-title"><div class="section-top"><div><p class="eyebrow">EXPLORE THE DATA</p><h2 id="explore-title">Start with a constituency</h2></div><button id="demo" class="secondary" hidden>Return to demo</button></div>
+      <div class="filters"><label>Constituency name or code<input id="search" type="search" placeholder="Search constituencies…" autocomplete="off"></label><label>Region<select id="region"><option value="">All regions</option></select></label></div>
+      <p id="results" role="status" aria-live="polite"></p><div id="cards" class="cards"></div>
+    </section>
+    <section class="local"><div><p class="eyebrow">YOUR WORKSPACE</p><h2>Open a generated dataset</h2><p>Select the pipeline’s <code>out</code> folder to browse your results and open its CSV or Excel files. Files stay in this browser session and are not uploaded. Only open data you are authorised to use.</p></div><label class="button">Choose output folder<input id="folder" type="file" webkitdirectory multiple hidden></label><p id="file-status" role="status" aria-live="polite"></p></section>
+    <section class="notes"><h2>Potential relief, not confirmed eligibility</h2><p>The pipeline flags properties using rateable value and property type. It does not establish who pays rates, who receives relief, occupancy, or all properties held by an occupier. Check with the billing authority before contacting a business.</p><p>Sector mappings may await review. The April 2027 view uses the rules snapshot recorded in your dataset. This tool covers England.</p></section>
+    <dialog id="property-dialog" aria-labelledby="property-title"><div class="section-top"><h2 id="property-title">Properties</h2><button id="close-properties" class="secondary" aria-label="Close property search">Close ×</button></div><p>These are target RHL properties potentially moving to full relief only. Counts are premises, not unique businesses. Absence does not establish ineligibility. Check with the billing authority.</p><label>Address, postcode or firm name<input id="property-search" type="search" placeholder="Search within this constituency…"></label><p id="property-status" role="status" aria-live="polite"></p><div class="table-wrap"><table><thead><tr><th scope="col">Property</th><th scope="col">Rateable value</th><th scope="col">Potential relief</th></tr></thead><tbody id="properties"></tbody></table></div></dialog>
+  </main><footer><span>Campaign Lab · Business Rates Relief Finder</span><a href="https://github.com/CampaignLab/Nationwide-Business-Rates-Relief-Finder">Source & methodology ↗</a></footer>
+</body></html>
