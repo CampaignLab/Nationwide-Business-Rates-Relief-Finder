@@ -32,7 +32,7 @@ function render(){
   for(const row of rows){
     const card=el('article',undefined,'card');card.append(el('div',row.region,'region'),el('h3',row.name),el('div',row.code,'code'));
     const dl=el('dl');
-    for(const [label,key] of [['Likely candidates','likely_candidate'],['Needs review','needs_review']]){
+    for(const [label,key] of [['Likely candidates','likely_candidate'],['Possible candidates','needs_review']]){
       const group=el('div');group.append(el('dt',label),el('dd',number.format(row.counts[key]||0)));dl.append(group);
     }
     card.append(dl);const downloads=el('div',undefined,'downloads');let available=0;
@@ -59,7 +59,7 @@ async function openProperties(row){
 function renderProperties(){
   const rows=filterProperties(properties,$('property-search').value,{outcome:$('property-outcome').value,min:Number($('rv-min').value||12001),max:Number($('rv-max').value||18000)});const shown=rows.slice(0,100);
   const likely=properties.filter(r=>r.screening_outcome==='likely_candidate').length;
-  $('property-status').textContent=`${number.format(rows.length)} matching property assessments · ${likely} likely candidates and ${properties.length-likely} needing review in this file. Showing ${shown.length}${rows.length>100?' — refine your search for more specific results':''}.`;
+  $('property-status').textContent=`${number.format(rows.length)} matching property assessments · ${likely} likely candidates and ${properties.length-likely} possible candidates in this file. Showing ${shown.length}${rows.length>100?' — refine your search for more specific results':''}.`;
   if(filteredUrl)URL.revokeObjectURL(filteredUrl);
   filteredUrl=URL.createObjectURL(new Blob([exportProperties(rows,Object.keys(properties[0]||{}),dataset.notice)],{type:'text/csv;charset=utf-8'}));
   $('filtered-download').href=filteredUrl;$('filtered-download').download='filtered-property-assessments.csv';$('filtered-download').hidden=!rows.length;
@@ -79,7 +79,7 @@ function renderProperties(){
     if(row.firm_name)location.append(el('p',`Original VOA firm name: ${row.firm_name}`));
     if(!row.trading_name&&!usableFirm)location.append(el('small','Occupier not identified'));
     const rv=Number(row.rateable_value);const value=el('td',Number.isFinite(rv)?new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP',maximumFractionDigits:0}).format(rv):row.rateable_value);
-    const status=el('td');status.append(el('strong',({'likely_candidate':'Likely candidate','needs_review':'Needs review'})[row.screening_outcome]||'Unscreened legacy record'),el('p',row.screening_reason||'Rerun the pipeline to screen this record.'));
+    const status=el('td');status.append(el('strong',({'likely_candidate':'Likely candidate','needs_review':'Possible candidate'})[row.screening_outcome]||'Unscreened legacy record'),el('p',row.screening_reason||'Rerun the pipeline to screen this record.'));
     const groups={clear_recorded_use:'Clear recorded use; check other warnings',possible_exclusion:'Possible excluded activity',conditional_use:'Conditional or mixed use',generic_shop:'Generic shop: actual activity unknown',uncertain_sector:'Uncertain sector mapping',property_evidence:'Property evidence needs checking'};
     if(row.screening_outcome==='needs_review'&&row.use_review_group)status.append(el('p',`Use assessment: ${groups[row.use_review_group]||row.use_review_group}`));
     if(row.review_categories)status.append(el('small',`Checks: ${row.review_categories.split(';').map(s=>s.replaceAll('_',' ')).join(' · ')}`));
