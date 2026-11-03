@@ -119,6 +119,14 @@ Assigned likely/review records are published by constituency in CSV and Excel. E
 
 Checks cover threshold boundaries, specific SCAT evidence, conflicts, ancillary-space handling, review categories, geography, row conservation, reference uniqueness, output counts and website/export consistency. They verify software behaviour, not actual eligibility accuracy. Code, mappings and published outputs are versioned; source ZIPs and intermediates are not committed.
 
+## Why 543 constituencies, not 650
+
+The finder covers England only. It includes all 543 English Westminster constituencies on the 2024 boundaries. The other 107 constituencies are in Scotland (57), Wales (32) and Northern Ireland (18), and they are left out on purpose.
+
+Business rates are devolved. The relief expansion modelled here was announced for England and applies to English billing authorities. The Scottish Government, Welsh Government and Northern Ireland Executive each set their own reliefs, with different thresholds and rules, so applying the English policy to their properties would give wrong answers. The data also differs: the VOA rating list we use covers England and Wales, while Scottish properties are valued by Scottish assessors and Northern Ireland properties by Land & Property Services.
+
+Welsh assessments appear in the VOA file but are set aside for that reason (see step 1, where billing-authority codes select English assessments). Extending the finder to the rest of the UK would need each nation's own relief rules and, for Scotland and Northern Ireland, different source data.
+
 ## Before promising relief
 
 Verify the current occupier, liable ratepayer, actual qualifying use, other occupied properties, final applicable rules, effective date, existing reliefs and council decision. To claim a newly zero bill, establish the previous amount payable and why it changes.

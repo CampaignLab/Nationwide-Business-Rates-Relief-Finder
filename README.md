@@ -21,7 +21,9 @@ This is an automatic screening tool. It does not establish the current occupier,
 | Likely candidates | 26,446 |
 | Needs review, assigned to an English constituency | 88,799 |
 | Needs review, without an exact English constituency match | 181 |
-| Constituencies covered | 543 |
+| Constituencies covered | 543 (all of England) |
+
+The finder covers England only, because business rates and their reliefs are devolved. Scotland, Wales and Northern Ireland (107 constituencies) set their own rules. See [why 543, not 650](docs/METHODOLOGY.md#why-543-constituencies-not-650).
 
 These counts use VOA 2026 epoch **0004**, dated **1 October 2026**, and **ONSPD August 2026**. The policy model uses the **28 October 2026 announcement**, marked announced and not yet in regulations in this release. The data and rules do not refresh automatically. Counts refer to assessments, not unique businesses.
 
