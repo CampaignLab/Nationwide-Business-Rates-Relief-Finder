@@ -88,6 +88,17 @@ function renderProperties(){
   }
 }
 $('close-properties').addEventListener('click',()=>$('property-dialog').close());
+const propertyDialog=$('property-dialog');
+const outsidePropertyDialog=event=>{
+  const box=propertyDialog.getBoundingClientRect();
+  return event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom;
+};
+let backdropPress=false;
+propertyDialog.addEventListener('pointerdown',event=>{backdropPress=event.target===propertyDialog&&outsidePropertyDialog(event);});
+propertyDialog.addEventListener('click',event=>{
+  if(backdropPress&&event.target===propertyDialog&&outsidePropertyDialog(event))propertyDialog.close();
+  backdropPress=false;
+});
 $('property-dialog').addEventListener('close',()=>{propertyRequest++;properties=[];$('properties').replaceChildren();if(filteredUrl)URL.revokeObjectURL(filteredUrl);filteredUrl=null;});
 $('property-search').addEventListener('input',renderProperties);
 for(const id of ['property-outcome','rv-min','rv-max'])$(id).addEventListener('input',renderProperties);
