@@ -25,7 +25,7 @@ test('accepts existing publisher file paths and empty datasets',()=>{
 });
 test('deployment contains only allowlisted browser files',()=>{
   execFileSync(process.execPath,['scripts/build.mjs'],{cwd:new URL('../',import.meta.url)});
-  assert.deepEqual(readdirSync(new URL('../dist/',import.meta.url)).filter(name=>name!=='dataset').sort(),['app.js','campaignlab-logo.png','csv.js','data.js','index.html','methodology.css','methodology.html','scat.js','style.css']);
+  assert.deepEqual(readdirSync(new URL('../dist/',import.meta.url)).filter(name=>name!=='dataset').sort(),['app.js','campaignlab-logo.png','csv.js','data.js','index.html','methodology.css','methodology.html','scat.js','style.css','using-the-data.html']);
 });
 
 test('published SCAT explanations and downloads are included in the build',async()=>{

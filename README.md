@@ -27,6 +27,8 @@ The finder covers England only, because business rates and their reliefs are dev
 
 These counts use VOA 2026 epoch **0004**, dated **1 October 2026**, and **ONSPD August 2026**. The policy model uses the **28 October 2026 announcement**, marked announced and not yet in regulations in this release. The data and rules do not refresh automatically. Counts refer to assessments, not unique businesses.
 
+For practical ways to reach the businesses on the list (letters, leaflets, local business groups, ads), see the [Ways to use this data](web/using-the-data.html) page on the site.
+
 ## Understand and reproduce the work
 
 | Document | What it covers |
