@@ -51,7 +51,7 @@ npm run build
 npm run dev
 ```
 
-Open <http://127.0.0.1:3000/>. The checkout includes the published snapshot. Without a staged dataset, the site displays labelled synthetic demonstration data. The static build is written to `dist/`.
+Open <http://127.0.0.1:3000/>. The checkout includes the published snapshot. Without a staged dataset, the site shows a "data unavailable" message. The static build is written to `dist/`.
 
 To rebuild the data, follow [Reproduce and deploy](docs/REPRODUCING.md). The full VOA and ONS source ZIPs and intermediate files are not committed.
 

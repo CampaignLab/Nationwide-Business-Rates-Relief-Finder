@@ -1,4 +1,5 @@
 // Synthetic fixtures; none of these counts are derived from rating-list data.
+// Synthetic fixture used by the tests only. The site never displays it.
 export const demo = {
   cohort: {id:'rhl_new_full_relief',lower_rv_exclusive:12000,upper_rv_inclusive:18000,effective_from:'2027-04-01'},
   demo: true, snapshot_epoch: 'demo', file_date: 'Illustrative only',

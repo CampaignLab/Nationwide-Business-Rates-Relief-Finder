@@ -1,19 +1,18 @@
-import {demo,validateIndex,filterRows} from './data.js';
+import {validateIndex,filterRows} from './data.js';
 import {parseProperties,filterProperties,exportProperties} from './csv.js';
 const $ = id => document.getElementById(id);
 const number = new Intl.NumberFormat('en-GB');
-let dataset = demo, urls = [];
+let dataset = {constituencies:[]}, urls = [];
 let properties=[],propertyRequest=0,filteredUrl;
 function clearUrls(){ urls.forEach(URL.revokeObjectURL); urls=[]; }
 function el(tag,text,className){ const node=document.createElement(tag); if(text!==undefined)node.textContent=text;if(className)node.className=className;return node; }
 function setDataset(value,files=new Map(),hosted=false){
-  if(!value.demo&&value.screening_version!==1)throw new Error('This dataset predates candidate/review screening. Rebuild the pipeline before opening it.');
+  if(value.screening_version!==1)throw new Error('This dataset predates candidate/review screening. Rebuild the pipeline before opening it.');
   clearUrls(); dataset=value; dataset.localFiles=files;dataset.hosted=hosted;
-  $('mode').textContent=value.demo?'DEMONSTRATION DATA':hosted?(value.sector_mapping_reviewed===true?'PUBLISHED DATASET':'DRAFT DATASET · SECTOR MAPPING AWAITS REVIEW'):'LOCAL DATA · NOT UPLOADED';
+  $('mode').textContent=hosted?(value.sector_mapping_reviewed===true?'PUBLISHED DATASET':'DRAFT DATASET · SECTOR MAPPING AWAITS REVIEW'):'LOCAL DATA · NOT UPLOADED';
   $('notice').textContent=value.notice;
   const cohort=value.cohort;
-  $('snapshot').textContent=`RHL properties: rateable value above £${number.format(cohort.lower_rv_exclusive)} and up to £${number.format(cohort.upper_rv_inclusive)} inclusive. Potential full relief from ${cohort.effective_from}. ${value.demo?'Illustrative only.':`Snapshot: ${value.snapshot_epoch ?? 'unknown'} · ${value.file_date ?? 'unknown date'}. ${value.rules_snapshot ?? ''} Sector mapping: ${value.sector_mapping_reviewed===true?'reviewed':'draft / awaiting review'}.`}`;
-  $('demo').hidden=!!value.demo;
+  $('snapshot').textContent=`RHL properties: rateable value above £${number.format(cohort.lower_rv_exclusive)} and up to £${number.format(cohort.upper_rv_inclusive)} inclusive. Potential full relief from ${cohort.effective_from}. Snapshot: ${value.snapshot_epoch ?? 'unknown'} · ${value.file_date ?? 'unknown date'}. ${value.rules_snapshot ?? ''} Sector mapping: ${value.sector_mapping_reviewed===true?'reviewed':'draft / awaiting review'}.`;
   $('total').textContent=number.format(value.constituencies.reduce((sum,r)=>sum+(r.counts.likely_candidate||0),0));
   $('flagged').textContent=number.format(value.constituencies.reduce((sum,r)=>sum+(r.counts.needs_review||0),0));
   const report=value.screening_report;
@@ -26,7 +25,7 @@ function setDataset(value,files=new Map(),hosted=false){
 function render(){
   clearUrls();
   const rows=filterRows(dataset.constituencies,$('search').value,$('region').value);
-  $('results').textContent=`${number.format(rows.length)} of ${number.format(dataset.constituencies.length)} constituencies${dataset.demo?' · illustrative counts':''}`;
+  $('results').textContent=`${number.format(rows.length)} of ${number.format(dataset.constituencies.length)} constituencies`;
   $('cards').replaceChildren();
   if(!rows.length){$('cards').append(el('p','No constituencies match. Try another name or region.','empty'));return;}
   for(const row of rows){
@@ -40,7 +39,7 @@ function render(){
       const path=row.files?.[format];const file=dataset.localFiles?.get(path);if(!file&&!(dataset.hosted&&path))continue;
       const url=file?URL.createObjectURL(file):`/dataset/${path.split('/').map(encodeURIComponent).join('/')}`;if(file)urls.push(url);const a=el('a',`All candidates + review (${format==='csv'?'CSV':'Excel'}) ↓`);a.href=url;a.download=file?file.name:path.split('/').at(-1);downloads.append(a);available++;
     }
-    if(!available)downloads.append(el('span',dataset.demo?'Demo · no property files':'No matching download files selected'));
+    if(!available)downloads.append(el('span','No matching download files selected'));
     if(row.files?.csv&&(dataset.hosted||dataset.localFiles?.has(row.files.csv))){const browse=el('button','View properties');browse.addEventListener('click',()=>openProperties(row));downloads.prepend(browse);}
     card.append(downloads);$('cards').append(card);
   }
@@ -109,12 +108,14 @@ $('property-dialog').addEventListener('close',()=>{propertyRequest++;properties=
 $('property-search').addEventListener('input',renderProperties);
 for(const id of ['property-outcome','rv-min','rv-max'])$(id).addEventListener('input',renderProperties);
 $('search').addEventListener('input',render);$('region').addEventListener('change',render);
-$('demo').addEventListener('click',()=>{setDataset(demo);$('file-status').textContent='';});
-setDataset(demo);
-// Optional deployment dataset. A missing dataset leaves the clearly labelled demo.
+function unavailable(){
+  $('mode').textContent='DATA UNAVAILABLE';
+  $('notice').textContent='The published dataset could not be loaded. Please refresh the page or try again later.';
+  $('results').textContent='';
+}
 try{
   const response=await fetch('/dataset/constituency_index.json');
   if(response.ok){const data=validateIndex(await response.json());data.demo=false;setDataset(data,new Map(),true);}
-  else if(response.status!==404) $('file-status').textContent='Published dataset unavailable. Showing demonstration data.';
-}catch{ $('file-status').textContent='Published dataset could not be loaded. Showing demonstration data.'; }
+  else unavailable();
+}catch{ unavailable(); }
 window.addEventListener('pagehide',clearUrls);
