@@ -1,7 +1,7 @@
 """Stage 2: normalise postcodes, cast rateable value, and set aside unusable rows.
 
-Rows with no postcode or no rateable value go to data/work/rejected_rows.csv
-with a reason. The VOA specification says rows with a blank rateable value
+Rows with no usable rateable value go to data/work/rejected_rows.csv.
+Missing or malformed postcodes are retained for unassigned review. The VOA specification says rows with a blank rateable value
 (item 18) are proxy records for properties deleted from the list, not list entries.
 """
 from common import WORK, connect, count, get_logger, sql_path, write_stage_log
@@ -31,12 +31,6 @@ def main():
                     THEN left(pc_compact, length(pc_compact) - 3) || ' ' || right(pc_compact, 3) END AS postcode,
                try_cast(rv_text AS BIGINT) AS rateable_value,
                concat_ws('; ',
-                   CASE WHEN pc_compact IS NULL THEN 'postcode missing' END,
-                   CASE WHEN pc_compact IS NOT NULL
-                         AND NOT regexp_matches(coalesce(CASE WHEN length(pc_compact) BETWEEN 5 AND 7
-                              THEN left(pc_compact, length(pc_compact) - 3) || ' ' || right(pc_compact, 3) END, ''),
-                              '{POSTCODE_FORMAT}')
-                        THEN 'postcode not in a valid UK format' END,
                    CASE WHEN rv_text IS NULL OR rv_text = ''
                         THEN 'rateable value missing (VOA proxy record for a deleted property)' END,
                    CASE WHEN rv_text <> '' AND try_cast(rv_text AS BIGINT) IS NULL
@@ -52,7 +46,7 @@ def main():
         TO '{sql_path(WORK / 'rejected_rows.csv')}' (HEADER)
     """)
     con.execute(f"""
-        COPY (SELECT * EXCLUDE (reject_reason, postcode_raw, rateable_value_raw) FROM staged WHERE reject_reason = '')
+        COPY (SELECT * EXCLUDE (reject_reason, rateable_value_raw) FROM staged WHERE reject_reason = '')
         TO '{sql_path(WORK / 'clean.parquet')}' (FORMAT parquet)
     """)
 

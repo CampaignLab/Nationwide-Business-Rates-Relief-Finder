@@ -8,14 +8,12 @@ from datetime import date
 from openpyxl import Workbook
 
 import validation
+from screening import DISCLAIMER
 from common import MAPPING, OUT, WORK, connect, get_logger, load_rules, read_stage_log, sql_path, write_stage_log
 
 log = get_logger("07_publish")
 
 VOA_TERMS_URL = "https://www.tax.service.gov.uk/view-my-valuation/terms-and-conditions"
-DISCLAIMER = ("This list shows properties that may be eligible for relief based on rateable value and property type. "
-              "It does not show who pays business rates or who receives relief. Check eligibility with the billing "
-              "authority before contacting a business.")
 
 OUTPUT_COLUMNS = [
     ("constituency_code", "constituency_code"),
@@ -37,6 +35,10 @@ OUTPUT_COLUMNS = [
     ("reason", "reason"),
     ("snapshot_epoch", "snapshot_epoch"),
     ("verified_with_council", "verified_with_council"),
+    *[(name, name) for name in ("screening_outcome", "screening_reason", "review_reasons", "trading_name",
+        "name_source", "name_recorded_date", "name_verification_status", "council_url", "council_link_source",
+        "council_link_checked_date", "description_text", "description_code", "scat_code", "sector_confidence", "evidence_source")],
+    ("billing_authority_code", "ba_code"),
 ]
 STATUSES_NOW = ["likely_eligible_now", "possibly_eligible_now", "not_flagged"]
 STATUSES_2027 = ["likely_eligible_now", "possibly_eligible_now", "eligible_from_apr_2027",
@@ -54,15 +56,15 @@ def notice_lines(meta: dict, rules: dict, mapping_reviewed: bool, onspd_year: st
         ("Licence: contains Valuation Office (VO) rating list data, Crown copyright and database right. It is supplied "
          "under the VO's restricted licence, not the Open Government Licence. Use is limited to non-domestic rating "
          f"purposes and onward disclosure is restricted. The VO terms apply to anyone who receives this file: {VOA_TERMS_URL}"),
-        ("Do not distribute: this file is for authorised users only. It may contain personal data (sole traders and "
-         "home addresses). Do not share it further until the VO has confirmed the use is within its licence and data "
-         "protection advice has been taken."),
+        ("Data use: public availability does not remove the source terms. Anyone reusing these records must assess "
+         "their purpose and comply with the source terms and applicable data-protection requirements."),
         (f"Snapshot: VOA 2026 rating list, compiled epoch {meta['epoch']} baseline ({meta['source_zip']}), "
          f"file dated {meta['file_date']}, latest record date {meta['latest_current_from_date']}."),
         f"Rules: {rules['snapshot_note']}",
-        (f"Selection: RHL properties with rateable value above £{rules['sbrr_general']['full_relief_max_rv']:,} "
+        (f"Selection: candidate and review assessments with rateable value above £{rules['sbrr_general']['full_relief_max_rv']:,} "
          f"and up to £{rules['sbrr_rhl_from_april_2027']['full_relief_max_rv']:,} inclusive, potentially moving "
-         "to full relief from 1 April 2027, subject to other eligibility conditions. These are property records, not unique businesses."),
+         "to full relief from 1 April 2027, subject to other eligibility conditions. Review records may have non-qualifying uses. "
+         "Use screening_outcome to distinguish the two lists. These are property assessments, not unique businesses. Legacy relief fields are modelled, not awards."),
         (f"Contains OS data © Crown copyright and database right {onspd_year}. Contains Royal Mail data © Royal Mail "
          f"copyright and database right {onspd_year}. Source: Office for National Statistics licensed under the Open "
          "Government Licence v.3.0."),
@@ -118,11 +120,11 @@ def main():
     con.execute(f"""
         CREATE TABLE flagged AS
         SELECT *, '{meta['epoch']}' AS snapshot_epoch, NULL::VARCHAR AS verified_with_council
-        FROM read_parquet('{sql_path(WORK / 'flagged.parquet')}')
+        FROM read_parquet('{sql_path(WORK / 'screened.parquet')}')
     """)
     rows_in = con.execute("SELECT count(*) FROM flagged").fetchone()[0]
     # Publish only the user's target cohort, not all existing/tapered SBRR cases.
-    flag_cond = "target_new_full_relief = true"
+    flag_cond = "screening_outcome <> 'outside_target'"
 
     csv_dir, xlsx_dir = OUT / "constituencies" / "csv", OUT / "constituencies" / "xlsx"
     shutil.rmtree(OUT / "constituencies", ignore_errors=True)
@@ -162,6 +164,8 @@ def main():
                coalesce(any_value(region_name), '') AS region_name,
                count(*) AS properties_in_list,
                count(*) FILTER (WHERE {flag_cond}) AS target_new_full_relief,
+               count(*) FILTER (WHERE screening_outcome='likely_candidate') AS likely_candidate,
+               count(*) FILTER (WHERE screening_outcome='needs_review') AS needs_review,
                {now_cols}, {apr_cols}
         FROM flagged GROUP BY constituency_code, constituency_name
         ORDER BY constituency_code IS NULL, constituency_code
@@ -192,6 +196,8 @@ def main():
         "rules_snapshot": rules["snapshot_note"],
         "sector_mapping_reviewed": mapping_reviewed,
         "notice": DISCLAIMER,
+        "screening_version": 1,
+        "screening_report": json.loads((OUT / 'screening_report.json').read_text(encoding='utf-8')),
         "licence": f"VO restricted licence: {VOA_TERMS_URL}",
         "constituencies": [
             {
@@ -217,7 +223,7 @@ def main():
 
 
 def write_report(meta, rules, review, english_constituencies, n_files, earley_md, plaus_md, spot_md, con):
-    stages = ["01_ingest", "02_clean", "03_constituency", "04_sector", "05_occupiers", "06_eligibility", "07_publish"]
+    stages = ["01_ingest", "02_clean", "03_constituency", "04_sector", "05_occupiers", "06_eligibility", "06b_screening", "07_publish"]
     logs = {s: read_stage_log(s) for s in stages}
     stage_rows = [(s, logs[s]["rows_in"], logs[s]["rows_out"]) for s in stages]
     try:
@@ -258,9 +264,11 @@ This report contains VOA data and is covered by the VO restricted licence. Do no
 
 {t(["Stage", "Rows in", "Rows out"], stage_rows)}
 
-Stage 3 keeps only properties in English billing authorities. Stage 7 "rows out" is the number of target RHL properties
-written to constituency files: above the old full-relief threshold, up to and including the new full-relief
-threshold, passing the modelled 2027 checks and with a constituency. These are properties, not unique businesses.
+Stage 3 keeps only properties in English billing authorities. Stage 7 "rows out" counts likely candidates and
+review assessments with an English constituency. Stage 6b records outcomes for every assessment and reports
+all target-band outcomes in `screening_report.json`, with unassigned review cases retained separately.
+Legacy modelled eligibility is preserved but does not establish entitlement. These are property assessments,
+not unique businesses. Missing postcodes are retained; deleted-list proxy records have no rateable value and are rejected.
 
 ## Rejected rows (stage 2)
 

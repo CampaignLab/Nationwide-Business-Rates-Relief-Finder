@@ -20,7 +20,11 @@ export function parseProperties(text){
     return Object.fromEntries(headers.map((h,i)=>[h,r[i]]));
   });
 }
-export function filterProperties(rows,query){
+export function filterProperties(rows,query,{outcome='',min=12001,max=18000}={}){
   const q=query.trim().toLowerCase();const compact=q.replace(/\s/g,'');
-  return rows.filter(r=>[r.address,r.firm_name,r.property_reference].some(v=>(v||'').toLowerCase().includes(q))||(r.postcode||'').replace(/\s/g,'').toLowerCase().includes(compact));
+  return rows.filter(r=>(!outcome||r.screening_outcome===outcome)&&(!r.rateable_value||(Number(r.rateable_value)>=min&&Number(r.rateable_value)<=max))&&([r.address,r.firm_name,r.trading_name,r.property_reference].some(v=>(v||'').toLowerCase().includes(q))||(r.postcode||'').replace(/\s/g,'').toLowerCase().includes(compact)));
+}
+export function exportProperties(rows,headers,notice){
+  const cell=value=>'"'+String(value??'').replace(/^[=+@-]/,"'$&").replaceAll('"','""')+'"';
+  return '\uFEFF'+[notice,'',headers.map(cell).join(','),...rows.map(r=>headers.map(h=>cell(r[h])).join(','))].join('\r\n');
 }

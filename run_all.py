@@ -6,7 +6,7 @@ from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-STAGES = ["01_ingest", "02_clean", "03_constituency", "04_sector", "05_occupiers", "06_eligibility", "07_publish"]
+STAGES = ["01_ingest", "02_clean", "03_constituency", "04_sector", "05_occupiers", "06_eligibility", "06b_screening", "07_publish"]
 
 
 def main():

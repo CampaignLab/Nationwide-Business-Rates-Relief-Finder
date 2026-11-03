@@ -1,76 +1,51 @@
 # Business Rates Relief Finder
 
-A Vercel-ready constituency browser alongside the existing Python/DuckDB processing pipeline. The website starts with **synthetic demonstration data**. No real property data is included or deployed.
+A static constituency browser and reproducible Python/DuckDB pipeline for candidate property assessments in England. The existing CampaignLab Vercel site publishes an explicitly staged dataset; without one the app displays synthetic demonstration data.
 
-## Which properties this version selects
+## Run and publish
 
-The primary outputs now select **English RHL properties with rateable values strictly above £12,000 and up to £18,000 inclusive** that pass the modelled conditions for full SBRR from **1 April 2027**. This is the group potentially moving from partial/no SBRR to full relief under Budget 2026. Exactly £12,000 is excluded because it was already in the full-relief band; exactly £18,000 is included. Properties above £18,000 in the new taper band are excluded from this target list, as are non-RHL premises, possible vape shops, possible adult gaming centres and properties failing known multiple-property checks.
-
-The underlying assessment retains both the old and new rules for all properties. Stage 6 writes a `target_new_full_relief` flag; stage 7 uses it for the constituency CSV/XLSX files and target counts. The index identifies the cohort explicitly, and the website rejects older broad indexes rather than labelling them as this target group. Rerun stages 6 and 7 (or the whole pipeline) and re-prepare the website dataset after updating. Do not reuse the old generated files.
-
-Properties above £12,000 and below £15,000 may already get tapered relief; properties from £15,000 to £18,000 were outside the old SBRR band. Both are included. Counts are **properties, not unique businesses**, and the snapshot does not establish actual receipt, occupancy or every occupier's property holdings. Sector mappings are still subject to their review status. These are potential beneficiaries, not confirmed awards or bill-saving estimates.
-
-Policy sources: [Budget 2026](https://www.gov.uk/government/publications/budget-2026-document/budget-2026-html) and the [MHCLG technical annex, SBRR paragraph 5](https://www.gov.uk/government/publications/82026-details-of-the-budget-package-and-the-multipliers-for-20272028/82026-details-of-the-budget-package-and-the-multipliers-for-20272028). Thresholds remain in `config/rules.yaml`.
-
-## Run the website
-
-Requires Node.js 22+ and Python 3.11+ (Python is used only for the local preview server).
+Requires Python 3.11+ and Node.js 22+. Put the VOA baseline ZIP and ONSPD ZIP in `data/raw/`, install `requirements.txt` in a virtual environment, then run:
 
 ```sh
-npm test
-npm run build
-npm run dev
-```
-
-Open http://127.0.0.1:3000. No npm dependencies, database, API keys or environment variables are required. Search by constituency name or code, filter by region, and browse potential-relief counts.
-
-## Deploy on Vercel
-
-1. Import this GitHub repository into a Vercel project.
-2. Use the repository root, framework preset **Other**, build command `npm run build`, and output directory `dist` (also specified in `vercel.json`).
-3. Deploy. The site opens with the synthetic demo immediately.
-
-The build copies five browser files and an optional explicitly prepared publication dataset. It does not run the data pipeline or automatically publish `data/`, `out/` or reports. `.vercelignore` excludes raw pipeline inputs and outputs from deployment uploads. Vercel Hobby is for personal, non-commercial use; choose an appropriate plan for organisational use.
-
-## Publish a real dataset
-
-After generating outputs, prepare the constituency index for public browsing:
-
-```sh
-npm run prepare-data -- out
-npm run build
-```
-
-This stages summary counts only, with no property downloads. To also stage the original CSV/XLSX property files, use `node scripts/prepare-data.mjs out --include-downloads`. The site automatically loads the staged dataset instead of the demo. Where a CSV is available, **View properties** opens a search by address, postcode, firm name or property reference, showing rateable values, both eligibility statuses and the original reasons. Only flagged properties are included; a missing property does not establish ineligibility. The browser limits displayed matches to 100 at a time and browsable CSVs to 30 MB. Source paths are validated; reports and unrelated files are not copied. Review the intended use and publication contents against the source terms before deploying.
-
-`web/dataset/` is git-ignored to avoid accidental commits. For a Git-based Vercel deployment, deliberately add the publication files using `git add -f web/dataset`, or stage them in a controlled build step. For a CLI deployment they must be present locally when deployed. The prepare command refuses to replace an existing staged folder; move that folder aside before preparing a replacement.
-
-## Browse your generated results
-
-On the website, choose **Choose output folder** and select the pipeline's `out/` directory. The app reads `constituency_index.json`, then links matching files under `constituencies/csv/` and `constituencies/xlsx/`. File selection is local to the user's browser: there is no upload endpoint or persistent browser storage. Refreshing clears the dataset. Folder selection requires a browser with directory-input support, such as current Chrome or Edge.
-
-The index comes from `src/07_publish.py` and includes the target-cohort definition. Counts refer to the constituencies represented in that index; it includes only constituencies with target properties. Overall property counts cover all premises in those constituencies; the target counts and status breakdowns cover only the selected RHL cohort. The website shows the dataset's rule snapshot and mapping-review state. CSV/XLSX downloads are the original generated files, with their notices intact. No download is shown unless its matching file was selected.
-
-This version supports static published datasets and browser-local datasets. It does not provide user accounts, remote uploads or online pipeline execution. Those need a separate data-access and processing design.
-
-## Generate data with the existing pipeline
-
-Install the pinned Python requirements in a virtual environment. Put the zipped VO 2026 rating-list baseline and zipped ONS Postcode Directory in `data/raw/`, then run:
-
-```sh
-python -m pip install -r requirements.txt
 python run_all.py
+npm test
+node scripts/prepare-data.mjs out --include-downloads
+npm run build
 ```
 
-The runner executes the existing eligibility tests and stages 1–7, stopping on failure. Input data is not included. Download the rating list from the [VO downloads page](https://voaratinglists.blob.core.windows.net/html/rlidata.htm), accepting its terms, and obtain ONSPD from the ONS Open Geography Portal. ONSPD schema changes may require updating `ONSPD_FIELDS` in `src/03_constituency.py`.
+The prepare command refuses to replace an existing `web/dataset` folder; move it aside before rebuilding. `npm run dev` serves the browser locally on port 3000. Build output is `dist`, suitable for the existing Vercel project with framework Other and build command `npm run build`. No API keys, database or npm dependencies are required.
 
-Outputs include per-constituency CSV/XLSX files, `national_summary.csv`, `constituency_index.json` and `run_report.md`. Rules live in `config/rules.yaml`; mapping review and methodology decisions are documented in `DECISIONS.md`. The assessment rules are retained; publication is narrowed to the new-full-relief RHL cohort.
+Only allowlisted browser files and explicitly staged data enter the build. Raw data, environment files and the internal run report are excluded. Publication files are deliberately force-added to Git after validation; source inputs stay ignored. To validate a staged release run `node scripts/verify-published.mjs`.
+
+The browser supports constituency/region search, default likely-candidate results, a separate review view, RV filters, name/postcode/reference search and filtered CSV downloads. The complete constituency CSV/Excel files contain both candidate and review records, with notices. Locally selected output folders are read in the browser without uploading. The table shows up to 100 matches; downloads contain all filtered matches.
+
+## Reproducibility and interfaces
+
+The complete pipeline retains original assessments, adds legacy modelled eligibility, then adds `screening_outcome` (`likely_candidate`, `needs_review`, `outside_target`), `screening_reason`, `review_reasons`, name provenance and billing-council links. The publisher exports likely/review records with an exact English constituency; `unassigned_review.csv` retains unresolved locations. The index's legacy `target_new_full_relief` count now counts all exported screening records; the per-property legacy flag retains its original modelled meaning. New consumers should use the separate `likely_candidate` and `needs_review` counts.
+
+Source downloads: [VOA rating lists](https://voaratinglists.blob.core.windows.net/html/rlidata.htm) and ONS Open Geography Portal. Mapping/rule changes require a rebuild; ONSPD schema changes may require updating `ONSPD_FIELDS`. Archived publication counts are in `config/previous_publication.json`. Revisions to rules, mappings, supplied names and council links are version controlled.
+
+## Candidate screening
+
+The public finder now separates **Likely candidates** from **Needs review** for English property assessments with £12,000 < RV ≤ £18,000. These are automatic screening outcomes for the announced April 2027 expansion, not council awards or proof that a bill newly becomes £0. The original eligibility fields remain modelled results for compatibility; use `screening_outcome` and `screening_reason` for the new views.
+
+Specific qualifying premises descriptions without detected conflicts enter the main list. Generic shops, conditional uses, possible exclusions, terminated/unmatched postcodes and possible multiple-property name matches require review. Clear non-RHL uses are outside target. Missing names do not by themselves exclude a property. Recreational marinas are considered; unspecified marinas need review. Firm-name equality never proves a shared ratepayer.
+
+VOA firm names are preserved. The optional `mapping/researched_names.csv` supplies trading names with source, recording date and verification status. The imported Earley spreadsheet names are unverified display information, never eligibility evidence. Per-property use concerns are recorded separately with sources. Council links come from `mapping/council_links.csv`, keyed by VOA code; official homepages are taken from the government's Planning Data authority directory using address-custodian identifiers and documented successor exceptions. Refresh this directory when councils change.
+
+Run `run_all.py` to test and rebuild, including stage `06b_screening` between eligibility and publication. Missing/malformed postcodes are retained for unassigned review; assessments without a usable RV are rejected with reasons. `out/screening_report.json` reconciles national outcomes, legacy results and the previous publication. `out/earley_comparison.csv` records all 96 distinct comparison assessments (64 spreadsheet, 88 old live list, 56 shared). Neither old list is ground truth.
+
+The website defaults to likely candidates in each constituency. Full CSV/Excel downloads contain both candidate and review records; the browser's filtered download contains only the selected view and filters, with the disclaimer. Unassigned review records are a separate national download. Counts are property assessments, not verified businesses. Source data is fixed to VOA epoch 0004 (1 October 2026) and ONSPD August 2026 for this comparison. The rule snapshot is 28 October 2026, announced and not yet in regulations.
+
+Read the [public methodology](https://business-rates-relief-finder-campaign-lab.vercel.app/methodology.html) for the full process, source links, comparison and limitations. Before making a definitive statement to a business, confirm occupation, ratepayer identity, other properties, existing relief and the final bill with its billing council. For an unverified case, use “this property may qualify; please check with your council”.
+
+---
+
 
 ## Data use and interpretation
 
 The [VO download guidance](https://voaratinglists.blob.core.windows.net/html/rlidata.htm) states that the data is supplied under a restricted licence, not the Open Government Licence. It permits passing data to third parties subject to communicating the terms. The [VO terms](https://www.tax.service.gov.uk/business-rates-find/terms-and-conditions) restrict use to the stated non-domestic rating purposes and onward disclosure to those purposes; personal data is outside that permission. Public availability therefore does not establish unrestricted reuse. A public website is not categorically prohibited: whether its particular use and redistribution fit the terms needs to be assessed. In particular, rating-assessment assistance and campaign outreach are different purposes. Aggregate outputs should also be assessed rather than assumed exempt.
 
-The existing pipeline's file notices take a more conservative position, asking for written VO confirmation and data-protection advice before sharing. Those notices are preserved in generated files; they are project guidance, not a verbatim statement of the licence. This web layer does not determine the licence position or grant permission to distribute a dataset.
+Generated files retain source-term notices and methodological disclaimers. This web layer does not determine the licence position or grant permission to distribute a dataset.
 
 Potential eligibility is based on rateable value and property type. The tool cannot establish occupancy, the ratepayer, relief currently received or every property held by an occupier. Check with the billing authority. Sector mappings may await human review; April 2027 statuses reflect the rule snapshot in the dataset. The pipeline covers England.
-

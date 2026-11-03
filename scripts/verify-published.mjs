@@ -11,8 +11,10 @@ for(const seat of index.constituencies){
   if(rows.length!==seat.counts.target_new_full_relief)throw new Error(`Count mismatch: ${seat.code}`);
   for(const row of rows){
     const rv=Number(row.rateable_value);
-    if(row.constituency_code!==seat.code||!(rv>index.cohort.lower_rv_exclusive&&rv<=index.cohort.upper_rv_inclusive)||!['retail','hospitality','leisure','pub'].includes(row.sector)||row.target_new_full_relief!=='True'||Number(row.relief_from_apr_2027)!==1)throw new Error(`Invalid target property in ${seat.code}`);
+    if(row.constituency_code!==seat.code||!(rv>index.cohort.lower_rv_exclusive&&rv<=index.cohort.upper_rv_inclusive)||!['likely_candidate','needs_review'].includes(row.screening_outcome)||!row.screening_reason||!/^https?:\/\//.test(row.council_url))throw new Error(`Invalid screened property in ${seat.code}`);
   }
+  for(const outcome of ['likely_candidate','needs_review'])if(rows.filter(r=>r.screening_outcome===outcome).length!==seat.counts[outcome])throw new Error(`Screening count mismatch: ${seat.code}`);
+  if(new Set(rows.map(r=>r.property_reference)).size!==rows.length)throw new Error(`Duplicate property: ${seat.code}`);
   count+=rows.length;
 }
 console.log(`Verified ${count.toLocaleString('en-GB')} published property rows across ${index.constituencies.length} constituencies.`);

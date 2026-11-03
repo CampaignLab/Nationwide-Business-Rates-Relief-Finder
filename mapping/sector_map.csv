@@ -81,7 +81,7 @@ LI1,STADIUM AND PREMISES,109;262,leisure,high,SI 2025/1093 Sch 2 para 12.,awaiti
 LS,SPORTS GROUND AND PREMISES,082;083;241;242;261;715,leisure,high,SI 2025/1093 Sch 2 para 12.,awaiting_review
 LS1,LAND COVERED BY WATER USED FOR FISHING,256,leisure,medium,Recreational fishing; may be private.,awaiting_review
 LS2,GOLF COURSE AND PREMISES,117;118,leisure,high,SI 2025/1093 Sch 2 para 12.,awaiting_review
-LS3,MARINA AND PREMISES,164,other,high,"Marinas excluded, SI 2025/1093 Sch 1 para 4(k).",awaiting_review
+LS3,MARINA AND PREMISES,164,leisure,medium,Recreational marinas and moorings may qualify under current GOV.UK RHL guidance para 25; unspecified use requires review.,awaiting_review
 LS4,PLAYING FIELD AND PREMISES,083;107;108,leisure,high,SI 2025/1093 Sch 2 para 12.,awaiting_review
 LS5,FOOTBALL GROUND AND PREMISES,107,leisure,high,SI 2025/1093 Sch 2 para 12.,awaiting_review
 LS6,SWIMMING POOL AND PREMISES,272;273,leisure,high,SI 2025/1093 Sch 2 para 12.,awaiting_review
@@ -111,7 +111,7 @@ MT2,PUBLIC TELEPHONE KIOSK AND PREMISES,141;228,other,high,,awaiting_review
 MTX,MISC - MAY BE OVERTYPED AS SHOWN / NECESSARY,275;276;726,other,high,Telecommunications networks.,awaiting_review
 MX,MISC - MAY BE OVERTYPED AS SHOWN / NECESSARY,001;004;005;006;007;008;013;026;037;050;057;059;088;090;102;112;123;124;125;133;144;190;202;224;231;290;291;400;401;402;403;404;405;411;420;438;513;758;999,other,low,Miscellaneous. Mixed uses; see SCAT overrides.,awaiting_review
 NT,BUS STATION AND PREMISES,035;036,other,high,"Public transport excluded, SI 2025/1093 Sch 1 para 4(m).",awaiting_review
-NT1,MOORING AND PREMISES,189,other,medium,"Marinas, wharves and jetties excluded, SI 2025/1093 Sch 1 para 4(k).",awaiting_review
+NT1,MOORING AND PREMISES,189,leisure,medium,Recreational marinas and moorings may qualify under current GOV.UK RHL guidance para 25; unspecified use requires review.,awaiting_review
 NT3,WHARF AND PREMISES,089;434;435;737,other,high,SI 2025/1093 Sch 1 para 4(k).,awaiting_review
 NW,SEWAGE TREATMENT WORKS AND PREMISES,246,other,high,,awaiting_review
 NX,MISC - MAY BE OVERTYPED AS SHOWN / NECESSARY,089;282;300;434;435;441;742,other,high,Utility networks.,awaiting_review

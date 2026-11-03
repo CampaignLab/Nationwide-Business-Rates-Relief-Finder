@@ -1,4 +1,5 @@
 import {readFile,writeFile,mkdir,copyFile,realpath} from 'node:fs/promises';
+import {existsSync} from 'node:fs';
 import {resolve,relative,isAbsolute,dirname,sep} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {validateIndex} from '../web/data.js';
@@ -24,5 +25,12 @@ export async function stageDataset(input,output,includeDownloads=false){
   await mkdir(destination,{recursive:true});
   for(const [source,target] of copies){await mkdir(dirname(target),{recursive:true});await copyFile(source,target);}
   await writeFile(resolve(destination,'constituency_index.json'),JSON.stringify(data,null,2));
+  for(const name of ['unassigned_review.csv','earley_comparison.csv','screening_report.json']){
+    if(includeDownloads&&existsSync(resolve(root,name))){
+      const source=await realpath(resolve(root,name));const rel=relative(root,source);
+      if(rel==='..'||rel.startsWith(`..${sep}`)||isAbsolute(rel))throw new Error('Supplement must be inside the source folder.');
+      await copyFile(source,resolve(destination,name));
+    }
+  }
   return data.constituencies.length;
 }

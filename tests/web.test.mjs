@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {demo,validateIndex,filterRows} from '../web/data.js';
-import {parseProperties,filterProperties} from '../web/csv.js';
+import {parseProperties,filterProperties,exportProperties} from '../web/csv.js';
 import {execFileSync} from 'node:child_process';
 import {readdirSync} from 'node:fs';
 import {mkdtemp,mkdir,writeFile,readFile} from 'node:fs/promises';
@@ -25,7 +25,15 @@ test('accepts existing publisher file paths and empty datasets',()=>{
 });
 test('deployment contains only allowlisted browser files',()=>{
   execFileSync(process.execPath,['scripts/build.mjs'],{cwd:new URL('../',import.meta.url)});
-  assert.deepEqual(readdirSync(new URL('../dist/',import.meta.url)).filter(name=>name!=='dataset').sort(),['app.js','csv.js','data.js','index.html','style.css']);
+  assert.deepEqual(readdirSync(new URL('../dist/',import.meta.url)).filter(name=>name!=='dataset').sort(),['app.js','csv.js','data.js','index.html','methodology.html','style.css']);
+});
+test('screening filters combine name, outcome and RV and exported rows match',()=>{
+  const rows=[{property_reference:'1',address:'A',status_now:'not_flagged',rateable_value:'12001',screening_outcome:'likely_candidate',trading_name:'Example, Shop'},
+    {property_reference:'2',address:'B',status_now:'not_flagged',rateable_value:'18000',screening_outcome:'needs_review',trading_name:'Example Shop'}];
+  const filtered=filterProperties(rows,'example',{outcome:'likely_candidate',min:12001,max:18000});
+  assert.equal(filtered.length,1);
+  assert.equal(filterProperties(rows,'',{outcome:'needs_review',min:12001,max:17999}).length,0);
+  assert.deepEqual(parseProperties(exportProperties(filtered,Object.keys(rows[0]),'Potential eligibility only')),filtered);
 });
 test('property CSV skips notices and handles commas, quotes, BOM and multiline addresses',()=>{
   const rows=parseProperties('\uFEFFNOTICE\r\n"A notice, with a comma"\r\n\r\nproperty_reference,address,postcode,firm_name,status_now\r\n123,"Unit 1, The \"\"Works\"\"\nMain Street",RG1 1AA,Example,likely_eligible_now\r\n');

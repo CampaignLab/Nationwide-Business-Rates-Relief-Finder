@@ -1,20 +1,23 @@
 import {demo,validateIndex,filterRows} from './data.js';
-import {parseProperties,filterProperties} from './csv.js';
+import {parseProperties,filterProperties,exportProperties} from './csv.js';
 const $ = id => document.getElementById(id);
 const number = new Intl.NumberFormat('en-GB');
 let dataset = demo, urls = [];
-let properties=[],propertyRequest=0;
+let properties=[],propertyRequest=0,filteredUrl;
 function clearUrls(){ urls.forEach(URL.revokeObjectURL); urls=[]; }
 function el(tag,text,className){ const node=document.createElement(tag); if(text!==undefined)node.textContent=text;if(className)node.className=className;return node; }
 function setDataset(value,files=new Map(),hosted=false){
+  if(!value.demo&&value.screening_version!==1)throw new Error('This dataset predates candidate/review screening. Rebuild the pipeline before opening it.');
   clearUrls(); dataset=value; dataset.localFiles=files;dataset.hosted=hosted;
   $('mode').textContent=value.demo?'DEMONSTRATION DATA':hosted?(value.sector_mapping_reviewed===true?'PUBLISHED DATASET':'DRAFT DATASET · SECTOR MAPPING AWAITS REVIEW'):'LOCAL DATA · NOT UPLOADED';
-  $('notice').textContent=value.demo?value.notice:'Potential eligibility only. Check with the billing authority. VO restricted licence: use and onward disclosure are restricted. Only use these files as authorised.';
+  $('notice').textContent=value.notice;
   const cohort=value.cohort;
   $('snapshot').textContent=`RHL properties: rateable value above £${number.format(cohort.lower_rv_exclusive)} and up to £${number.format(cohort.upper_rv_inclusive)} inclusive. Potential full relief from ${cohort.effective_from}. ${value.demo?'Illustrative only.':`Snapshot: ${value.snapshot_epoch ?? 'unknown'} · ${value.file_date ?? 'unknown date'}. ${value.rules_snapshot ?? ''} Sector mapping: ${value.sector_mapping_reviewed===true?'reviewed':'draft / awaiting review'}.`}`;
   $('demo').hidden=!!value.demo;
-  $('total').textContent=number.format(value.constituencies.reduce((sum,r)=>sum+r.counts.properties_in_list,0));
-  $('flagged').textContent=number.format(value.constituencies.reduce((sum,r)=>sum+r.counts.target_new_full_relief,0));
+  $('total').textContent=number.format(value.constituencies.reduce((sum,r)=>sum+(r.counts.likely_candidate||0),0));
+  $('flagged').textContent=number.format(value.constituencies.reduce((sum,r)=>sum+(r.counts.needs_review||0),0));
+  const report=value.screening_report;
+  $('screening-summary').textContent=report?`${number.format(report.unassigned_review)} additional assessments need review because no exact English constituency match was found. They are retained in the national review download and are not assigned approximately.`:'';
   $('seats').textContent=number.format(value.constituencies.length);
   $('search').value='';$('region').replaceChildren(new Option('All regions',''));
   [...new Set(value.constituencies.map(r=>r.region))].sort().forEach(r=>$('region').add(new Option(r,r)));
@@ -29,13 +32,13 @@ function render(){
   for(const row of rows){
     const card=el('article',undefined,'card');card.append(el('div',row.region,'region'),el('h3',row.name),el('div',row.code,'code'));
     const dl=el('dl');
-    for(const [label,key] of [['Potentially moving to full relief','target_new_full_relief'],['Properties in the list','properties_in_list'],['Tapered SBRR under old model','now_possibly_eligible_now'],['No SBRR under old model','now_not_flagged']]){
-      const group=el('div');group.append(el('dt',label),el('dd',number.format(row.counts[key])));dl.append(group);
+    for(const [label,key] of [['Likely candidates','likely_candidate'],['Needs review','needs_review']]){
+      const group=el('div');group.append(el('dt',label),el('dd',number.format(row.counts[key]||0)));dl.append(group);
     }
     card.append(dl);const downloads=el('div',undefined,'downloads');let available=0;
     for(const format of ['csv','xlsx']){
       const path=row.files?.[format];const file=dataset.localFiles?.get(path);if(!file&&!(dataset.hosted&&path))continue;
-      const url=file?URL.createObjectURL(file):`/dataset/${path.split('/').map(encodeURIComponent).join('/')}`;if(file)urls.push(url);const a=el('a',`Download ${format==='csv'?'CSV':'Excel'} ↓`);a.href=url;a.download=file?file.name:path.split('/').at(-1);downloads.append(a);available++;
+      const url=file?URL.createObjectURL(file):`/dataset/${path.split('/').map(encodeURIComponent).join('/')}`;if(file)urls.push(url);const a=el('a',`All candidates + review (${format==='csv'?'CSV':'Excel'}) ↓`);a.href=url;a.download=file?file.name:path.split('/').at(-1);downloads.append(a);available++;
     }
     if(!available)downloads.append(el('span',dataset.demo?'Demo · no property files':'No matching download files selected'));
     if(row.files?.csv&&(dataset.hosted||dataset.localFiles?.has(row.files.csv))){const browse=el('button','View properties');browse.addEventListener('click',()=>openProperties(row));downloads.prepend(browse);}
@@ -43,7 +46,7 @@ function render(){
   }
 }
 async function openProperties(row){
-  const request=++propertyRequest;properties=[];$('property-search').value='';$('properties').replaceChildren();$('property-title').textContent=row.name;$('property-status').textContent='Loading properties…';$('property-dialog').showModal();
+  const request=++propertyRequest;properties=[];$('property-search').value='';$('property-outcome').value='likely_candidate';$('rv-min').value='12001';$('rv-max').value='18000';$('filtered-download').hidden=true;$('properties').replaceChildren();$('property-title').textContent=row.name;$('property-status').textContent='Loading properties…';$('property-dialog').showModal();
   try{
     const path=row.files.csv;const file=dataset.localFiles?.get(path);
     let text;
@@ -54,18 +57,31 @@ async function openProperties(row){
   }catch(error){if(request===propertyRequest)$('property-status').textContent=`Could not open properties: ${error.message}`;}
 }
 function renderProperties(){
-  const rows=filterProperties(properties,$('property-search').value);const shown=rows.slice(0,100);
-  $('property-status').textContent=`${number.format(rows.length)} matches of ${number.format(properties.length)} flagged properties. Showing ${shown.length}${rows.length>100?' — refine your search for more specific results':''}.`;
+  const rows=filterProperties(properties,$('property-search').value,{outcome:$('property-outcome').value,min:Number($('rv-min').value||12001),max:Number($('rv-max').value||18000)});const shown=rows.slice(0,100);
+  const likely=properties.filter(r=>r.screening_outcome==='likely_candidate').length;
+  $('property-status').textContent=`${number.format(rows.length)} matching property assessments · ${likely} likely candidates and ${properties.length-likely} needing review in this file. Showing ${shown.length}${rows.length>100?' — refine your search for more specific results':''}.`;
+  if(filteredUrl)URL.revokeObjectURL(filteredUrl);
+  filteredUrl=URL.createObjectURL(new Blob([exportProperties(rows,Object.keys(properties[0]||{}),dataset.notice)],{type:'text/csv;charset=utf-8'}));
+  $('filtered-download').href=filteredUrl;$('filtered-download').download='filtered-property-assessments.csv';$('filtered-download').hidden=!rows.length;
   $('properties').replaceChildren();
   for(const row of shown){
-    const tr=el('tr');const location=el('td');location.append(el('strong',row.address),el('p',`${row.postcode} · ${row.firm_name||'Occupier not identified'}`));
+    const firm=(row.firm_name||'').trim();const usableFirm=firm.length>1&&!['unknown','n/a','not known'].includes(firm.toLowerCase());
+    const tr=el('tr');const location=el('td');location.append(el('strong',row.trading_name||(usableFirm?firm:row.address)));
+    if(row.trading_name||usableFirm)location.append(el('p',row.address));
+    location.append(el('p',`${row.postcode} · ${row.description_text||row.sector}`));
+    if(row.trading_name)location.append(el('small',`Trading name: ${row.name_verification_status?.replaceAll('_',' ')} · ${row.name_source} · recorded ${row.name_recorded_date}`));
+    if(row.firm_name)location.append(el('p',`Original VOA firm name: ${row.firm_name}`));
+    if(!row.trading_name&&!usableFirm)location.append(el('small','Occupier not identified'));
     const rv=Number(row.rateable_value);const value=el('td',Number.isFinite(rv)?new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP',maximumFractionDigits:0}).format(rv):row.rateable_value);
-    const status=el('td');status.append(el('p',`Now: ${(row.status_now||'unknown').replaceAll('_',' ')}`),el('p',`April 2027: ${(row.status_from_apr_2027||'unknown').replaceAll('_',' ')}`),el('small',row.reason||''));tr.append(location,value,status);$('properties').append(tr);
+    const status=el('td');status.append(el('strong',({'likely_candidate':'Likely candidate','needs_review':'Needs review'})[row.screening_outcome]||'Unscreened legacy record'),el('p',row.screening_reason||'Rerun the pipeline to screen this record.'));
+    if(/^https?:\/\//.test(row.council_url||'')){const link=el('a',`Confirm with ${row.billing_authority}`);link.href=row.council_url;link.target='_blank';link.rel='noopener noreferrer';status.append(link,el('p','Official council homepage · find business rates'));}
+    tr.append(location,value,status);$('properties').append(tr);
   }
 }
 $('close-properties').addEventListener('click',()=>$('property-dialog').close());
-$('property-dialog').addEventListener('close',()=>{propertyRequest++;properties=[];$('properties').replaceChildren();});
+$('property-dialog').addEventListener('close',()=>{propertyRequest++;properties=[];$('properties').replaceChildren();if(filteredUrl)URL.revokeObjectURL(filteredUrl);filteredUrl=null;});
 $('property-search').addEventListener('input',renderProperties);
+for(const id of ['property-outcome','rv-min','rv-max'])$(id).addEventListener('input',renderProperties);
 $('search').addEventListener('input',render);$('region').addEventListener('change',render);
 $('demo').addEventListener('click',()=>{setDataset(demo);$('folder').value='';$('file-status').textContent='';});
 $('folder').addEventListener('change',async event=>{

@@ -19,6 +19,26 @@ def load_stage(name):
     return module
 
 
+def test_missing_postcodes_survive_but_deleted_proxy_does_not(tmp_path,monkeypatch):
+    con=duckdb.connect()
+    con.execute('CREATE TABLE raw(uarn VARCHAR,ba_code VARCHAR,ba_reference VARCHAR,description_code VARCHAR,description_text VARCHAR,full_property_identifier VARCHAR,postcode VARCHAR,rateable_value VARCHAR)')
+    con.executemany('INSERT INTO raw VALUES (?,?,?,?,?,?,?,?)',[
+        ('a','0360','1','CR','CAFE','One',None,'15000'),
+        ('b','0360','2','CR','CAFE','Two','NOT A POSTCODE','15000'),
+        ('c','0360','3','CR','CAFE','Three','RG6 1AA','')])
+    con.execute(f"COPY raw TO '{(tmp_path/'rating_list.parquet').as_posix()}' (FORMAT parquet)")
+    con.close()
+    stage=load_stage('02_clean')
+    monkeypatch.setattr(stage,'WORK',tmp_path)
+    monkeypatch.setattr(stage,'connect',duckdb.connect)
+    monkeypatch.setattr(stage,'write_stage_log',lambda *a,**kw:None)
+    stage.main()
+    con=duckdb.connect()
+    kept=con.execute(f"SELECT uarn,postcode_raw FROM read_parquet('{(tmp_path/'clean.parquet').as_posix()}') ORDER BY uarn").fetchall()
+    assert kept==[('a',None),('b','NOT A POSTCODE')]
+    assert 'deleted property' in (tmp_path/'rejected_rows.csv').read_text(encoding='utf-8')
+
+
 def test_only_new_full_relief_targets_reach_published_files(tmp_path, monkeypatch):
     work, out = tmp_path / 'work', tmp_path / 'out'
     work.mkdir()
@@ -38,6 +58,12 @@ def test_only_new_full_relief_targets_reach_published_files(tmp_path, monkeypatc
                     [str(i),rv,sector,False,'chain' if multi else None,2 if multi else 1,
                      19000 if multi else rv,3000 if multi else 0,'E14001196','Test seat',
                      'Test region','Chain' if multi else None,f'{i} Example Street','ZZ1 1ZZ','Test council'])
+    con.execute("ALTER TABLE input ADD COLUMN description_text VARCHAR DEFAULT 'SHOP AND PREMISES'")
+    con.execute("UPDATE input SET description_text='PUB AND PREMISES' WHERE sector='pub'")
+    con.execute("ALTER TABLE input ADD COLUMN description_code VARCHAR DEFAULT 'CS'")
+    con.execute("ALTER TABLE input ADD COLUMN scat_code VARCHAR DEFAULT '249G'")
+    con.execute("ALTER TABLE input ADD COLUMN sector_confidence VARCHAR DEFAULT 'high'")
+    con.execute("ALTER TABLE input ADD COLUMN ba_code VARCHAR DEFAULT '0360'")
     con.execute(f"COPY input TO '{(work / 'occupiers.parquet').as_posix()}' (FORMAT parquet)")
     con.execute('CREATE TABLE meta(key VARCHAR, value VARCHAR)')
     con.executemany('INSERT INTO meta VALUES (?,?)', [('epoch','test'),('source_zip','synthetic.zip'),
@@ -50,6 +76,14 @@ def test_only_new_full_relief_targets_reach_published_files(tmp_path, monkeypatc
     monkeypatch.setattr(s6,'connect',duckdb.connect)
     monkeypatch.setattr(s6,'write_stage_log',lambda *a,**kw: None)
     s6.main()
+    mappings=tmp_path/'mapping';mappings.mkdir()
+    for name in ['researched_names.csv','council_links.csv','property_review_evidence.csv']:
+        (mappings/name).write_text((ROOT/'mapping'/name).read_text(encoding='utf-8'),encoding='utf-8')
+    (mappings/'earley_benchmark.csv').write_text('property_reference,in_previous_live_list,in_independent_spreadsheet\n1,True,True\n',encoding='utf-8')
+    screening=load_stage('06b_screening')
+    for key,value in [('WORK',work),('OUT',out),('MAPPING',mappings),('connect',duckdb.connect),('write_stage_log',lambda *a,**kw:None)]:
+        monkeypatch.setattr(screening,key,value)
+    screening.main()
     s7 = load_stage('07_publish')
     monkeypatch.setattr(s7,'WORK',work)
     monkeypatch.setattr(s7,'OUT',out)
@@ -67,16 +101,19 @@ def test_only_new_full_relief_targets_reach_published_files(tmp_path, monkeypatc
     assert index['cohort']['upper_rv_inclusive'] == 18000
     seat = index['constituencies'][0]
     assert seat['counts']['properties_in_list'] == 8
-    assert seat['counts']['target_new_full_relief'] == 3
+    assert seat['counts']['target_new_full_relief'] == 5
+    assert seat['counts']['likely_candidate'] == 1
+    assert seat['counts']['needs_review'] == 4
     assert seat['counts']['now_possibly_eligible_now'] == 1
-    assert seat['counts']['now_not_flagged'] == 2
+    assert seat['counts']['now_not_flagged'] == 4
     with open(out / seat['files']['csv'],encoding='utf-8-sig',newline='') as f:
         rows = list(csv.reader(f))
     start = next(i for i,row in enumerate(rows) if 'property_reference' in row)
     records = [dict(zip(rows[start],r)) for r in rows[start+1:]]
-    assert {int(r['rateable_value']) for r in records} == {12001,15000,18000}
-    assert all(r['target_new_full_relief'] == 'True' for r in records)
-    assert all(float(r['relief_from_apr_2027']) == 1 for r in records)
+    assert {int(r['rateable_value']) for r in records} == {12001,15000,16000,18000}
+    assert len({r['property_reference'] for r in records})==5
+    assert next(r for r in records if r['property_reference']=='7')['screening_outcome']=='needs_review'
+    assert next(r for r in records if r['property_reference']=='7')['target_new_full_relief']=='False'
     wb = load_workbook(out / seat['files']['xlsx'],read_only=True)
-    assert len(list(wb['Properties'].values)) == 4
+    assert len(list(wb['Properties'].values)) == 6
     wb.close()

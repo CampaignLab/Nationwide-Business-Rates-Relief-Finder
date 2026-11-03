@@ -1,0 +1,65 @@
+{
+  "previous_publication": {
+    "commit": "67fa6f9f3d69baf796657e2ee929941cedbe785d",
+    "snapshot_epoch": "0004",
+    "target_total": 108842,
+    "assigned_target_total": 108684,
+    "earley_target_total": 88,
+    "description": "Previous public screening output before the conservative candidate/review split; not confirmed recipients."
+  },
+  "legacy_model_target_total_after_mapping_changes": 108996,
+  "target_band_outcomes": {
+    "outside_target": 124737,
+    "needs_review": 90795,
+    "likely_candidate": 24631
+  },
+  "assigned_outcomes": {
+    "needs_review": 90614,
+    "likely_candidate": 24631
+  },
+  "unassigned_review": 181,
+  "earley_benchmark": {
+    "likely_candidate": 16,
+    "needs_review": 76,
+    "outside_target": 4
+  },
+  "benchmark_records": 96,
+  "name_records": 61,
+  "legacy_model_to_screening": [
+    {
+      "legacy_target": false,
+      "screening_outcome": "likely_candidate",
+      "count": 1
+    },
+    {
+      "legacy_target": false,
+      "screening_outcome": "needs_review",
+      "count": 6504
+    },
+    {
+      "legacy_target": false,
+      "screening_outcome": "outside_target",
+      "count": 124662
+    },
+    {
+      "legacy_target": true,
+      "screening_outcome": "likely_candidate",
+      "count": 24630
+    },
+    {
+      "legacy_target": true,
+      "screening_outcome": "needs_review",
+      "count": 84291
+    },
+    {
+      "legacy_target": true,
+      "screening_outcome": "outside_target",
+      "count": 75
+    }
+  ],
+  "mapping_changes": [
+    "Marinas and moorings changed from excluded to conditional leisure; unspecified uses require review.",
+    "Generic shops separated from clear qualifying uses.",
+    "Firm-name matches are review warnings, not confirmed ratepayer matches."
+  ]
+}

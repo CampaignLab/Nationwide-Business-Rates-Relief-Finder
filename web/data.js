@@ -11,7 +11,7 @@ export const demo = {
     ['E14001062','Bristol Central','South West',2840,1180,810,370],
     ['E14001316','Manchester Central','North West',3960,1630,1090,540],
     ['E14001038','Birmingham Ladywood','West Midlands',3120,1250,870,380]
-  ].map(([code,name,region,total,flagged,likely,possible])=>({code,name,region,counts:{properties_in_list:total,target_new_full_relief:flagged,now_possibly_eligible_now:likely,now_not_flagged:possible},files:{}}))
+  ].map(([code,name,region,total,flagged,likely,possible])=>({code,name,region,counts:{properties_in_list:total,target_new_full_relief:flagged,likely_candidate:likely,needs_review:possible,now_possibly_eligible_now:likely,now_not_flagged:possible},files:{}}))
 };
 
 export function validateIndex(value) {
@@ -25,6 +25,10 @@ export function validateIndex(value) {
       if (!Number.isSafeInteger(row.counts[key]) || row.counts[key] < 0) throw new Error('The index has invalid property counts.');
     }
     if (row.counts.target_new_full_relief > row.counts.properties_in_list) throw new Error('Flagged counts exceed total properties.');
+    if(value.screening_version===1){
+      for(const key of ['likely_candidate','needs_review'])if(!Number.isSafeInteger(row.counts[key])||row.counts[key]<0)throw new Error('Invalid screening counts.');
+      if(row.counts.likely_candidate+row.counts.needs_review!==row.counts.target_new_full_relief)throw new Error('Screening counts do not reconcile.');
+    }
     for (const [format, path] of Object.entries(row.files || {})) {
       if (!['csv','xlsx'].includes(format) || typeof path !== 'string' || !path.startsWith(`constituencies/${format}/`) || path.includes('..') || path.includes('\\') || !path.endsWith(`.${format}`)) throw new Error('The index contains an invalid download path.');
     }
