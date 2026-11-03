@@ -10,17 +10,17 @@
   "legacy_model_target_total_after_mapping_changes": 108996,
   "target_band_outcomes": {
     "outside_target": 124737,
-    "needs_review": 90795,
-    "likely_candidate": 24631
+    "needs_review": 88980,
+    "likely_candidate": 26446
   },
   "assigned_outcomes": {
-    "needs_review": 90614,
-    "likely_candidate": 24631
+    "needs_review": 88799,
+    "likely_candidate": 26446
   },
   "unassigned_review": 181,
   "earley_benchmark": {
-    "likely_candidate": 16,
-    "needs_review": 76,
+    "likely_candidate": 18,
+    "needs_review": 74,
     "outside_target": 4
   },
   "benchmark_records": 96,
@@ -44,12 +44,12 @@
     {
       "legacy_target": true,
       "screening_outcome": "likely_candidate",
-      "count": 24630
+      "count": 26445
     },
     {
       "legacy_target": true,
       "screening_outcome": "needs_review",
-      "count": 84291
+      "count": 82476
     },
     {
       "legacy_target": true,

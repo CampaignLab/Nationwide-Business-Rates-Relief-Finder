@@ -18,8 +18,8 @@ This is an automatic screening tool. It does not establish the current occupier,
 
 | Screening result | Property assessments |
 |---|---:|
-| Likely candidates | 24,631 |
-| Needs review, assigned to an English constituency | 90,614 |
+| Likely candidates | 26,446 |
+| Needs review, assigned to an English constituency | 88,799 |
 | Needs review, without an exact English constituency match | 181 |
 | Constituencies covered | 543 |
 
@@ -29,7 +29,7 @@ These counts use VOA 2026 epoch **0004**, dated **1 October 2026**, and **ONSPD 
 
 | Document | What it covers |
 |---|---|
-| [Methodology](docs/METHODOLOGY.md) | Sources, selection rules, uncertainty and the spreadsheet comparison |
+| [Methodology](docs/METHODOLOGY.md) | First-principles explanation of sources, classifier rules and uncertainty |
 | [Reproduce and deploy](docs/REPRODUCING.md) | Installation, fixed input snapshots, pipeline stages, checks and releases |
 | [Data dictionary](docs/DATA_DICTIONARY.md) | Download fields, file formats and legacy model fields |
 | [Design decisions](DECISIONS.md) | Why we chose conservative screening and exact postcode matching |

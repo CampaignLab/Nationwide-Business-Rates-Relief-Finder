@@ -74,6 +74,9 @@ function renderProperties(){
     if(!row.trading_name&&!usableFirm)location.append(el('small','Occupier not identified'));
     const rv=Number(row.rateable_value);const value=el('td',Number.isFinite(rv)?new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP',maximumFractionDigits:0}).format(rv):row.rateable_value);
     const status=el('td');status.append(el('strong',({'likely_candidate':'Likely candidate','needs_review':'Needs review'})[row.screening_outcome]||'Unscreened legacy record'),el('p',row.screening_reason||'Rerun the pipeline to screen this record.'));
+    const groups={clear_recorded_use:'Clear recorded use; check other warnings',possible_exclusion:'Possible excluded activity',conditional_use:'Conditional or mixed use',generic_shop:'Generic shop: actual activity unknown',uncertain_sector:'Uncertain sector mapping',property_evidence:'Property evidence needs checking'};
+    if(row.screening_outcome==='needs_review'&&row.use_review_group)status.append(el('p',`Use assessment: ${groups[row.use_review_group]||row.use_review_group}`));
+    if(row.review_categories)status.append(el('small',`Checks: ${row.review_categories.split(';').map(s=>s.replaceAll('_',' ')).join(' · ')}`));
     if(/^https?:\/\//.test(row.council_url||'')){const link=el('a',`Confirm with ${row.billing_authority}`);link.href=row.council_url;link.target='_blank';link.rel='noopener noreferrer';status.append(link,el('p','Official council homepage · find business rates'));}
     tr.append(location,value,status);$('properties').append(tr);
   }

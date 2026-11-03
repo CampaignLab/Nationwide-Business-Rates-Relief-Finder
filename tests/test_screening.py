@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 import pytest
 sys.path.insert(0,str(Path(__file__).resolve().parent.parent/'src'))
-from screening import screen
+from screening import screen, screen_details
 
 def property(**changes):
     return dict(rateable_value=15000,sector='hospitality',sector_confidence='high',description_text='CAFE AND PREMISES',constituency_code='E14001210',**changes)
@@ -38,3 +38,29 @@ def test_conservative_screening(changes,expected):
     outcome,reason=screen(p)
     assert outcome==expected
     assert reason
+
+
+@pytest.mark.parametrize('scat,expected', [('106G','likely_candidate'),('442G','likely_candidate'),('249G','needs_review'),('210G','needs_review')])
+def test_specific_scat_resolves_generic_shop(scat, expected):
+    p=property();p.update(sector='retail',description_text='SHOP AND PREMISES',scat_code=scat)
+    assert screen(p)[0]==expected
+
+
+def test_scat_does_not_override_conflict_or_uncertain_mapping():
+    p=property();p.update(sector='retail',description_text='SHOP',scat_code='106G',firm_name='Example Estate Agents')
+    assert screen_details(p)['use_review_group']=='possible_exclusion'
+    p.update(firm_name='',sector_confidence='medium')
+    assert screen_details(p)['use_review_group']=='uncertain_sector'
+
+
+def test_ancillary_store_and_separate_location_warning():
+    p=property();p.update(sector='retail',description_text='SHOP, STORE AND PREMISES',scat_code='106G',description_code='CSS',primary_description_code='CS')
+    assert screen(p)[0]=='likely_candidate'
+    p['postcode_terminated']=True
+    detail=screen_details(p)
+    assert detail['screening_outcome']=='needs_review'
+    assert detail['use_review_group']=='clear_recorded_use'
+    assert detail['review_categories']=='location'
+    assert detail['secondary_description_code']=='S'
+    p['scat_code']='249G'
+    assert 'conditional_use' in screen_details(p)['review_categories']

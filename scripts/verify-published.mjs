@@ -11,6 +11,9 @@ for(const seat of index.constituencies){
   if(rows.length!==seat.counts.target_new_full_relief)throw new Error(`Count mismatch: ${seat.code}`);
   for(const row of rows){
     const rv=Number(row.rateable_value);
+    if(!row.use_review_group||!Object.hasOwn(row,'secondary_description_code')||!Object.hasOwn(row,'review_categories'))throw new Error(`Missing classifier evidence fields: ${seat.code}`);
+    if(row.screening_outcome==='needs_review'&&!row.review_categories)throw new Error(`Review without structured reasons: ${seat.code}`);
+    if(row.screening_outcome==='likely_candidate'&&(row.review_categories||row.use_review_group!=='clear_recorded_use'))throw new Error(`Likely candidate has review conflicts: ${seat.code}`);
     if(row.constituency_code!==seat.code||!(rv>index.cohort.lower_rv_exclusive&&rv<=index.cohort.upper_rv_inclusive)||!['likely_candidate','needs_review'].includes(row.screening_outcome)||!row.screening_reason||!/^https?:\/\//.test(row.council_url))throw new Error(`Invalid screened property in ${seat.code}`);
   }
   for(const outcome of ['likely_candidate','needs_review'])if(rows.filter(r=>r.screening_outcome===outcome).length!==seat.counts[outcome])throw new Error(`Screening count mismatch: ${seat.code}`);

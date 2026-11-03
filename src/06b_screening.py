@@ -3,7 +3,7 @@ import csv
 import json
 from collections import Counter
 from common import MAPPING, WORK, OUT, CONFIG, connect, sql_path, write_stage_log
-from screening import screen
+from screening import screen_details
 
 
 def main():
@@ -17,7 +17,7 @@ def main():
     councils=lookup('council_links.csv','ba_code')
     warnings=lookup('property_review_evidence.csv','property_reference')
     original_counts=dict(con.execute('SELECT target_new_full_relief,count(*) FROM original GROUP BY 1').fetchall())
-    headers=['uarn','screening_outcome','screening_reason','review_reasons','trading_name','name_source','name_recorded_date','name_verification_status','council_url','council_link_source','council_link_checked_date','evidence_source']
+    headers=['uarn','screening_outcome','screening_reason','review_reasons','trading_name','name_source','name_recorded_date','name_verification_status','council_url','council_link_source','council_link_checked_date','evidence_source','review_categories','use_review_group','secondary_description_code']
     path=WORK/'_screening.csv'
     cur=con.execute('SELECT * FROM original WHERE rateable_value>12000 AND rateable_value<=18000')
     columns=[d[0] for d in cur.description]
@@ -29,10 +29,11 @@ def main():
                 p=dict(zip(columns,values));ref=p['uarn'];name=names.get(ref,{})
                 evidence=warnings.get(ref,{})
                 p['evidence_warning']=evidence.get('warning','')
-                outcome,reason=screen(p);counts[outcome]+=1
+                detail=screen_details(p)
+                outcome,reason=detail['screening_outcome'],detail['screening_reason'];counts[outcome]+=1
                 council=councils.get(p['ba_code'])
                 assert council and council['council_url'].startswith(('https://','http://')),p['ba_code']
-                writer.writerow([ref,outcome,reason,reason if outcome=='needs_review' else '',name.get('trading_name',''),name.get('name_source',''),name.get('name_recorded_date',''),name.get('name_verification_status',''),council['council_url'],council['link_source'],council['link_checked_date'],evidence.get('source','')])
+                writer.writerow([ref,outcome,reason,reason if outcome=='needs_review' else '',name.get('trading_name',''),name.get('name_source',''),name.get('name_recorded_date',''),name.get('name_verification_status',''),council['council_url'],council['link_source'],council['link_checked_date'],evidence.get('source',''),detail['review_categories'],detail['use_review_group'],detail['secondary_description_code']])
     con.execute(f"CREATE TABLE screening AS SELECT * FROM read_csv('{sql_path(path)}', all_varchar=true)")
     assert con.execute('SELECT count(*)=count(DISTINCT uarn) FROM screening').fetchone()[0]
     con.execute(f"""COPY (SELECT o.*,coalesce(s.screening_outcome,'outside_target') AS screening_outcome,

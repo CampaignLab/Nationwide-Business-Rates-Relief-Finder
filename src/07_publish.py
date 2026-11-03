@@ -35,7 +35,7 @@ OUTPUT_COLUMNS = [
     ("reason", "reason"),
     ("snapshot_epoch", "snapshot_epoch"),
     ("verified_with_council", "verified_with_council"),
-    *[(name, name) for name in ("screening_outcome", "screening_reason", "review_reasons", "trading_name",
+    *[(name, name) for name in ("review_categories", "use_review_group", "secondary_description_code", "screening_outcome", "screening_reason", "review_reasons", "trading_name",
         "name_source", "name_recorded_date", "name_verification_status", "council_url", "council_link_source",
         "council_link_checked_date", "description_text", "description_code", "scat_code", "sector_confidence", "evidence_source")],
     ("billing_authority_code", "ba_code"),

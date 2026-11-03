@@ -36,18 +36,20 @@
         <ol class="method-steps">
           <li><strong>Read the original assessment.</strong> We preserve the VOA property reference, address, firm name, description and rateable value. Deleted-property proxy records with no rateable value are set aside with reasons. Missing postcodes are retained. One assessment is not necessarily one business.</li>
           <li><strong>Select the value band.</strong> The target is <strong>above £12,000 and up to £18,000 inclusive</strong>, in English billing authorities. Exactly £12,000 and values above £18,000 fall outside this particular full-relief expansion target. Rateable value is an assessment value, not the annual bill.</li>
-          <li><strong>Screen recorded use.</strong> Specific qualifying premises descriptions without detected conflicts enter the likely list. Generic shops, conditional or mixed uses, possible exclusions and uncertain mappings need review. Clearly non-qualifying recorded uses are outside target. Recreational marinas can qualify; unspecified marinas need review.</li>
+          <li><strong>Screen recorded use.</strong> Specific qualifying premises descriptions without detected conflicts enter the likely list. Specific SCAT categories for convenience stores, takeaways and hair/beauty activities can resolve generic shop wording, but cannot override uncertain mappings or conflicting evidence. Generic shops without specific activity evidence, conditional uses and possible exclusions need review. Explicitly coded supporting offices or stockrooms do not by themselves make recognised qualifying shop/cafe uses uncertain. Clearly non-qualifying recorded uses are outside target. Recreational marinas can qualify; unspecified marinas need review.</li>
           <li><strong>Match location and council.</strong> We assign an English constituency only by an exact postcode match. Terminated-postcode matches need review. There is no postcode-sector approximation. The billing council comes from the VOA authority code, not the constituency. Unassigned review cases have their own download.</li>
           <li><strong>Keep identity concerns visible.</strong> Firm-name matches flag possible multiple occupation without proving a common ratepayer. Missing names do not establish sole-property occupation and do not cause review by themselves. Supplied trading names show their source, import date and unverified status; they do not independently establish eligibility.</li>
         </ol>
         <p>Original VOA firm names remain available. A separately supplied trading name may identify a site, owner or operator rather than the legal ratepayer. Specific property-use concerns are recorded separately with evidence.</p>
       </section>
 
+      <section><h2>Understanding the review categories</h2><p>Review records carry separate flags for possible exclusion, conditional use, generic shop activity, uncertain sector, location, possible common ratepayer and property-specific evidence. Flags can overlap. The use assessment distinguishes clear recorded use with location/ratepayer warnings from uncertain activity. These are screening categories, not statistical confidence intervals.</p></section>
+
       <section id="results" aria-labelledby="results-title">
         <h2 id="results-title">What the screening produced</h2>
         <div class="table-wrap"><table><caption>National results for the 3 November 2026 publication</caption><thead><tr><th scope="col">Outcome</th><th scope="col">Assessments</th><th scope="col">How to use it</th></tr></thead><tbody>
-          <tr><th scope="row">Likely candidates</th><td>24,631</td><td>The default constituency view. Recorded type fits the target with no detected screening conflict.</td></tr>
-          <tr><th scope="row">Needs review, assigned</th><td>90,614</td><td>A separate view with a reason for each concern. These remain possible candidates requiring checks.</td></tr>
+          <tr><th scope="row">Likely candidates</th><td>26,446</td><td>The default constituency view. Recorded type fits the target with no detected screening conflict.</td></tr>
+          <tr><th scope="row">Needs review, assigned</th><td>88,799</td><td>A separate view with a reason for each concern. These remain possible candidates requiring checks.</td></tr>
           <tr><th scope="row">Needs review, unassigned</th><td>181</td><td>Retained in a separate download because no exact English constituency match was available.</td></tr>
         </tbody></table></div>
         <p>The constituency files contain 115,245 candidate and review assessments across 543 English constituencies. Another 124,737 English assessments in the value band are outside target on recorded use. “Outside target” does not establish that no relief of any kind is available.</p>
@@ -59,11 +61,11 @@
         <h2 id="comparison-title">What the comparisons changed</h2>
         <p>The independent spreadsheet contained 64 assessments and our earlier Earley and Woodley list contained 88. They shared 56 references, giving 96 distinct comparison assessments. Their recorded values agree with the same VOA snapshot. Neither list establishes real-world entitlement.</p>
         <div class="table-wrap"><table><caption>Revised outcomes for the earlier comparison populations</caption><thead><tr><th scope="col">Population</th><th scope="col">Likely</th><th scope="col">Review</th><th scope="col">Outside target</th></tr></thead><tbody>
-          <tr><th scope="row">Previous live list: 88</th><td>16</td><td>72</td><td>0</td></tr>
-          <tr><th scope="row">Independent spreadsheet: 64</th><td>8</td><td>52</td><td>4</td></tr>
-          <tr><th scope="row">Combined benchmark: 96</th><td>16</td><td>76</td><td>4</td></tr>
+          <tr><th scope="row">Previous live list: 88</th><td>18</td><td>70</td><td>0</td></tr>
+          <tr><th scope="row">Independent spreadsheet: 64</th><td>10</td><td>50</td><td>4</td></tr>
+          <tr><th scope="row">Combined benchmark: 96</th><td>18</td><td>74</td><td>4</td></tr>
         </tbody></table></div>
-        <p>The current Earley constituency file has <strong>16 likely and 75 review records</strong>. It is a different population: the benchmark includes Reading Central and unresolved-location records, while the current constituency file also retains a store assessment absent from both earlier lists.</p>
+        <p>The current Earley constituency file has <strong>18 likely and 73 review records</strong>. It is a different population: the benchmark includes Reading Central and unresolved-location records, while the current constituency file also retains a store assessment absent from both earlier lists.</p>
         <p>The eight spreadsheet-only records comprised three at exactly £12,000, two in Reading Central, two store assessments and one golf-club site-office assessment with a postcode discrepancy. A golf-club name does not establish that a separately assessed office has qualifying leisure use.</p>
         <p>The comparisons exposed generic shop classifications that can conceal estate-agency use, the risk of treating equal names as one ratepayer, and a gap in the original marina mapping. We introduced the review list, kept name provenance and retained exact geography matching.</p>
         <p>We also ran the <a href="https://github.com/CampaignLab/business-rates-relief/tree/a375373ae33869b1092d2233c81272b8b680c963">alternative CampaignLab implementation</a> on the same inputs. It models broader 2026/27 relief; comparable RHL/value filters reproduced the previous 88 Earley references. That agreement reproduces a selection, rather than independently confirming the uses or awards.</p>
@@ -72,7 +74,7 @@
 
       <section id="limits" aria-labelledby="limits-title">
         <h2 id="limits-title">What still needs checking</h2>
-        <p>The screening release passed 147 Python tests, seven Node tests and consistency checks on every published constituency row. Browser checks included an actual filtered download. These check software behaviour and data consistency; they do not measure the proportion of businesses that really qualify.</p>
+        <p>The screening release passed 153 Python tests, seven Node tests and consistency checks on every published constituency row. Browser checks included an actual filtered download. These check software behaviour and data consistency; they do not measure the proportion of businesses that really qualify.</p>
         <p>We have not completed a representative council-verified audit, established all current uses or ratepayers, or confirmed actual relief receipt. Recorded descriptions and supplied names can be stale. Sector mappings remain draft. A property may already have a zero bill because of another relief.</p>
         <p>Before making a definitive statement, confirm the current occupier and ratepayer, qualifying use, other properties, applicable rules and effective date, existing reliefs and council award/bill. To establish a <strong>newly</strong> zero bill, also establish the previous amount payable and why it changes.</p>
         <p>Council links are directory-sourced homepages, sometimes for successor authorities; not every endpoint has been individually availability-tested. Use the site's business-rates section. A link is a route to confirmation, not confirmation of any property.</p>

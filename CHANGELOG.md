@@ -2,6 +2,14 @@
 
 This is the analytical and implementation history, not a record of confirmed business-rate awards. All figures below refer to the fixed source snapshot used on **3 November 2026**.
 
+## Specific SCAT evidence and structured review categories — 3 November 2026
+
+Specific SCAT activity evidence for convenience stores, takeaways and hair/beauty categories now resolves generic shop wording without overriding uncertain mapping confidence or contradictory evidence. Coded ancillary offices/stores no longer create conditional-use warnings by themselves for the limited recognised qualifying primary uses. Generic shops (249), uncertain pharmacies and conditional categories remain subject to checking.
+
+Added review_categories, use_review_group and secondary_description_code to constituency exports. The browser displays the use assessment and separate concern flags. Rewrote the methodology from first principles; historical comparisons remain in this change history and the public comparison section.
+
+The same input population now yields 26,446 likely candidates (up 1,815), 88,799 assigned review records and 181 unassigned review records. No assessments were added or removed from the 115,245 constituency-download population. Earley and Woodley has 18 likely and 73 review records. Validation: 153 Python tests, seven Node tests, and all 115,245 published rows across 543 constituencies checked for outcome/reason/category/count consistency. These checks do not establish relief entitlement.
+
 ## Documentation and sharing cleanup — 3 November 2026
 
 Reworked the repository introduction and public methodology; added a source/checksum manifest, reproduction/release guide, field reference, current decision log and contribution/data-use notes. The documentation explains the different Earley comparison populations, distinguishes model outputs from awards, and supersedes outdated local-only and blanket marina-exclusion statements. This cleanup does not change source data, screening rules or published counts.

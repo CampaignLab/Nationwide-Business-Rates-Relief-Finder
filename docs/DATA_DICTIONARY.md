@@ -1,5 +1,11 @@
 # Data dictionary
 
+The current exports additionally include `review_categories` (semicolon-separated,
+overlapping concern flags), `use_review_group` (one prioritised activity/evidence
+group, or clear_recorded_use where only location/ratepayer concerns remain), and
+`secondary_description_code` (W/S/C/O or blank). See [METHODOLOGY.md](METHODOLOGY.md)
+for exact meanings. These categories are not probabilities or relief awards.
+
 Schema for the conservative screening publication introduced on **3 November 2026**. A row is a **VOA property assessment**, not a verified business or legal ratepayer account.
 
 ## Files and formats
