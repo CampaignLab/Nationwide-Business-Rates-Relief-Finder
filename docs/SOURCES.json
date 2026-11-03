@@ -1,0 +1,20 @@
+{
+  "publication_date": "2026-11-03",
+  "analysis_commit": "e654a086bbdb35bd025d7a6d61052b83c5010fce",
+  "voa_file_date": "2026-10-01",
+  "voa_latest_record_date": "2026-09-29",
+  "rules_announcement_date": "2026-10-28",
+  "inputs": [
+    {
+      "file": "uk-englandwales-ndr-2026-listentries-compiled-epoch-0004-baseline-csv.zip",
+      "bytes": 94269705,
+      "sha256": "6ad4dccc330d052814f6d27c5f18bc88dc308c50b4cc83ee7957a387bb951322"
+    },
+    {
+      "file": "ONSPD_AUG_2026.zip",
+      "bytes": 253928895,
+      "sha256": "ab51f1e82bd5beeb1089c3732ea6e11d62eb5693d619e2c4f4dd8c4baaa69293"
+    }
+  ],
+  "note": "Hashes identify the source ZIP bytes used for this release. Raw inputs are not committed. The staged dataset, rules and mapping CSVs are versioned in the analysis commit."
+}

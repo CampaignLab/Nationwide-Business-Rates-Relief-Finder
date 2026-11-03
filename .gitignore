@@ -1,4 +1,6 @@
-# VOA data is under a restricted licence and must not be committed.
+# Keep source downloads and intermediate data out of Git.
+# The explicitly published snapshot under web/dataset is already tracked;
+# newly staged publication files are added deliberately after review.
 data/raw/
 data/work/
 out/

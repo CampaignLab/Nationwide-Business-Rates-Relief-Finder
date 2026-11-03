@@ -1,51 +1,68 @@
 # Business Rates Relief Finder
 
-A static constituency browser and reproducible Python/DuckDB pipeline for candidate property assessments in England. The existing CampaignLab Vercel site publishes an explicitly staged dataset; without one the app displays synthetic demonstration data.
+Find English property assessments that may qualify for expanded full small business rates relief from **1 April 2027**. The finder screens retail, hospitality and leisure (RHL) premises with **£12,000 < rateable value ≤ £18,000** and separates clearer candidates from cases needing review.
 
-## Run and publish
+**[Open the finder](https://business-rates-relief-finder-campaign-lab.vercel.app/)** · **[Read the methodology](docs/METHODOLOGY.md)** · **[What changed and what we found](CHANGELOG.md)**
 
-Requires Python 3.11+ and Node.js 22+. Put the VOA baseline ZIP and ONSPD ZIP in `data/raw/`, install `requirements.txt` in a virtual environment, then run:
+This is an automatic screening tool. It does not establish the current occupier, their other properties, an actual relief award or whether a bill will newly become £0. Confirm individual circumstances with the billing council before making that claim. “Likely” describes a screening category, not a measured probability. Sector mappings remain draft.
+
+## Use the results
+
+1. Choose a constituency and open **View properties**. It starts on **Likely candidates**.
+2. Use **Needs review** for ambiguous descriptions, conditional uses and other concerns. Each record explains its outcome.
+3. Search by address, postcode, property reference or supplied name; filter by rateable value.
+4. Use **Download filtered CSV** for the selected results. Constituency CSV/Excel links contain **both** candidate and review records. Names supplied separately from VOA are labelled with their source and verification status.
+5. Follow the council link to find its business-rates team. An official council link is a route to confirmation, not confirmation itself.
+
+## Published snapshot — 3 November 2026
+
+| Screening result | Property assessments |
+|---|---:|
+| Likely candidates | 24,631 |
+| Needs review, assigned to an English constituency | 90,614 |
+| Needs review, without an exact English constituency match | 181 |
+| Constituencies covered | 543 |
+
+These counts use VOA 2026 epoch **0004**, dated **1 October 2026**, and **ONSPD August 2026**. The policy model uses the **28 October 2026 announcement**, marked announced and not yet in regulations in this release. The data and rules do not refresh automatically. Counts refer to assessments, not unique businesses.
+
+## Understand and reproduce the work
+
+| Document | What it covers |
+|---|---|
+| [Methodology](docs/METHODOLOGY.md) | Sources, selection rules, uncertainty and the spreadsheet comparison |
+| [Reproduce and deploy](docs/REPRODUCING.md) | Installation, fixed input snapshots, pipeline stages, checks and releases |
+| [Data dictionary](docs/DATA_DICTIONARY.md) | Download fields, file formats and legacy model fields |
+| [Design decisions](DECISIONS.md) | Why we chose conservative screening and exact postcode matching |
+| [Change history](CHANGELOG.md) | How the tool evolved and what the comparisons changed |
+| [Data use and attribution](docs/DATA_USE.md) | Provider terms, provenance and corrections |
+| [Contributing](CONTRIBUTING.md) | How to propose an evidenced correction or code change |
+
+## Run the website locally
+
+Requires **Node.js 22+** and **Python 3.11+**. There are no npm dependencies or required API keys.
 
 ```sh
-python run_all.py
 npm test
-node scripts/prepare-data.mjs out --include-downloads
 npm run build
+npm run dev
 ```
 
-The prepare command refuses to replace an existing `web/dataset` folder; move it aside before rebuilding. `npm run dev` serves the browser locally on port 3000. Build output is `dist`, suitable for the existing Vercel project with framework Other and build command `npm run build`. No API keys, database or npm dependencies are required.
+Open <http://127.0.0.1:3000/>. The checkout includes the published snapshot. Without a staged dataset, the site displays labelled synthetic demonstration data. The static build is written to `dist/`.
 
-Only allowlisted browser files and explicitly staged data enter the build. Raw data, environment files and the internal run report are excluded. Publication files are deliberately force-added to Git after validation; source inputs stay ignored. To validate a staged release run `node scripts/verify-published.mjs`.
+To rebuild the data, follow [Reproduce and deploy](docs/REPRODUCING.md). The full VOA and ONS source ZIPs and intermediate files are not committed.
 
-The browser supports constituency/region search, default likely-candidate results, a separate review view, RV filters, name/postcode/reference search and filtered CSV downloads. The complete constituency CSV/Excel files contain both candidate and review records, with notices. Locally selected output folders are read in the browser without uploading. The table shows up to 100 matches; downloads contain all filtered matches.
+## Repository guide
 
-## Reproducibility and interfaces
+| Location | Purpose |
+|---|---|
+| `src/` | Python/DuckDB ingestion, geography, sector mapping, model and screening |
+| `config/` | Policy assumptions and previous-publication counts |
+| `mapping/` | Premises-use mappings, supplied names, evidence and council directory |
+| `web/` | Static browser and explicitly published dataset |
+| `scripts/` | Website build, dataset staging and publication checks |
+| `tests/` | Python pipeline/rule tests and Node browser-data tests |
+| `docs/` | Methodology, field reference and operational instructions |
 
-The complete pipeline retains original assessments, adds legacy modelled eligibility, then adds `screening_outcome` (`likely_candidate`, `needs_review`, `outside_target`), `screening_reason`, `review_reasons`, name provenance and billing-council links. The publisher exports likely/review records with an exact English constituency; `unassigned_review.csv` retains unresolved locations. The index's legacy `target_new_full_relief` count now counts all exported screening records; the per-property legacy flag retains its original modelled meaning. New consumers should use the separate `likely_candidate` and `needs_review` counts.
+The project builds on the [original ChrisOwen101 pipeline](https://github.com/ChrisOwen101/Nationwide-Business-Rates-Relief-Finder). We also compared the [alternative CampaignLab implementation](https://github.com/CampaignLab/business-rates-relief) and an independently prepared Earley and Woodley spreadsheet. The comparison is a diagnostic exercise, not independent confirmation of entitlement.
 
-Source downloads: [VOA rating lists](https://voaratinglists.blob.core.windows.net/html/rlidata.htm) and ONS Open Geography Portal. Mapping/rule changes require a rebuild; ONSPD schema changes may require updating `ONSPD_FIELDS`. Archived publication counts are in `config/previous_publication.json`. Revisions to rules, mappings, supplied names and council links are version controlled.
-
-## Candidate screening
-
-The public finder now separates **Likely candidates** from **Needs review** for English property assessments with £12,000 < RV ≤ £18,000. These are automatic screening outcomes for the announced April 2027 expansion, not council awards or proof that a bill newly becomes £0. The original eligibility fields remain modelled results for compatibility; use `screening_outcome` and `screening_reason` for the new views.
-
-Specific qualifying premises descriptions without detected conflicts enter the main list. Generic shops, conditional uses, possible exclusions, terminated/unmatched postcodes and possible multiple-property name matches require review. Clear non-RHL uses are outside target. Missing names do not by themselves exclude a property. Recreational marinas are considered; unspecified marinas need review. Firm-name equality never proves a shared ratepayer.
-
-VOA firm names are preserved. The optional `mapping/researched_names.csv` supplies trading names with source, recording date and verification status. The imported Earley spreadsheet names are unverified display information, never eligibility evidence. Per-property use concerns are recorded separately with sources. Council links come from `mapping/council_links.csv`, keyed by VOA code; official homepages are taken from the government's Planning Data authority directory using address-custodian identifiers and documented successor exceptions. Refresh this directory when councils change.
-
-Run `run_all.py` to test and rebuild, including stage `06b_screening` between eligibility and publication. Missing/malformed postcodes are retained for unassigned review; assessments without a usable RV are rejected with reasons. `out/screening_report.json` reconciles national outcomes, legacy results and the previous publication. `out/earley_comparison.csv` records all 96 distinct comparison assessments (64 spreadsheet, 88 old live list, 56 shared). Neither old list is ground truth.
-
-The website defaults to likely candidates in each constituency. Full CSV/Excel downloads contain both candidate and review records; the browser's filtered download contains only the selected view and filters, with the disclaimer. Unassigned review records are a separate national download. Counts are property assessments, not verified businesses. Source data is fixed to VOA epoch 0004 (1 October 2026) and ONSPD August 2026 for this comparison. The rule snapshot is 28 October 2026, announced and not yet in regulations.
-
-Read the [public methodology](https://business-rates-relief-finder-campaign-lab.vercel.app/methodology.html) for the full process, source links, comparison and limitations. Before making a definitive statement to a business, confirm occupation, ratepayer identity, other properties, existing relief and the final bill with its billing council. For an unverified case, use “this property may qualify; please check with your council”.
-
----
-
-
-## Data use and interpretation
-
-The [VO download guidance](https://voaratinglists.blob.core.windows.net/html/rlidata.htm) states that the data is supplied under a restricted licence, not the Open Government Licence. It permits passing data to third parties subject to communicating the terms. The [VO terms](https://www.tax.service.gov.uk/business-rates-find/terms-and-conditions) restrict use to the stated non-domestic rating purposes and onward disclosure to those purposes; personal data is outside that permission. Public availability therefore does not establish unrestricted reuse. A public website is not categorically prohibited: whether its particular use and redistribution fit the terms needs to be assessed. In particular, rating-assessment assistance and campaign outreach are different purposes. Aggregate outputs should also be assessed rather than assumed exempt.
-
-Generated files retain source-term notices and methodological disclaimers. This web layer does not determine the licence position or grant permission to distribute a dataset.
-
-Potential eligibility is based on rateable value and property type. The tool cannot establish occupancy, the ratepayer, relief currently received or every property held by an occupier. Check with the billing authority. Sector mappings may await human review; April 2027 statuses reflect the rule snapshot in the dataset. The pipeline covers England.
+VOA data is supplied under its own restricted terms, not the Open Government Licence. Read [Data use and attribution](docs/DATA_USE.md) before reusing the published records.
