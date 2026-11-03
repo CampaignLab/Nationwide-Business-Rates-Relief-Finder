@@ -16,7 +16,7 @@
       <h1>How the finder works</h1>
       <p class="lede">We identify English property assessments that may qualify for expanded full small business rates relief from 1 April 2027. A cautious main list is accompanied by a separate list of cases needing review.</p>
       <div class="notice"><strong>HOW TO INTERPRET THE RESULTS</strong><p>This is an automatic screen using recorded property information. It does not establish the current occupier, an actual relief award or whether a bill will newly become £0. “Likely” is a screening category, not a measured probability. Sector mappings remain draft.</p></div>
-      <nav aria-label="On this page"><a href="#sources">Sources</a><a href="#process">Process</a><a href="#results">Findings</a><a href="#comparison">What the comparisons changed</a><a href="#limits">Limits and council checks</a><a href="#audit">Reproduce and correct the work</a></nav>
+      <nav aria-label="On this page"><a href="#sources">Sources</a><a href="#process">Process</a><a href="#results">Findings</a><a href="#limits">Limits and council checks</a><a href="#audit">Reproduce and correct the work</a></nav>
 
       <section id="sources" aria-labelledby="sources-title">
         <h2 id="sources-title">The sources and dates</h2>
@@ -57,22 +57,7 @@
         <p><a href="/dataset/screening_report.json">National screening report (JSON)</a> · <a href="/dataset/unassigned_review.csv">Unassigned review records (CSV)</a></p>
       </section>
 
-      <section id="comparison" aria-labelledby="comparison-title">
-        <h2 id="comparison-title">What the comparisons changed</h2>
-        <p>The independent spreadsheet contained 64 assessments and our earlier Earley and Woodley list contained 88. They shared 56 references, giving 96 distinct comparison assessments. Their recorded values agree with the same VOA snapshot. Neither list establishes real-world entitlement.</p>
-        <div class="table-wrap"><table><caption>Revised outcomes for the earlier comparison populations</caption><thead><tr><th scope="col">Population</th><th scope="col">Likely</th><th scope="col">Review</th><th scope="col">Outside target</th></tr></thead><tbody>
-          <tr><th scope="row">Previous live list: 88</th><td>18</td><td>70</td><td>0</td></tr>
-          <tr><th scope="row">Independent spreadsheet: 64</th><td>10</td><td>50</td><td>4</td></tr>
-          <tr><th scope="row">Combined benchmark: 96</th><td>18</td><td>74</td><td>4</td></tr>
-        </tbody></table></div>
-        <p>The current Earley constituency file has <strong>18 likely and 73 review records</strong>. It is a different population: the benchmark includes Reading Central and unresolved-location records, while the current constituency file also retains a store assessment absent from both earlier lists.</p>
-        <p>The eight spreadsheet-only records comprised three at exactly £12,000, two in Reading Central, two store assessments and one golf-club site-office assessment with a postcode discrepancy. A golf-club name does not establish that a separately assessed office has qualifying leisure use.</p>
-        <p>The comparisons exposed generic shop classifications that can conceal estate-agency use, the risk of treating equal names as one ratepayer, and a gap in the original marina mapping. We introduced the review list, kept name provenance and retained exact geography matching.</p>
-        <p>We also ran the <a href="https://github.com/CampaignLab/business-rates-relief/tree/a375373ae33869b1092d2233c81272b8b680c963">alternative CampaignLab implementation</a> on the same inputs. It models broader 2026/27 relief; comparable RHL/value filters reproduced the previous 88 Earley references. That agreement reproduces a selection, rather than independently confirming the uses or awards.</p>
-        <p><a href="/dataset/earley_comparison.csv">All 96 comparison outcomes and reasons (CSV)</a> · <a href="https://github.com/CampaignLab/Nationwide-Business-Rates-Relief-Finder/blob/main/CHANGELOG.md">Full change history and comparison findings</a></p>
-      </section>
-
-      <section id="limits" aria-labelledby="limits-title">
+<section id="limits" aria-labelledby="limits-title">
         <h2 id="limits-title">What still needs checking</h2>
         <p>The screening release passed 153 Python tests, seven Node tests and consistency checks on every published constituency row. Browser checks included an actual filtered download. These check software behaviour and data consistency; they do not measure the proportion of businesses that really qualify.</p>
         <p>We have not completed a representative council-verified audit, established all current uses or ratepayers, or confirmed actual relief receipt. Recorded descriptions and supplied names can be stale. Sector mappings remain draft. A property may already have a zero bill because of another relief.</p>

@@ -103,22 +103,7 @@ $('property-dialog').addEventListener('close',()=>{propertyRequest++;properties=
 $('property-search').addEventListener('input',renderProperties);
 for(const id of ['property-outcome','rv-min','rv-max'])$(id).addEventListener('input',renderProperties);
 $('search').addEventListener('input',render);$('region').addEventListener('change',render);
-$('demo').addEventListener('click',()=>{setDataset(demo);$('folder').value='';$('file-status').textContent='';});
-$('folder').addEventListener('change',async event=>{
-  const files=[...event.target.files]; if(!files.length)return;
-  $('file-status').textContent='Opening local dataset…';
-  try{
-    const indexes=files.filter(f=>f.name==='constituency_index.json');
-    if(indexes.length!==1)throw new Error('Select the output folder containing exactly one constituency_index.json.');
-    const index=indexes[0];if(index.size>5*1024*1024)throw new Error('The index is too large (maximum 5 MB).');
-    const data=validateIndex(JSON.parse(await index.text()));
-    // A selected local file must never be able to masquerade as the built-in demo.
-    data.demo=false;
-    const prefix=index.webkitRelativePath.slice(0,-index.name.length);
-    const selected=new Map(files.filter(f=>f.webkitRelativePath.startsWith(prefix)).map(f=>[f.webkitRelativePath.slice(prefix.length),f]));
-    setDataset(data,selected);$('file-status').textContent='Dataset opened locally. Refresh or return to demo to clear it.';
-  }catch(error){$('file-status').textContent=`Could not open dataset: ${error.message}`;}
-});
+$('demo').addEventListener('click',()=>{setDataset(demo);$('file-status').textContent='';});
 setDataset(demo);
 // Optional deployment dataset. A missing dataset leaves the clearly labelled demo.
 try{
