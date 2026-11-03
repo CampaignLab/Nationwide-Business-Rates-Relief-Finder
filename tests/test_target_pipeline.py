@@ -112,6 +112,8 @@ def test_only_new_full_relief_targets_reach_published_files(tmp_path, monkeypatc
     records = [dict(zip(rows[start],r)) for r in rows[start+1:]]
     assert {int(r['rateable_value']) for r in records} == {12001,15000,16000,18000}
     assert len({r['property_reference'] for r in records})==5
+    assert all(r['scat_category']=='249' and r['scat_description']=='Shops' for r in records)
+    assert all(r['primary_description_code']=='CS' and r['secondary_description']=='' for r in records)
     assert next(r for r in records if r['property_reference']=='7')['screening_outcome']=='needs_review'
     assert next(r for r in records if r['property_reference']=='7')['target_new_full_relief']=='False'
     wb = load_workbook(out / seat['files']['xlsx'],read_only=True)

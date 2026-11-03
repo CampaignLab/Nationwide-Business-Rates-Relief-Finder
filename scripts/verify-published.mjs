@@ -11,6 +11,7 @@ for(const seat of index.constituencies){
   if(rows.length!==seat.counts.target_new_full_relief)throw new Error(`Count mismatch: ${seat.code}`);
   for(const row of rows){
     const rv=Number(row.rateable_value);
+    if(!Object.hasOwn(row,'primary_description')||!Object.hasOwn(row,'secondary_description')||!Object.hasOwn(row,'scat_description')||row.scat_category!==row.scat_code.slice(0,3))throw new Error(`Missing or inconsistent VOA code display: ${seat.code}`);
     if(!row.use_review_group||!Object.hasOwn(row,'secondary_description_code')||!Object.hasOwn(row,'review_categories'))throw new Error(`Missing classifier evidence fields: ${seat.code}`);
     if(row.screening_outcome==='needs_review'&&!row.review_categories)throw new Error(`Review without structured reasons: ${seat.code}`);
     if(row.screening_outcome==='likely_candidate'&&(row.review_categories||row.use_review_group!=='clear_recorded_use'))throw new Error(`Likely candidate has review conflicts: ${seat.code}`);

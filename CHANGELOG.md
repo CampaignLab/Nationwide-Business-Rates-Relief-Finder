@@ -2,6 +2,10 @@
 
 This is the analytical and implementation history, not a record of confirmed business-rate awards. All figures below refer to the fixed source snapshot used on **3 November 2026**.
 
+## Display VOA classification codes — 3 November 2026
+
+Entries now show the SCAT category and label, primary description code and standard label, and secondary accommodation suffix and label (or None recorded). Full original SCAT and description codes remain visible. CSV and Excel exports include the same display fields. Labels are explanatory source classifications, not new eligibility evidence; screening rules, record selection and totals are unchanged. Added publisher integration checks and primary/secondary parsing checks; 155 Python tests pass.
+
 ## Specific SCAT evidence and structured review categories — 3 November 2026
 
 Specific SCAT activity evidence for convenience stores, takeaways and hair/beauty categories now resolves generic shop wording without overriding uncertain mapping confidence or contradictory evidence. Coded ancillary offices/stores no longer create conditional-use warnings by themselves for the limited recognised qualifying primary uses. Generic shops (249), uncertain pharmacies and conditional categories remain subject to checking.

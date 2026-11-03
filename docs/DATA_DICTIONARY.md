@@ -1,5 +1,15 @@
 # Data dictionary
 
+Classification display fields: `primary_description_code` and `primary_description`
+identify the base VOA code and its standard label; `secondary_description_code` and
+`secondary_description` identify ancillary accommodation, blank when none is recorded;
+`scat_category` is the three-character category and `scat_description` its label.
+Original `description_code`, `scat_code` and actual `description_text` are preserved.
+Labels explain recorded categories, not actual use or relief entitlement. SCAT labels
+in `mapping/scat_labels.csv` are extracted from VOA specification Appendix 2, using
+the alternative implementation's reference table plus existing mapping labels for
+missing categories. Unmapped labels remain blank rather than being inferred.
+
 The current exports additionally include `review_categories` (semicolon-separated,
 overlapping concern flags), `use_review_group` (one prioritised activity/evidence
 group, or clear_recorded_use where only location/ratepayer concerns remain), and

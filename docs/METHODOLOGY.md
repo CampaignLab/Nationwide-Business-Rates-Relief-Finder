@@ -93,7 +93,7 @@ Location/ratepayer warnings retain the overall needs_review outcome even where r
 
 ## 8. Publish and validate
 
-Assigned likely/review records are published by constituency in CSV and Excel. Unassigned review records have a national download. Counts represent assessments, not unique businesses.
+Assigned likely/review records are published by constituency in CSV and Excel. Entries and downloads show the primary code and standard label, secondary accommodation suffix and label, and SCAT category and label alongside the original combined codes and actual description. These labels explain the recorded classifications and do not change the screening decision. Unassigned review records have a national download. Counts represent assessments, not unique businesses.
 
 Checks cover threshold boundaries, specific SCAT evidence, conflicts, ancillary-space handling, review categories, geography, row conservation, reference uniqueness, output counts and website/export consistency. They verify software behaviour, not actual eligibility accuracy. Code, mappings and published outputs are versioned; source ZIPs and intermediates are not committed.
 

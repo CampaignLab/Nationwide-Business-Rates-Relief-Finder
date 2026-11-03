@@ -9,6 +9,7 @@ from openpyxl import Workbook
 
 import validation
 from screening import DISCLAIMER
+from property_codes import CODE_FIELDS, describe_codes
 from common import MAPPING, OUT, WORK, connect, get_logger, load_rules, read_stage_log, sql_path, write_stage_log
 
 log = get_logger("07_publish")
@@ -78,6 +79,12 @@ def notice_lines(meta: dict, rules: dict, mapping_reviewed: bool, onspd_year: st
 def write_constituency(code, name, rows, notice, csv_dir, xlsx_dir):
     stem = file_stem(code, name)
     headers = [h for h, _ in OUTPUT_COLUMNS]
+    enriched = []
+    for row in rows:
+        codes = describe_codes(dict(zip(headers, row)), MAPPING)
+        enriched.append([*row, *(codes[field] for field in CODE_FIELDS)])
+    rows = enriched
+    headers += list(CODE_FIELDS)
     with open(csv_dir / f"{stem}.csv", "w", newline="", encoding="utf-8-sig") as f:
         w = csv.writer(f)
         for line in notice:

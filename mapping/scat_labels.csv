@@ -1,0 +1,417 @@
+scat_code,scat_description
+001,AA/RAC Service Centres and Boxes
+003,Advertising Right
+004,Agricultural Showgrounds (National Scheme)
+005,Air Ports (Minor) (National Scheme)
+006,Air Strips (National Scheme)
+007,Aircraft Works With Airfields
+008,Airport Let Outs
+009,Aluminium Smelting Works
+010,Ambulance Stations
+011,Amusement Arcades
+012,Amusement Parks
+013,Animal Boarding
+014,Arenas MISC
+015,Army Hereditaments
+016,Artificial Fibre Works
+017,Asphalt Plants
+018,ATMs
+019,Auction Rooms
+020,Baling Plants
+021,Banks/Insurance/Building Society Offices & Other A2 Uses
+022,Beach Huts
+023,Beet Sugar Factories
+024,Betting Offices
+025,Bingo Halls (National Scheme)
+026,Bird Sanctuaries
+027,Boat Yards
+028,Bowling Alleys MISC
+029,Bowling Centres (Indoor) MISC
+030,Bowling Greens (Outdoor) MISC
+031,Breweries (National Scheme)
+032,"Brickworks (Traditional), Clay Tile/Pipe Works"
+033,Bulk Cement Storage Depots
+034,Bullion/Money Stores (National Scheme)
+035,Bus Garages
+036,Bus Stations
+037,Cable Head End Buildings
+038,Car Auction Buildings/Sites
+039,Car Parks (Multi-Storey)
+040,Car Parks (Surfaced Open)
+041,Car Parks (Unsurfaced Open)
+042,Car Showrooms
+043,Car Spaces
+044,Car Supermarkets
+045,Car Washes (Stand Alone)
+046,Car/Caravan Sales/Display/Hiring Sites
+047,Chain-Operated and Large Caravan Parks (Leisure) (National Scheme)
+048,Caravan Sites and Pitches (National Scheme)
+049,Casinos and Gambling Clubs MISC
+050,Cattle Breeding Centres
+051,Cement Tile Works
+052,Cement Works
+053,Cemeteries (National Scheme)
+054,"Tenting and Touring Sites, Certified (CVT)"
+055,Chemical Works
+056,Cinemas (National Scheme)
+057,Civic and Public Buildings (Local Authority Occupations)
+058,Civic Amenity Sites
+059,Civil Airports
+060,Clubhouses
+061,Members Clubs
+062,Coaching Inns MISC
+063,Coking and Carbonising Plants
+064,Cold Stores
+065,Colleges of Further Education (National Scheme)
+066,Communication Stations (National Scheme)
+067,Community Day Centres
+068,Computer Centres (Non-Purpose Built)
+069,Computer Centres (Purpose Built)
+070,Concert Halls (National Scheme) MISC
+071,Concrete Batching Plants
+072,Concrete Block Works
+073,Concrete Product Works
+074,Conference & Exhibition Centres
+075,Wedding & Function Venues
+076,Contractors Huts & Compounds
+077,Country House Hotels
+079,Creameries
+080,Crematoria (With & Without Cemeteries) (National Scheme)
+081,Cricket Centres
+082,Cricket Grounds (County)
+083,Cricket Grounds/Pitches (Non- County)
+084,Dance Schools & Centres
+085,Day Nurseries/Play Schools
+086,Departmental and Walk Round Stores (Large)
+087,Distilleries
+088,District Heating Undertakings & Networks
+089,Docks and Harbours (Non-Statutory)
+090,Domestic Fuel Installations
+091,Drive-In Restaurants
+092,Drive-Thru Restaurants
+093,Mine Water Treatment Plant and Premises
+095,Exhaust and Tyre Centres
+096,"Factories, Workshops and Warehouses (Incl Bakeries & Dairies)"
+097,Factory Shops
+098,Farm Shops
+099,"Field Study, Activity and Adventure Centres"
+100,Film and
+101,Fire Stations
+102,Fish Farms
+103,Flour Mills (National Scheme)
+104,Food Courts
+105,Food Processing Centres
+106,Convenience Store
+107,Football Grounds
+108,Football Pitches MISC
+109,Football Stadia
+110,Foundries
+111,Funeral Parlours/Chapels Of Rest
+112,Game Farms
+113,Garages (Transport and Commercial)
+114,Garden Centres
+115,Gas Processing Plants
+116,Go Kart Rinks MISC
+117,Golf Courses
+118,Golf Driving Ranges
+119,Grain Silos
+120,Granaries and Intervention Stores
+121,Greyhound Racetracks MISC
+122,Guest & Boarding Houses
+123,Traveller Sites
+124,Hatcheries/Poultry Farms
+125,Health Farms
+126,Heliports
+127,Heredits Used For Primary Treatment/Processing Of Minerals
+128,Heritage Railways MISC
+129,High Tech Warehouses
+130,Holiday Centres
+131,Holiday Homes (Self Catering)
+132,Horse Racecourses MISC
+133,Hospital Let Outs
+134,Hospitals & Clinics
+135,Hospitals & Clinics (Private) (National Scheme)
+136,Hostels
+137,Hotels (3 Star And Under)
+138,Hotels (4 Star & Above) & Major Chain Operated (includes 3* & above consortium hotels)
+139,Hypermarkets/Superstores (over 2500m²)
+140,Ice Rinks MISC
+141,Interactive Telephone Kiosks
+142,Iron and/or Steel Works
+143,Kennels and Catteries
+144,Laboratories
+145,MISC
+146,Land Used For Advertising
+148,Land Used For Storage
+149,IMX MISC
+150,IMX MISC
+151,Distribution Warehouses
+153,"Large Industrials (Over 20,000m²)"
+157,(National Scheme)
+158,Livestock Markets (National Scheme)
+159,Scheme)
+161,Lorry Parks
+162,Maltings - Non Trad
+163,Maltings - Trad
+164,Marinas (National Scheme)
+165,Markets (Other Than Livestock)
+166,Mineral Depot and Premises
+167,Mineral Producing Hereditament - Blockstone
+168,Mineral Producing Hereditament - Brine
+169,Mineral Producing Hereditament - Chalk
+170,Mineral Producing Hereditament - China Clay
+171,Mineral Producing Hereditament - Clay
+172,Mineral Producing Hereditament - Coal
+173,Mineral Producing Hereditament - Fluorspar
+174,Mineral Producing Hereditament - Gas
+175,Mineral Producing Hereditament - Hardrock
+176,Mineral Producing Hereditament - Inert
+177,Mineral Producing Hereditament - Oil
+180,Mineral Producing Hereditament - Sand and Gravel
+181,Mineral Producing Hereditament - Sand
+182,Mineral Producing Hereditament - Shale Unburnt
+183,Mineral Producing Hereditament - Slate
+184,Mineral Producing Hereditament With Batching Plant
+185,Mineral Producing Hereditament With Coating Plant
+186,Mineral Producing Hereditament With Tunnel Kiln
+187,MOD Hereditaments
+188,Model Villages MISC
+189,Moorings (Floating Hereditaments)
+190,Mortuaries
+191,Motor Racetracks MISC
+192,Motor Vehicle Works
+193,Motorway Service Area Let Outs
+194,Motorway and Major Road Service Areas
+195,Museums and Art Galleries (Contractors)
+196,Museums and Art Galleries (NonContractors)
+197,Navy Hereditaments
+198,Newspaper Printing Works (National Scheme)
+199,Night Clubs & Discotheques
+200,Nuclear Establishments
+201,Nursing Homes (Inc. Old Peoples Homes)
+202,Observatories
+203,Offices (Inc Computer Centres)
+204,Offices (Headquarters/Institutional)
+205,Oil Refineries
+206,Oxbridge Colleges
+207,Paper Mills
+208,Pavilions MISC
+209,Petrol Filling Stations (National Scheme)
+210,Pharmacies
+211,Photographic Booths
+212,Pipelines
+213,Pleasure Piers MISC
+214,Point to Point and Eventing Courses MISC
+215,Police Stations
+216,Polo Grounds MISC
+217,Post Office Sorting Centres
+218,Potteries
+219,Power Generators
+220,Prison Service Hereditaments
+221,Secondary Aggregate Processing Plant and Premises Property used for Secondary Aggregate Processing
+222,Provender Mills (National Scheme)
+223,Public and Independent Schools (National Scheme)
+224,Public Conveniences (National Scheme)
+225,Venue Hire and Function Suite
+226,Public Houses/Pub Restaurants (National Scheme)
+227,Public Houses/Pub Restaurants (Inc.
+228,Public Telephone Kiosks (National Scheme)
+229,Racing Stables (National Scheme) MISC
+230,RAF Hereditaments
+231,Railways & Tramways (Non Leisure)
+232,Recording Studios
+233,Refuse Destructor Plants/Disposal Sites
+234,Restaurants
+235,Retail Warehouses and Foodstores
+236,Riding Schools & Livery Stables (National Scheme)
+237,Rifle and Weapons Ranges MISC
+238,Roadside Restaurants (National Scheme)
+239,Roller Skating Rinks MISC
+240,Royal Palaces
+241,Professional Rugby Clubs
+242,Amateur Rugby Clubs
+243,Sales Kiosks
+244,Scrap Metal/Breakers Yard
+245,Sea Dredged Aggregate Processing Plants & Depots
+246,Sewage Works (National Scheme)
+247,Ship Building Yards
+248,Ship Repair Yards
+249,Shops
+250,Showhouses (National Scheme)
+251,Showrooms
+252,Ski Centres MISC
+253,Snooker Halls/Clubs
+254,Speedway Racetracks MISC
+255,Spoil Heap Workings
+256,Sporting Rights
+257,Sports & Leisure Centres (LA) (Dry Only) (National Scheme)
+258,Sports & Leisure Centres (LA) (Wet & Dry) (National Scheme)
+259,Sports & Leisure Centres (Private) (Dry Only)
+260,Sports & Leisure Centres (Private) (Wet & Dry)
+261,Sports Grounds
+262,Sports Stadia
+263,Squash Courts MISC
+264,Stables and Loose Boxes MISC
+265,Stately Homes & Historic Houses (National Scheme) MISC
+266,Station Let Outs
+267,Storage Depots
+268,Stores
+269,Stud Farms
+270,Studios
+271,"Surgeries, Clinics, Health Centre (incl Dentists etc)"
+272,Swimming Pools (Local Authority)
+273,Swimming Pools (Private)
+274,Tanneries
+275,Telecommunications Cable Networks (National Scheme)
+276,Telecommunications Switching Centres
+277,Tennis and Padel Centres
+278,Tennis Courts/Clubs MISC
+279,Theatres (National Scheme)
+280,Theme Parks MISC
+281,Timeshare Complexes (National Scheme)
+282,"Tolls (Ferries, Roads And Bridges)"
+283,Totalisators On Horse Racecourses MISC
+284,Tourist Attractions/Dark Rides MISC
+285,Training Centre (Non Residential)
+286,Training Centre (Residential)
+287,Truck Stops
+288,Universities (Excluding Oxbridge) (National Scheme)
+289,Vehicle Repair Workshops & Garages
+290,Vehicle Testing Centres (With Test Tracks)
+291,Vehicle Testing Centres (Without Test Tracks)
+292,Veterinary Clinics / Animal Clinics
+293,"Village Halls, Scout Huts, Cadet Huts Etc"
+294,Vineyards/Wineries
+295,Wafer Fabrications (National Scheme)
+296,War Games Courses/Misc. Ag. Use MISC
+297,Waste Incinerator Plants
+298,Waste Recycling Plants
+299,Waste Transfer Stations
+300,Water Undertakings (Non-Statutory)
+301,Wholesale Warehouses
+302,Windmills
+303,Wine Bars (Valued on Floor Space)
+304,Zoos & Safari Parks MISC
+364,Dog Walking and Agility Centres MISC
+400,Abattoirs & Slaughter Houses (Contractors Valuation)
+401,Abattoirs & Slaughter Houses (Rental Valuation)
+402,Agricultural Research Centres
+403,Aquaria
+404,Archives
+405,Boathouses
+406,Bus Garages (Contractors Valuation)
+407,Bus Garages (Rental Valuation)
+408,Business Units
+409,Cafes
+410,Changing Rooms MISC
+411,Coastguard Stations
+412,Cold Stores (Contractors Valuation)
+413,Cold Stores (Rental Valuation)
+414,Courts (Contractors Valuation)
+415,Courts (Rental Valuation)
+416,Gymnasia/Fitness Suites MISC
+417,Hairdressing/Beauty Salons
+418,Information/Visitor Centres MISC
+419,Land Used for Display
+420,Lifeboat Stations
+421,Miniature Railways MISC
+422,Pack Houses
+423,Peat Fields
+424,Pet Grooming Parlours
+425,Pharmacies Within/Adjacent to Surgery/Health Centre
+426,Pitch and Putt/Putting Greens MISC
+427,"Pitches for Stalls, Sales or Promotions"
+428,Police Training Colleges
+429,Post Offices
+430,Pumping Mines
+431,Religious Retreats/Study Centres (Residential)
+432,Sales Offices
+433,Statutory Docks and Harbours (Formula) / Occupation within a Statutory Port Undertaking
+434,"Statutory Docks and Harbours (Non- Formula, Prescribed)"
+435,Statutory Docks and Harbours (Other)
+436,"Surgeries, Clinics, Health Centres (Contractors Valuation)"
+437,"Surgeries, Clinics, Health Centres (Rental Valuation)"
+438,Telescope Sites
+439,University - Ancillary Land or Buildings
+440,University Occupation Within Hospitals
+441,Weighbridges
+442,Takeaway Food Outlet (Predominantly Off Premises)
+500,Cafes/Restaurants Within/Part of Specialist Property
+501,Car Parking Within/Part of Specialist Property
+502,Garages Within/Part of Specialist Property
+503,Gymnasia/Fitness Suites Within/Part of Specialist Property (Dry Only) MISC
+504,"Kiosks and Pods Within/Part of Specialist Property, Retail Parks & Other Major Retail/Sporting Destinations."
+505,Nurseries/Creches Within/Part of Specialist Property
+506,Offices Within/Part of Specialist Property
+507,Salons/Clinics Within/Part of Specialist Property
+508,Shops Within/Part of Specialist Property
+509,Sports & Leisure Centres Within/Part of Specialist Property
+510,Stores Within/Part of Specialist Property
+511,Warehouses Within/Part of Specialist Property
+512,Workshops Within/Part of Specialist Property
+513,Miscellaneous Within/Part of Specialist Property
+700,Sponsored Roundabout Advertising Displays
+701,Restaurant With Letting Accommodation
+702,Driving Standards Agency Centre
+703,Residual Shopping Mall
+704,Events
+705,Market Stall (Not Pitch)
+706,Advertising Displays On Pavements & Bus Shelters
+707,Advertising Displays At Superstores
+708,Advertising Displays From Phone Booths
+709,Dark Retailing/Internet Sites
+710,Residual Mall
+711,Advertising Displays From Agricultural
+712,Rail Freight Depots
+713,Bicycle Folding Box Site
+714,Rail Maintenance Depots
+715,Football Training Grounds
+716,Cafe/Restaurants Within/Part of Non Specialist Properties
+718,Electric Charge Stations
+719,Car Washes (Stand Alone - Hand Car Wash)
+721,Self-Storage Facility
+722,Serviced Apartments
+723,Serviced Offices
+724,Street Points (e.g. Cycle Docking Stations)
+725,Park & Ride Car Parks
+726,Telecommunications Large Broadcast Sites
+727,Waste Anaerobic Digestion Plants
+728,Bagging Plant & Premises
+730,"Biomass Biological (Crop & Slurry Based Anaerobic Digestors, Incl Gas to Grid)"
+731,"Biomass Thermal (Incl Combustion, Gasification and Pyrolysis)"
+732,Click & Collect Locker Site
+733,Battery Store
+734,Wedding and Function Venue
+735,Historic Property (National Trust/English Heritage)
+736,Holiday Home Self Catering (Complexs)
+737,Ferry Terminal
+738,Builders Merchant
+739,Soccer Centres MISC
+740,Secure Children’s Homes
+741,Independent Gas Transport (IGT)
+742,Independent Distribution Network Operators (IDNO)
+743,Renewable Power Generators – Photovoltaic
+744,Renewable Power Generators – Wind
+745,Renewable Power Generators – Other
+746,Renewable Power Generators – Hydro
+747,Fossil Fuel Power Stations
+748,Nuclear Power Stations
+749,Underground Gas Storage Facility
+750,NHS Clinics & Health Centres (Contractors)
+751,NHS Clinics & Health Centres (Rentals)
+752,Surgeries (Other Than GP/NHS) (Contractors)
+754,GP Surgeries (Contractors)
+755,GP Surgeries (Rentals)
+756,Equestrian Hospitals
+757,Plant Nurseries
+758,Children’s Centre
+759,TV Studios
+760,Food Court Kiosks
+761,Telecommunications Access Networks
+992,Commercial Miscellaneous
+993,MISC
+994,Industrial Miscellaneous
+996,Formula Assessed Miscellaneous
+997,Minerals Miscellaneous
+998,Crown Miscellaneous
+999,Miscellaneous

@@ -69,6 +69,12 @@ function renderProperties(){
     const tr=el('tr');const location=el('td');location.append(el('strong',row.trading_name||(usableFirm?firm:row.address)));
     if(row.trading_name||usableFirm)location.append(el('p',row.address));
     location.append(el('p',`${row.postcode} · ${row.description_text||row.sector}`));
+    const codes=el('div');codes.setAttribute('aria-label','VOA property classification');
+    codes.append(el('p',`SCAT: ${row.scat_category||row.scat_code?.slice(0,3)||'Not recorded'} — ${row.scat_description||'Category description unavailable'}${row.scat_code?` (original: ${row.scat_code})`:''}`));
+    codes.append(el('p',`Primary: ${row.primary_description_code||row.description_code||'Not recorded'} — ${row.primary_description||'Description unavailable'}`));
+    codes.append(el('p',`Secondary: ${row.secondary_description_code?`${row.secondary_description_code} — ${row.secondary_description||'Description unavailable'}`:'None recorded'}`));
+    if(row.description_code&&row.description_code!==row.primary_description_code)codes.append(el('small',`Original description code: ${row.description_code}`));
+    location.append(codes);
     if(row.trading_name)location.append(el('small',`Trading name: ${row.name_verification_status?.replaceAll('_',' ')} · ${row.name_source} · recorded ${row.name_recorded_date}`));
     if(row.firm_name)location.append(el('p',`Original VOA firm name: ${row.firm_name}`));
     if(!row.trading_name&&!usableFirm)location.append(el('small','Occupier not identified'));
