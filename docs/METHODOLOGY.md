@@ -129,6 +129,8 @@ Welsh assessments appear in the VOA file but are set aside for that reason (see 
 
 ## Before promising relief
 
+Check the business is independent and occupies one property. Small business rates relief is for single-property businesses, so a branch of a chain, or an occupier with other premises, usually will not qualify. The rating list does not show who occupies what, and there is no public database (that HM Treasury or we are aware of) showing whether a business is part of a chain. The firm-name flag catches some multi-site businesses but cannot rule this out, because many names are missing. This has to be checked by hand: shopfront branding, an online search, Companies House, or asking the owner.
+
 Verify the current occupier, liable ratepayer, actual qualifying use, other occupied properties, final applicable rules, effective date, existing reliefs and council decision. To claim a newly zero bill, establish the previous amount payable and why it changes.
 
 There has been no representative council-verified audit establishing precision, recall or statistical confidence intervals. A suitable invitation is: **“This property may qualify for expanded relief. Please check your circumstances with your council.”**
